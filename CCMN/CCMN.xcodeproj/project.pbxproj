@@ -12,6 +12,8 @@
 		1DC5D7CC2222AFE00015530F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DC5D7CA2222AFE00015530F /* Main.storyboard */; };
 		1DC5D7CE2222AFE00015530F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DC5D7CD2222AFE00015530F /* Assets.xcassets */; };
 		1DC5D7D12222AFE00015530F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DC5D7CF2222AFE00015530F /* LaunchScreen.storyboard */; };
+		1DC5D7DA2222BC220015530F /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5D7D92222BC220015530F /* NetworkService.swift */; };
+		40417388863F6491D27B6DF8 /* Pods_CCMN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E5D2654C1199F6BCC8A832 /* Pods_CCMN.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,10 @@
 		1DC5D7CD2222AFE00015530F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1DC5D7D02222AFE00015530F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1DC5D7D22222AFE00015530F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1DC5D7D92222BC220015530F /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		2B27B75E49991F74544E4B2F /* Pods-CCMN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCMN.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CCMN/Pods-CCMN.debug.xcconfig"; sourceTree = "<group>"; };
+		561ADB571E8F688689EA0C45 /* Pods-CCMN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCMN.release.xcconfig"; path = "Pods/Target Support Files/Pods-CCMN/Pods-CCMN.release.xcconfig"; sourceTree = "<group>"; };
+		D3E5D2654C1199F6BCC8A832 /* Pods_CCMN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CCMN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40417388863F6491D27B6DF8 /* Pods_CCMN.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +47,8 @@
 			children = (
 				1DC5D7C52222AFE00015530F /* CCMN */,
 				1DC5D7C42222AFE00015530F /* Products */,
+				688878181F4D0CAABD24196E /* Pods */,
+				F13553150D9E01DA47EF8409 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +63,48 @@
 		1DC5D7C52222AFE00015530F /* CCMN */ = {
 			isa = PBXGroup;
 			children = (
+				1DC5D7D82222BB9D0015530F /* Network */,
 				1DC5D7C62222AFE00015530F /* AppDelegate.swift */,
 				1DC5D7C82222AFE00015530F /* ViewController.swift */,
 				1DC5D7CA2222AFE00015530F /* Main.storyboard */,
+				1DC5D7DB2222BD060015530F /* Supporting Files */,
+			);
+			path = CCMN;
+			sourceTree = "<group>";
+		};
+		1DC5D7D82222BB9D0015530F /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				1DC5D7D92222BC220015530F /* NetworkService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		1DC5D7DB2222BD060015530F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
 				1DC5D7CD2222AFE00015530F /* Assets.xcassets */,
 				1DC5D7CF2222AFE00015530F /* LaunchScreen.storyboard */,
 				1DC5D7D22222AFE00015530F /* Info.plist */,
 			);
-			path = CCMN;
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		688878181F4D0CAABD24196E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2B27B75E49991F74544E4B2F /* Pods-CCMN.debug.xcconfig */,
+				561ADB571E8F688689EA0C45 /* Pods-CCMN.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F13553150D9E01DA47EF8409 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D3E5D2654C1199F6BCC8A832 /* Pods_CCMN.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +114,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1DC5D7D52222AFE00015530F /* Build configuration list for PBXNativeTarget "CCMN" */;
 			buildPhases = (
+				CADAB78EDD6F495CCDC2A74E /* [CP] Check Pods Manifest.lock */,
 				1DC5D7BF2222AFE00015530F /* Sources */,
 				1DC5D7C02222AFE00015530F /* Frameworks */,
 				1DC5D7C12222AFE00015530F /* Resources */,
+				6772B1608397025873942BAB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -131,12 +176,56 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6772B1608397025873942BAB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CCMN/Pods-CCMN-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CCMN/Pods-CCMN-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CADAB78EDD6F495CCDC2A74E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CCMN-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1DC5D7BF2222AFE00015530F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				1DC5D7C92222AFE00015530F /* ViewController.swift in Sources */,
+				1DC5D7DA2222BC220015530F /* NetworkService.swift in Sources */,
 				1DC5D7C72222AFE00015530F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -211,7 +300,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -262,7 +351,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -272,29 +361,33 @@
 		};
 		1DC5D7D62222AFE00015530F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2B27B75E49991F74544E4B2F /* Pods-CCMN.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZNA2424JBU;
 				INFOPLIST_FILE = CCMN/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = unitfactory.CCMN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
 		1DC5D7D72222AFE00015530F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 561ADB571E8F688689EA0C45 /* Pods-CCMN.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZNA2424JBU;
 				INFOPLIST_FILE = CCMN/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = unitfactory.CCMN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
