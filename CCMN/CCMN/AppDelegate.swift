@@ -12,15 +12,12 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        NetworkManager.shared.getAesUID {
-            
-        }
-        
-        NetworkManager.shared.usersOnline { count in
-            
+        NetworkManager.shared.siteId {
+              // show launch while getting aesuid
         }
     
         return true

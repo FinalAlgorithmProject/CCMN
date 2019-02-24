@@ -12,16 +12,17 @@ import Moya
 enum CCMNApi {
     case gettingAesUID
     case numberOfOnlineUsers
-}
-
-extension CCMNApi: TargetType {
+    case todayVisitors(siteId: Int)
+    case campusInformation
     
+    
+    // Custom properties
     var environmentHeaders: String {
         switch self {
-        case .numberOfOnlineUsers:
+        case .numberOfOnlineUsers, .campusInformation:
             let data = "\(ApplicationConstants.cmxUsername):\(ApplicationConstants.cmxPassword)".data(using: .utf8)!
             return "Basic \(data.base64EncodedString())"
-        case .gettingAesUID:
+        case .gettingAesUID, .todayVisitors:
             let data = "\(ApplicationConstants.presenceUsername):\(ApplicationConstants.presencePassword)".data(using: .utf8)!
             return "Basic \(data.base64EncodedString())"
         }
@@ -29,13 +30,17 @@ extension CCMNApi: TargetType {
     
     var environmentBaseURL: String {
         switch self {
-        case .numberOfOnlineUsers:
+        case .numberOfOnlineUsers, .campusInformation:
             return ApplicationConstants.cmxURLString
-        case .gettingAesUID:
+        case .gettingAesUID, .todayVisitors:
             return ApplicationConstants.presenceURLString
         }
     }
-    
+}
+
+extension CCMNApi: TargetType {
+ 
+    // Protocols properties
     var baseURL: URL {
         return URL(string: environmentBaseURL)!
     }
@@ -46,6 +51,10 @@ extension CCMNApi: TargetType {
             return "/api/config/v1/sites"
         case .numberOfOnlineUsers:
             return "/api/location/v2/clients/count"
+        case .todayVisitors:
+            return "/api/presence/v1/connected/count/today"
+        case .campusInformation:
+            return "/api/config/v1/maps/count"
         }
     }
     
@@ -59,8 +68,10 @@ extension CCMNApi: TargetType {
     
     var task: Task {
         switch self {
-        case .gettingAesUID, .numberOfOnlineUsers:
+        case .gettingAesUID, .numberOfOnlineUsers, .campusInformation:
             return Task.requestPlain
+        case .todayVisitors(let siteId):
+            return Task.requestParameters(parameters: ["siteId": siteId], encoding: URLEncoding.queryString)
         }
     }
     
@@ -70,6 +81,4 @@ extension CCMNApi: TargetType {
             "Content-type": "application/json"
         ]
     }
-    
-    
 }

@@ -11,11 +11,6 @@ import Foundation
 import Alamofire
 import Moya
 
-enum ApiEnvironment {
-    case cmx
-    case presence
-}
-
 final class NetworkManager {
     
     // Why not?
@@ -24,6 +19,10 @@ final class NetworkManager {
     
     let decoder = JSONDecoder()
     let encoder = JSONEncoder()
+    
+    var siteId: Int {
+        return UserDefaultsService.siteId
+    }
     
     // Provider part
     private lazy var provider = MoyaProvider<CCMNApi>(manager: manager,
@@ -50,7 +49,7 @@ final class NetworkManager {
 
 extension NetworkManager: NetworkManagerProtocol {
     
-    func getAesUID(completion: @escaping () -> Void) {
+    func siteId(completion: @escaping () -> Void) {
         provider.request(.gettingAesUID) { [weak self] result in
             guard let `self` = self else { return }
             switch result {
@@ -59,7 +58,7 @@ extension NetworkManager: NetworkManagerProtocol {
                 if results.isEmpty {
                     self.showAlert("Can't get aesUID :(")
                 }
-                UserDefaultsService.aesUID = results[0].aesUidString
+                UserDefaultsService.siteId = results[0].aesUId
                 completion()
             case .failure(let error):
                 completion()
@@ -82,6 +81,38 @@ extension NetworkManager: NetworkManagerProtocol {
             }
         }
     }
+    
+    func todayVisitors(completion: @escaping (Int) -> Void) {
+        provider.request(.todayVisitors(siteId: siteId)) { [weak self] result in
+            guard let `self` = self else { return }
+            switch result {
+            case .success(let response):
+                let countString = String(bytes: response.data, encoding: .utf8) ?? "0"
+                completion(Int(countString)!)
+            case .failure(let error):
+                print(error.errorDescription!)
+                completion(0)
+                self.showAlert(error.localizedDescription)
+            }
+        }
+    }
+    
+    func campusInformation(completion: @escaping (CampusEntity?) -> Void) {
+        provider.request(.campusInformation) { [weak self] result in
+            guard let `self` = self else { return }
+            switch result {
+            case .success(let response):
+                let result = try? self.decoder.decode(CampusEntity.self, from: response.data)
+                completion(result)
+            case .failure(let error):
+                print(error.errorDescription!)
+                completion(nil)
+                self.showAlert(error.localizedDescription)
+            }
+        }
+    }
+    
+    
     
     
 }

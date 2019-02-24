@@ -9,15 +9,18 @@
 /* Begin PBXBuildFile section */
 		1D1021C2222301050008E3B7 /* NetworkManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1021C1222301050008E3B7 /* NetworkManagerProtocol.swift */; };
 		1D1021C42223058D0008E3B7 /* ClientsCountEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1021C32223058D0008E3B7 /* ClientsCountEntity.swift */; };
+		1D1021C82223076D0008E3B7 /* ApiEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1021C72223076D0008E3B7 /* ApiEnvironment.swift */; };
+		1D1021CA222309110008E3B7 /* InformationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1021C9222309110008E3B7 /* InformationModel.swift */; };
+		1D613612222319A70057068A /* CampusEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D613611222319A70057068A /* CampusEntity.swift */; };
 		1DC5D7C72222AFE00015530F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5D7C62222AFE00015530F /* AppDelegate.swift */; };
-		1DC5D7C92222AFE00015530F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5D7C82222AFE00015530F /* ViewController.swift */; };
+		1DC5D7C92222AFE00015530F /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5D7C82222AFE00015530F /* InformationViewController.swift */; };
 		1DC5D7CC2222AFE00015530F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DC5D7CA2222AFE00015530F /* Main.storyboard */; };
 		1DC5D7CE2222AFE00015530F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DC5D7CD2222AFE00015530F /* Assets.xcassets */; };
 		1DC5D7D12222AFE00015530F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DC5D7CF2222AFE00015530F /* LaunchScreen.storyboard */; };
 		1DC5D7DA2222BC220015530F /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5D7D92222BC220015530F /* NetworkService.swift */; };
 		1DC5D7DD2222BDAF0015530F /* ApplicationConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5D7DC2222BDAF0015530F /* ApplicationConstants.swift */; };
 		1DC5D7E02222CE260015530F /* SitesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5D7DF2222CE260015530F /* SitesEntity.swift */; };
-		1DC5D7E32222CE620015530F /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5D7E22222CE620015530F /* UserDefaults.swift */; };
+		1DC5D7E32222CE620015530F /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5D7E22222CE620015530F /* UserDefaultsService.swift */; };
 		1DC5D7E52222D0AA0015530F /* CCMNApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5D7E42222D0AA0015530F /* CCMNApi.swift */; };
 		40417388863F6491D27B6DF8 /* Pods_CCMN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E5D2654C1199F6BCC8A832 /* Pods_CCMN.framework */; };
 /* End PBXBuildFile section */
@@ -25,9 +28,12 @@
 /* Begin PBXFileReference section */
 		1D1021C1222301050008E3B7 /* NetworkManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerProtocol.swift; sourceTree = "<group>"; };
 		1D1021C32223058D0008E3B7 /* ClientsCountEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsCountEntity.swift; sourceTree = "<group>"; };
+		1D1021C72223076D0008E3B7 /* ApiEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiEnvironment.swift; sourceTree = "<group>"; };
+		1D1021C9222309110008E3B7 /* InformationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationModel.swift; sourceTree = "<group>"; };
+		1D613611222319A70057068A /* CampusEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusEntity.swift; sourceTree = "<group>"; };
 		1DC5D7C32222AFE00015530F /* CCMN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCMN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DC5D7C62222AFE00015530F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1DC5D7C82222AFE00015530F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1DC5D7C82222AFE00015530F /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		1DC5D7CB2222AFE00015530F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1DC5D7CD2222AFE00015530F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1DC5D7D02222AFE00015530F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -35,7 +41,7 @@
 		1DC5D7D92222BC220015530F /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		1DC5D7DC2222BDAF0015530F /* ApplicationConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationConstants.swift; sourceTree = "<group>"; };
 		1DC5D7DF2222CE260015530F /* SitesEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SitesEntity.swift; sourceTree = "<group>"; };
-		1DC5D7E22222CE620015530F /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		1DC5D7E22222CE620015530F /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
 		1DC5D7E42222D0AA0015530F /* CCMNApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCMNApi.swift; sourceTree = "<group>"; };
 		2B27B75E49991F74544E4B2F /* Pods-CCMN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCMN.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CCMN/Pods-CCMN.debug.xcconfig"; sourceTree = "<group>"; };
 		561ADB571E8F688689EA0C45 /* Pods-CCMN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCMN.release.xcconfig"; path = "Pods/Target Support Files/Pods-CCMN/Pods-CCMN.release.xcconfig"; sourceTree = "<group>"; };
@@ -66,7 +72,8 @@
 			isa = PBXGroup;
 			children = (
 				1DC5D7DC2222BDAF0015530F /* ApplicationConstants.swift */,
-				1DC5D7C82222AFE00015530F /* ViewController.swift */,
+				1D1021C9222309110008E3B7 /* InformationModel.swift */,
+				1DC5D7C82222AFE00015530F /* InformationViewController.swift */,
 				1DC5D7CA2222AFE00015530F /* Main.storyboard */,
 			);
 			path = "Application Logic";
@@ -116,6 +123,7 @@
 			children = (
 				1DC5D7D92222BC220015530F /* NetworkService.swift */,
 				1DC5D7E42222D0AA0015530F /* CCMNApi.swift */,
+				1D1021C72223076D0008E3B7 /* ApiEnvironment.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -135,6 +143,7 @@
 			children = (
 				1DC5D7DF2222CE260015530F /* SitesEntity.swift */,
 				1D1021C32223058D0008E3B7 /* ClientsCountEntity.swift */,
+				1D613611222319A70057068A /* CampusEntity.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -142,8 +151,8 @@
 		1DC5D7E12222CE490015530F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				1DC5D7E22222CE620015530F /* UserDefaultsService.swift */,
 				1DC5D7D82222BB9D0015530F /* Network */,
-				1DC5D7E22222CE620015530F /* UserDefaults.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -282,15 +291,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1DC5D7C92222AFE00015530F /* ViewController.swift in Sources */,
+				1D1021C82223076D0008E3B7 /* ApiEnvironment.swift in Sources */,
+				1D1021CA222309110008E3B7 /* InformationModel.swift in Sources */,
+				1DC5D7C92222AFE00015530F /* InformationViewController.swift in Sources */,
 				1DC5D7DA2222BC220015530F /* NetworkService.swift in Sources */,
-				1DC5D7E32222CE620015530F /* UserDefaults.swift in Sources */,
+				1DC5D7E32222CE620015530F /* UserDefaultsService.swift in Sources */,
 				1DC5D7E02222CE260015530F /* SitesEntity.swift in Sources */,
 				1D1021C2222301050008E3B7 /* NetworkManagerProtocol.swift in Sources */,
 				1D1021C42223058D0008E3B7 /* ClientsCountEntity.swift in Sources */,
 				1DC5D7DD2222BDAF0015530F /* ApplicationConstants.swift in Sources */,
 				1DC5D7C72222AFE00015530F /* AppDelegate.swift in Sources */,
 				1DC5D7E52222D0AA0015530F /* CCMNApi.swift in Sources */,
+				1D613612222319A70057068A /* CampusEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

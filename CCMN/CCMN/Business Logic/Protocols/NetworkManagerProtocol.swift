@@ -9,6 +9,8 @@
 import Foundation
 
 protocol NetworkManagerProtocol {
-    func getAesUID(completion: @escaping () -> Void)
-    func usersOnline(completion: @escaping (Int) -> Void) 
+    func siteId(completion: @escaping () -> Void)
+    func usersOnline(completion: @escaping (Int) -> Void)
+    func todayVisitors(completion: @escaping (Int) -> Void)
+    func campusInformation(completion: @escaping (CampusEntity?) -> Void)
 }
