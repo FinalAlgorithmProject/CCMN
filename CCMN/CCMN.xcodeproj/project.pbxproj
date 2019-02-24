@@ -7,16 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D1021C2222301050008E3B7 /* NetworkManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1021C1222301050008E3B7 /* NetworkManagerProtocol.swift */; };
+		1D1021C42223058D0008E3B7 /* ClientsCountEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1021C32223058D0008E3B7 /* ClientsCountEntity.swift */; };
 		1DC5D7C72222AFE00015530F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5D7C62222AFE00015530F /* AppDelegate.swift */; };
 		1DC5D7C92222AFE00015530F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5D7C82222AFE00015530F /* ViewController.swift */; };
 		1DC5D7CC2222AFE00015530F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DC5D7CA2222AFE00015530F /* Main.storyboard */; };
 		1DC5D7CE2222AFE00015530F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DC5D7CD2222AFE00015530F /* Assets.xcassets */; };
 		1DC5D7D12222AFE00015530F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DC5D7CF2222AFE00015530F /* LaunchScreen.storyboard */; };
 		1DC5D7DA2222BC220015530F /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5D7D92222BC220015530F /* NetworkService.swift */; };
+		1DC5D7DD2222BDAF0015530F /* ApplicationConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5D7DC2222BDAF0015530F /* ApplicationConstants.swift */; };
+		1DC5D7E02222CE260015530F /* SitesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5D7DF2222CE260015530F /* SitesEntity.swift */; };
+		1DC5D7E32222CE620015530F /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5D7E22222CE620015530F /* UserDefaults.swift */; };
+		1DC5D7E52222D0AA0015530F /* CCMNApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5D7E42222D0AA0015530F /* CCMNApi.swift */; };
 		40417388863F6491D27B6DF8 /* Pods_CCMN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E5D2654C1199F6BCC8A832 /* Pods_CCMN.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D1021C1222301050008E3B7 /* NetworkManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerProtocol.swift; sourceTree = "<group>"; };
+		1D1021C32223058D0008E3B7 /* ClientsCountEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsCountEntity.swift; sourceTree = "<group>"; };
 		1DC5D7C32222AFE00015530F /* CCMN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCMN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DC5D7C62222AFE00015530F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1DC5D7C82222AFE00015530F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -25,6 +33,10 @@
 		1DC5D7D02222AFE00015530F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1DC5D7D22222AFE00015530F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1DC5D7D92222BC220015530F /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		1DC5D7DC2222BDAF0015530F /* ApplicationConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationConstants.swift; sourceTree = "<group>"; };
+		1DC5D7DF2222CE260015530F /* SitesEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SitesEntity.swift; sourceTree = "<group>"; };
+		1DC5D7E22222CE620015530F /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		1DC5D7E42222D0AA0015530F /* CCMNApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCMNApi.swift; sourceTree = "<group>"; };
 		2B27B75E49991F74544E4B2F /* Pods-CCMN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCMN.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CCMN/Pods-CCMN.debug.xcconfig"; sourceTree = "<group>"; };
 		561ADB571E8F688689EA0C45 /* Pods-CCMN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCMN.release.xcconfig"; path = "Pods/Target Support Files/Pods-CCMN/Pods-CCMN.release.xcconfig"; sourceTree = "<group>"; };
 		D3E5D2654C1199F6BCC8A832 /* Pods_CCMN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CCMN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -42,6 +54,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D1021C0222300CF0008E3B7 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				1D1021C1222301050008E3B7 /* NetworkManagerProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		1D1021C5222306830008E3B7 /* Application Logic */ = {
+			isa = PBXGroup;
+			children = (
+				1DC5D7DC2222BDAF0015530F /* ApplicationConstants.swift */,
+				1DC5D7C82222AFE00015530F /* ViewController.swift */,
+				1DC5D7CA2222AFE00015530F /* Main.storyboard */,
+			);
+			path = "Application Logic";
+			sourceTree = "<group>";
+		};
+		1D1021C62223068B0008E3B7 /* Business Logic */ = {
+			isa = PBXGroup;
+			children = (
+				1DC5D7DE2222CDA50015530F /* Models */,
+				1DC5D7E12222CE490015530F /* Services */,
+				1D1021C0222300CF0008E3B7 /* Protocols */,
+			);
+			path = "Business Logic";
+			sourceTree = "<group>";
+		};
 		1DC5D7BA2222AFE00015530F = {
 			isa = PBXGroup;
 			children = (
@@ -63,10 +103,9 @@
 		1DC5D7C52222AFE00015530F /* CCMN */ = {
 			isa = PBXGroup;
 			children = (
-				1DC5D7D82222BB9D0015530F /* Network */,
 				1DC5D7C62222AFE00015530F /* AppDelegate.swift */,
-				1DC5D7C82222AFE00015530F /* ViewController.swift */,
-				1DC5D7CA2222AFE00015530F /* Main.storyboard */,
+				1D1021C62223068B0008E3B7 /* Business Logic */,
+				1D1021C5222306830008E3B7 /* Application Logic */,
 				1DC5D7DB2222BD060015530F /* Supporting Files */,
 			);
 			path = CCMN;
@@ -76,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				1DC5D7D92222BC220015530F /* NetworkService.swift */,
+				1DC5D7E42222D0AA0015530F /* CCMNApi.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -88,6 +128,24 @@
 				1DC5D7D22222AFE00015530F /* Info.plist */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1DC5D7DE2222CDA50015530F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1DC5D7DF2222CE260015530F /* SitesEntity.swift */,
+				1D1021C32223058D0008E3B7 /* ClientsCountEntity.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1DC5D7E12222CE490015530F /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				1DC5D7D82222BB9D0015530F /* Network */,
+				1DC5D7E22222CE620015530F /* UserDefaults.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		688878181F4D0CAABD24196E /* Pods */ = {
@@ -226,7 +284,13 @@
 			files = (
 				1DC5D7C92222AFE00015530F /* ViewController.swift in Sources */,
 				1DC5D7DA2222BC220015530F /* NetworkService.swift in Sources */,
+				1DC5D7E32222CE620015530F /* UserDefaults.swift in Sources */,
+				1DC5D7E02222CE260015530F /* SitesEntity.swift in Sources */,
+				1D1021C2222301050008E3B7 /* NetworkManagerProtocol.swift in Sources */,
+				1D1021C42223058D0008E3B7 /* ClientsCountEntity.swift in Sources */,
+				1DC5D7DD2222BDAF0015530F /* ApplicationConstants.swift in Sources */,
 				1DC5D7C72222AFE00015530F /* AppDelegate.swift in Sources */,
+				1DC5D7E52222D0AA0015530F /* CCMNApi.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,7 +430,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZNA2424JBU;
-				INFOPLIST_FILE = CCMN/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/CCMN/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = unitfactory.CCMN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -382,7 +446,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZNA2424JBU;
-				INFOPLIST_FILE = CCMN/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/CCMN/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = unitfactory.CCMN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
