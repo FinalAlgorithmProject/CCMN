@@ -38,11 +38,15 @@ final class NetworkManager {
                        serverTrustPolicyManager: ServerTrustPolicyManager(policies: policies))
     }()
     
-    func showAlert(_ message: String) {
+    private func showAlert(_ message: String) {
         let alertController = UIAlertController(title: "Unknown Error", message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         (UIApplication.shared.delegate as! AppDelegate).window?
             .rootViewController?.present(alertController, animated: true, completion: nil)
+    }
+    
+    private func defaultFailureCase(_ error: MoyaError) {
+        showAlert(error.localizedDescription)
     }
 }
 
@@ -62,7 +66,7 @@ extension NetworkManager: NetworkManagerProtocol {
                 completion()
             case .failure(let error):
                 completion()
-                self.showAlert(error.localizedDescription)
+                self.defaultFailureCase(error)
             }
         }
     }
@@ -75,9 +79,8 @@ extension NetworkManager: NetworkManagerProtocol {
                 let result = try! self.decoder.decode(ClientsCountEntity.self, from: response.data)
                 completion(result.count)
             case .failure(let error):
-                print(error.errorDescription!)
                 completion(0)
-                self.showAlert(error.localizedDescription)
+                self.defaultFailureCase(error)
             }
         }
     }
@@ -90,9 +93,8 @@ extension NetworkManager: NetworkManagerProtocol {
                 let countString = String(bytes: response.data, encoding: .utf8) ?? "0"
                 completion(Int(countString)!)
             case .failure(let error):
-                print(error.errorDescription!)
                 completion(0)
-                self.showAlert(error.localizedDescription)
+                self.defaultFailureCase(error)
             }
         }
     }
@@ -105,9 +107,8 @@ extension NetworkManager: NetworkManagerProtocol {
                 let result = try? self.decoder.decode(CampusEntity.self, from: response.data)
                 completion(result)
             case .failure(let error):
-                print(error.errorDescription!)
                 completion(nil)
-                self.showAlert(error.localizedDescription)
+                self.defaultFailureCase(error)
             }
         }
     }
