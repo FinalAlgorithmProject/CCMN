@@ -12,24 +12,24 @@ struct CampusEntity: Codable {
     let totalCampuses: Int
     let totalBuildings: Int
     let totalFloors: Int
-    let totalAps: Int
+//    let totalAps: Int
     
-    let campusCounts: [CampusCount]
+    let campusCounts: [CampusInfoEntity]
 }
 
-struct CampusCount: Codable {
+struct CampusInfoEntity: Codable {
     let campusName: String
     let totalBuildings: Int
-    let buildingCounts: [BuildingCount]
+    let buildingCounts: [BuildingInfoEntity] // information about building
 }
 
-struct BuildingCount: Codable {
+struct BuildingInfoEntity: Codable {
     let buildingName: String
     let totalFloors: Int
-    let floorCounts: [FloorCount]
+    let floorCounts: [FloorInfoEntity] // information about floors
 }
 
-struct FloorCount: Codable {
+struct FloorInfoEntity: Codable {
     let floorName: String
-    let apCount: Int
+//    let apCount: Int
 }

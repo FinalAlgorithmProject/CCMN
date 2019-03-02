@@ -44,6 +44,10 @@ final class NetworkManager {
         (UIApplication.shared.delegate as! AppDelegate).window?
             .rootViewController?.present(alertController, animated: true, completion: nil)
     }
+    
+    private func defaultFailureCase(_ error: MoyaError) {
+        showAlert(error.localizedDescription)
+    }
 }
 
 /// TODO: Change all try! to try?
@@ -63,7 +67,7 @@ extension NetworkManager {
                 completion()
             case .failure(let error):
                 completion()
-                self.showAlert(error.localizedDescription)
+                self.defaultFailureCase(error)
             }
         }
     }
@@ -76,9 +80,8 @@ extension NetworkManager {
                 let result = try! response.map(ClientsCountEntity.self)
                 completion(result.count)
             case .failure(let error):
-                print(error.errorDescription!)
                 completion(0)
-                self.showAlert(error.localizedDescription)
+                self.defaultFailureCase(error)
             }
         }
     }
@@ -91,9 +94,8 @@ extension NetworkManager {
                 let countString = try! response.mapString()
                 completion(Int(countString)!)
             case .failure(let error):
-                print(error.errorDescription!)
                 completion(0)
-                self.showAlert(error.localizedDescription)
+                self.defaultFailureCase(error)
             }
         }
     }
@@ -106,9 +108,8 @@ extension NetworkManager {
                 let result = try! response.map(CampusEntity.self)
                 completion(result)
             case .failure(let error):
-                print(error.errorDescription!)
                 completion(nil)
-                self.showAlert(error.localizedDescription)
+                self.defaultFailureCase(error)
             }
         }
     }
