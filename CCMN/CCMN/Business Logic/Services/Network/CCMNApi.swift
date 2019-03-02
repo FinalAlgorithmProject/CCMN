@@ -10,10 +10,14 @@ import Foundation
 import Moya
 
 enum CCMNApi {
+    
     case gettingAesUID
     case numberOfOnlineUsers
     case todayVisitors(siteId: Int)
     case campusInformation
+    case todayKPI(siteId: Int)
+    case searchUserByName(name: String)
+    case searchUserByMacAddress(macAddress: String)
     
     case repeatedVisitorsInRange(model: StatisticRangeEntity)
     case repeatedVisitorsForSpecificDate(model: StatisticDateEntity)
@@ -27,18 +31,23 @@ enum CCMNApi {
     case connectedVisitorsInRange(model: StatisticRangeEntity)
     case connectedVisitorsForSpecificDate(model: StatisticDateEntity)
     
+    case visitorsInRange(model: StatisticRangeEntity)
+    case visitorsForSpecificDate(model: StatisticDateEntity)
+    
     
     // ------------------------------------- Custom properties -------------------------------------
     var environmentHeaders: String {
         switch self {
-        case .numberOfOnlineUsers, .campusInformation:
+        case .numberOfOnlineUsers, .campusInformation, .searchUserByName, .searchUserByMacAddress:
             let data = "\(ApplicationConstants.cmxUsername):\(ApplicationConstants.cmxPassword)".data(using: .utf8)!
             return "Basic \(data.base64EncodedString())"
-        case .gettingAesUID, .todayVisitors,
+        case .gettingAesUID, .todayVisitors, .todayKPI,
              .repeatedVisitorsInRange, .repeatedVisitorsForSpecificDate,
              .dwellForSpecificDate, .dwellInRange,
              .passerbyInRange, .passerbyForSpecificDate,
-             .connectedVisitorsInRange, .connectedVisitorsForSpecificDate:
+             .connectedVisitorsInRange, .connectedVisitorsForSpecificDate,
+             .visitorsInRange, .visitorsForSpecificDate:
+            
             let data = "\(ApplicationConstants.presenceUsername):\(ApplicationConstants.presencePassword)".data(using: .utf8)!
             return "Basic \(data.base64EncodedString())"
         }
@@ -46,13 +55,14 @@ enum CCMNApi {
     
     var environmentBaseURL: String {
         switch self {
-        case .numberOfOnlineUsers, .campusInformation:
+        case .numberOfOnlineUsers, .campusInformation, .searchUserByName, .searchUserByMacAddress:
             return ApplicationConstants.cmxURLString
-        case .gettingAesUID, .todayVisitors,
+        case .gettingAesUID, .todayVisitors, .todayKPI,
              .repeatedVisitorsInRange, .repeatedVisitorsForSpecificDate,
              .dwellInRange, .dwellForSpecificDate,
              .passerbyInRange, .passerbyForSpecificDate,
-             .connectedVisitorsInRange, .connectedVisitorsForSpecificDate:
+             .connectedVisitorsInRange, .connectedVisitorsForSpecificDate,
+             .visitorsInRange, .visitorsForSpecificDate:
             return ApplicationConstants.presenceURLString
         }
     }
@@ -75,6 +85,10 @@ extension CCMNApi: TargetType {
             return "/api/presence/v1/connected/count/today"
         case .campusInformation:
             return "/api/config/v1/maps/count"
+        case .todayKPI:
+            return "/api/presence/v1/kpisummary/today"
+        case .searchUserByMacAddress, .searchUserByName:
+            return "api/location/v2/clients"
         case .repeatedVisitorsInRange:
             return "/api/presence/v1/repeatvisitors/daily"
         case .repeatedVisitorsForSpecificDate:
@@ -91,6 +105,10 @@ extension CCMNApi: TargetType {
             return "/api/presence/v1/connected/daily"
         case .connectedVisitorsForSpecificDate:
             return "/api/presence/v1/connected/hourly"
+        case .visitorsInRange:
+            return "/api/presence/v1/visitor/daily"
+        case .visitorsForSpecificDate:
+            return "/api/presence/v1/visitor/hourly"
         }
     }
     
@@ -106,22 +124,28 @@ extension CCMNApi: TargetType {
         switch self {
         case .gettingAesUID, .numberOfOnlineUsers, .campusInformation:
             return Task.requestPlain
-        case .todayVisitors(let siteId):
+        case .todayVisitors(let siteId), .todayKPI(let siteId):
             return Task.requestParameters(parameters: ["siteId": siteId], encoding: URLEncoding.queryString)
-        case let .repeatedVisitorsInRange(model),
-             let .dwellInRange(model),
-             let .passerbyInRange(model),
-             let .connectedVisitorsInRange(model):
+        case .repeatedVisitorsInRange(let model),
+             .dwellInRange(let model),
+             .passerbyInRange(let model),
+             .connectedVisitorsInRange(let model),
+             .visitorsInRange(let model):
             
             return Task.requestParameters(parameters: ["siteId": model.siteId, "startDate": model.startDate, "endDate": model.endDate ?? ""],
                                           encoding: URLEncoding.queryString)
         case let .repeatedVisitorsForSpecificDate(model),
              let .dwellForSpecificDate(model),
              let .passerbyForSpecificDate(model),
-             let .connectedVisitorsForSpecificDate(model):
+             let .connectedVisitorsForSpecificDate(model),
+             let .visitorsForSpecificDate(model):
             
             return Task.requestParameters(parameters: ["siteId": model.siteId, "date": model.date],
                                           encoding: URLEncoding.queryString)
+        case .searchUserByMacAddress(let macAddress):
+            return Task.requestParameters(parameters: ["macAddress": macAddress], encoding: URLEncoding.queryString)
+        case .searchUserByName(let name):
+            return Task.requestParameters(parameters: ["username": name], encoding: URLEncoding.queryString)
         }
     }
     

@@ -11,17 +11,18 @@ import Foundation
 struct InformationModel {
     
     private var networkService = NetworkManager.shared
-    let startDate = "2019-03-01"
-    let endDate: String? = nil
-    let date = "2019-03-02"
     
-    func getOnlineUsers(completion: @escaping (Int) -> Void) {
+    let inRangeModel = StatisticRangeEntity(startDate: "2019-03-01", endDate: nil)
+    let specDateModel = StatisticDateEntity(date: "2019-03-02")
+    
+    // Nah ..
+    func getOnlineUsers(completion: @escaping (Int?) -> Void) {
         Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { timer in
             self.networkService.usersOnline(completion: completion)
         }
     }
     
-    func getTodayVisitors(completion: @escaping (Int) -> Void) {
+    func getTodayVisitors(completion: @escaping (Int?) -> Void) {
         networkService.todayVisitors(completion: completion)
     }
     
@@ -37,46 +38,102 @@ struct InformationModel {
         }
     }
     
+    func searchUserByMacAddress() {
+        let macAddress = "b4:9c:df:04:f7:ab"
+        networkService.searchUser(byMacAddress: macAddress) {
+            
+        }
+    }
+    
+    func searchUserByUserName() {
+        let username = "pizza"
+        networkService.searchUser(byUsername: username) {
+            
+        }
+    }
+    
+    func todayKPI() {
+        networkService.todayKPI {
+            
+        }
+    }
+    
+    
+    // ---------------------------- Stats Data ----------------------------
+    
     func repeatedVisitorsInRange() {
-        let model = StatisticRangeEntity(startDate: startDate, endDate: endDate)
-        networkService.repeatedVisitorsInRange(model: model) { result in
-            guard let statistic = result else { return }
+        networkService.repeatedVisitorsInRange(model: inRangeModel) { result in
+            
         }
     }
     
     func repeatedVisitorsForDate() {
-        let model = StatisticDateEntity(date: date)
-        networkService.repeatedVisitorsForSpecificDate(model) { result in
-            guard let statistic = result else { return }
+        networkService.repeatedVisitorsForSpecificDate(specDateModel) { result in
+            
         }
     }
     
     func dwellInRange() {
-        let model = StatisticRangeEntity(startDate: startDate, endDate: endDate)
-        networkService.dwellInRange(model: model) { result in
-            guard let statistic = result else { return }
+        networkService.dwellInRange(model: inRangeModel) { result in
+
         }
     }
 
     func dwellForDate() {
-        let model = StatisticDateEntity(date: date)
-        networkService.dwellForSpecificDate(model) { result in
-            guard let statistic = result else { return }
+        networkService.dwellForSpecificDate(specDateModel) { result in
+
         }
     }
 
     func passerbyInRange() {
-        let model = StatisticRangeEntity(startDate: startDate, endDate: endDate)
-        networkService.passerbyInRange(model: model) { result in
-             guard let statistic = result else { return }
+        networkService.passerbyInRange(model: inRangeModel) { result in
+
         }
     }
 
     func passerbyForDate() {
-        let model = StatisticDateEntity(date: date)
-        networkService.passerbyForSpecificDate(model) { result in
-            guard let statistic = result else { return }
+        networkService.passerbyForSpecificDate(specDateModel) { result in
+
+        }
+    }
+    
+    func visitorsInRange() {
+        networkService.visitorsInRange(model: inRangeModel) { result in
+            
+        }
+    }
+    
+    func visitorsForDate() {
+        networkService.visitorsForSpecificDate(specDateModel) { result in
+            
         }
     }
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

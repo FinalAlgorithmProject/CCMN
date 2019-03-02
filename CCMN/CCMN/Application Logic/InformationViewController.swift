@@ -26,11 +26,19 @@ class InformationViewController: UIViewController {
         super.viewDidLoad()
         
         /// Tested requests
-        model.getOnlineUsers { count in
+        model.getOnlineUsers { result in
+            guard let count = result else {
+                self.devicesOnline.text = "Cannot fetch online users :("
+                return
+            }
             self.devicesOnline.text = "Now online: \(count)"
         }
         
-        model.getTodayVisitors { count in
+        model.getTodayVisitors { result in
+            guard let count = result else {
+                self.todayVisitors.text = "Cannot fetch today visitors :("
+                return
+            }
             self.todayVisitors.text = "Today visitors until now: \(count)"
         }
         
@@ -42,6 +50,12 @@ class InformationViewController: UIViewController {
             self.thirdFloorName.text = "Floor name: \(floorsNames[2])"
         }
         
+        model.todayKPI()
+        
+        // ---------------------------- Stats Data ----------------------------
+        model.searchUserByMacAddress()
+        model.searchUserByUserName()
+        
         model.repeatedVisitorsInRange()
         model.repeatedVisitorsForDate()
 
@@ -50,6 +64,9 @@ class InformationViewController: UIViewController {
 
         model.passerbyInRange()
         model.passerbyForDate()
+        
+        model.visitorsInRange()
+        model.visitorsForDate()
     }
 
 }

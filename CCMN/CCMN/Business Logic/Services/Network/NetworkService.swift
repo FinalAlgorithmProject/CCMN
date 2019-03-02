@@ -15,8 +15,7 @@ final class NetworkManager {
     
     typealias RepeatedVisitors = [String: RepeatedVisitorsStatisticEntity]?
     typealias DWELLTime = [String: DWELLStatisticEntity]?
-    typealias Passerby = [String: Int]?
-    typealias Connected = [String: Int]?
+    typealias StringIntDictinary = [String: Int]?
     
     // Why not?
     static var shared = NetworkManager()
@@ -36,7 +35,7 @@ final class NetworkManager {
     
     // Provider part
     private lazy var provider = MoyaProvider<CCMNApi>(manager: manager,
-                                                      plugins: [NetworkLoggerPlugin(verbose: true)])
+                                                      plugins: [])
 
     
     func showAlert(_ message: String) {
@@ -47,6 +46,7 @@ final class NetworkManager {
     }
     
     private func defaultFailureCase(_ error: MoyaError) {
+        print(error.errorDescription!)
         showAlert(error.localizedDescription)
     }
 }
@@ -66,6 +66,7 @@ extension NetworkManager {
                 UserDefaultsService.siteId = results[0].aesUId
                 print("site id: \(UserDefaultsService.siteId)")
                 completion()
+                print("Request ✅ SUCCESS")
             case .failure(let error):
                 completion()
                 self.defaultFailureCase(error)
@@ -73,29 +74,31 @@ extension NetworkManager {
         }
     }
     
-    func usersOnline(completion: @escaping (Int) -> Void) {
+    func usersOnline(completion: @escaping (Int?) -> Void) {
         provider.request(.numberOfOnlineUsers) { [weak self] result in
             guard let `self` = self else { return }
             switch result {
             case .success(let response):
                 let result = try! response.map(ClientsCountEntity.self)
                 completion(result.count)
+                print("Request ✅ SUCCESS")
             case .failure(let error):
-                completion(0)
+                completion(nil)
                 self.defaultFailureCase(error)
             }
         }
     }
     
-    func todayVisitors(completion: @escaping (Int) -> Void) {
+    func todayVisitors(completion: @escaping (Int?) -> Void) {
         provider.request(.todayVisitors(siteId: siteId)) { [weak self] result in
             guard let `self` = self else { return }
             switch result {
             case .success(let response):
                 let countString = try! response.mapString()
                 completion(Int(countString)!)
+                print("Request ✅ SUCCESS")
             case .failure(let error):
-                completion(0)
+                completion(nil)
                 self.defaultFailureCase(error)
             }
         }
@@ -108,6 +111,7 @@ extension NetworkManager {
             case .success(let response):
                 let result = try! response.map(CampusEntity.self)
                 completion(result)
+                print("Request ✅ SUCCESS")
             case .failure(let error):
                 completion(nil)
                 self.defaultFailureCase(error)
@@ -123,8 +127,8 @@ extension NetworkManager {
             case .success(let response):
                 let result = try! response.map(RepeatedVisitors.self)
                 completion(result)
+                print("Request ✅ SUCCESS")
             case .failure(let error):
-                print(error.errorDescription!)
                 completion(nil)
                  self.defaultFailureCase(error)
             }
@@ -138,8 +142,8 @@ extension NetworkManager {
             case .success(let response):
                 let result = try! response.map(RepeatedVisitors.self)
                 completion(result)
+                print("Request ✅ SUCCESS")
             case .failure(let error):
-                print(error.errorDescription!)
                 completion(nil)
                 self.defaultFailureCase(error)
             }
@@ -153,10 +157,10 @@ extension NetworkManager {
             case .success(let response):
                 let result = try! response.map(DWELLTime.self)
                 completion(result)
+                print("Request ✅ SUCCESS")
             case .failure(let error):
-                print(error.errorDescription!)
                 completion(nil)
-                self.showAlert(error.localizedDescription)
+                self.defaultFailureCase(error)
             }
         }
     }
@@ -168,70 +172,143 @@ extension NetworkManager {
             case .success(let response):
                 let result = try! response.map(DWELLTime.self)
                 completion(result)
+                print("Request ✅ SUCCESS")
             case .failure(let error):
-                print(error.errorDescription!)
                 completion(nil)
-                self.showAlert(error.localizedDescription)
+                self.defaultFailureCase(error)
             }
         }
     }
     
-    func passerbyInRange(model: StatisticRangeEntity, completion: @escaping (Passerby) -> Void) {
+    func passerbyInRange(model: StatisticRangeEntity, completion: @escaping (StringIntDictinary) -> Void) {
         provider.request(.passerbyInRange(model: model)) { [weak self] result in
             guard let `self` = self else { return }
             switch result {
             case .success(let response):
-                let result = try! response.map(Passerby.self)
+                let result = try! response.map(StringIntDictinary.self)
                 completion(result)
+                print("Request ✅ SUCCESS")
             case .failure(let error):
-                print(error.errorDescription!)
                 completion(nil)
-                self.showAlert(error.localizedDescription)
+                self.defaultFailureCase(error)
             }
         }
     }
     
-    func passerbyForSpecificDate(_ model: StatisticDateEntity, completion: @escaping (Passerby) -> Void) {
+    func passerbyForSpecificDate(_ model: StatisticDateEntity, completion: @escaping (StringIntDictinary) -> Void) {
         provider.request(.passerbyForSpecificDate(model: model)) { [weak self] result in
             guard let `self` = self else { return }
             switch result {
             case .success(let response):
-                let result = try! response.map(Passerby.self)
+                let result = try! response.map(StringIntDictinary.self)
                 completion(result)
+                print("Request ✅ SUCCESS")
             case .failure(let error):
-                print(error.errorDescription!)
                 completion(nil)
-                self.showAlert(error.localizedDescription)
+                self.defaultFailureCase(error)
             }
         }
     }
     
-    func connectedInRange(model: StatisticRangeEntity, completion: @escaping (Connected) -> Void) {
+    func connectedInRange(model: StatisticRangeEntity, completion: @escaping (StringIntDictinary) -> Void) {
         provider.request(.connectedVisitorsInRange(model: model)) { [weak self] result in
             guard let `self` = self else { return }
             switch result {
             case .success(let response):
-                let result = try! response.map(Connected.self)
+                let result = try! response.map(StringIntDictinary.self)
                 completion(result)
+                print("Request ✅ SUCCESS")
             case .failure(let error):
-                print(error.errorDescription!)
                 completion(nil)
-                self.showAlert(error.localizedDescription)
+                self.defaultFailureCase(error)
             }
         }
     }
     
-    func connectedForSpecificDate(_ model: StatisticDateEntity, completion: @escaping (Connected) -> Void) {
+    func connectedForSpecificDate(_ model: StatisticDateEntity, completion: @escaping (StringIntDictinary) -> Void) {
         provider.request(.connectedVisitorsForSpecificDate(model: model)) { [weak self] result in
             guard let `self` = self else { return }
             switch result {
             case .success(let response):
-                let result = try! response.map(Connected.self)
+                let result = try! response.map(StringIntDictinary.self)
                 completion(result)
+                print("Request ✅ SUCCESS")
             case .failure(let error):
-                print(error.errorDescription!)
                 completion(nil)
-                self.showAlert(error.localizedDescription)
+                self.defaultFailureCase(error)
+            }
+        }
+    }
+    
+    func visitorsInRange(model: StatisticRangeEntity, completion: @escaping (StringIntDictinary) -> Void) {
+        provider.request(.visitorsInRange(model: model)) { [weak self] result in
+            guard let `self` = self else { return }
+            switch result {
+            case .success(let response):
+                let result = try! response.map(StringIntDictinary.self)
+                completion(result)
+                print("Request ✅ SUCCESS")
+            case .failure(let error):
+                completion(nil)
+                self.defaultFailureCase(error)
+            }
+        }
+    }
+    
+    func visitorsForSpecificDate(_ model: StatisticDateEntity, completion: @escaping (StringIntDictinary) -> Void) {
+        provider.request(.visitorsForSpecificDate(model: model)) { [weak self] result in
+            guard let `self` = self else { return }
+            switch result {
+            case .success(let response):
+                let result = try! response.map(StringIntDictinary.self)
+                completion(result)
+                print("Request ✅ SUCCESS")
+            case .failure(let error):
+                completion(nil)
+                self.defaultFailureCase(error)
+            }
+        }
+    }
+    
+    func todayKPI(completion: @escaping () -> Void) {
+        provider.request(.todayKPI(siteId: siteId)) { [weak self] result in
+            guard let `self` = self else { return }
+            switch result {
+            case .success(let response):
+                let result = try! response.map(KpiStatisticEntity.self)
+                print(result)
+                completion()
+            case .failure(let error):
+                completion()
+                self.defaultFailureCase(error)
+            }
+        }
+    }
+    
+    func searchUser(byMacAddress macAddress: String, completion: @escaping () -> Void) {
+        provider.request(.searchUserByMacAddress(macAddress: macAddress)) { [weak self] result in
+            guard let `self` = self else { return }
+            switch result {
+            case .success(let response):
+                let result = try? response.mapJSON() // nil if not found
+                completion()
+            case .failure(let error):
+                completion()
+                self.defaultFailureCase(error)
+            }
+        }
+    }
+    
+    func searchUser(byUsername username: String, completion: @escaping () -> Void) {
+        provider.request(.searchUserByName(name: username)) { [weak self] result in
+            guard let `self` = self else { return }
+            switch result {
+            case .success(let response):
+                let result = try? response.mapJSON() // empty if not found
+                completion()
+            case .failure(let error):
+                completion()
+                self.defaultFailureCase(error)
             }
         }
     }
