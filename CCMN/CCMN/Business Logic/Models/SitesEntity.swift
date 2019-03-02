@@ -1,5 +1,5 @@
 //
-//  NetworkService.swift
+//  SitesEntity.swift
 //  CCMN
 //
 //  Created by Vitalii Poltavets on 2/24/19.
@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Alamofire
-import Moya
 
-
+struct SitesEntity: Codable {
+    let aesUId: Int // This is site id
+}
