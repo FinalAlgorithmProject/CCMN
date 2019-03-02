@@ -15,14 +15,17 @@ enum CCMNApi {
     case todayVisitors(siteId: Int)
     case campusInformation
     
-    case repeatedVisitorsInRange(siteId: Int, startDate: String, endDate: String?)
-    case repeatedVisitorsForSpecificDate(siteId: Int, date: String)
+    case repeatedVisitorsInRange(model: StatisticRangeEntity)
+    case repeatedVisitorsForSpecificDate(model: StatisticDateEntity)
     
-    case dwellInRange(siteId: Int, startDate: String, endDate: String?)
-    case dwellForSpecificDate(siteId: Int, date: String)
-    
-    case passerbyInRange(siteId: Int, startDate: String, endDate: String?)
-    case passerbyForSpecificDate(siteId: Int, date: String)
+    case dwellInRange(model: StatisticRangeEntity)
+    case dwellForSpecificDate(model: StatisticDateEntity)
+
+    case passerbyInRange(model: StatisticRangeEntity)
+    case passerbyForSpecificDate(model: StatisticDateEntity)
+
+    case connectedVisitorsInRange(model: StatisticRangeEntity)
+    case connectedVisitorsForSpecificDate(model: StatisticDateEntity)
     
     
     // ------------------------------------- Custom properties -------------------------------------
@@ -34,7 +37,8 @@ enum CCMNApi {
         case .gettingAesUID, .todayVisitors,
              .repeatedVisitorsInRange, .repeatedVisitorsForSpecificDate,
              .dwellForSpecificDate, .dwellInRange,
-             .passerbyInRange, .passerbyForSpecificDate:
+             .passerbyInRange, .passerbyForSpecificDate,
+             .connectedVisitorsInRange, .connectedVisitorsForSpecificDate:
             let data = "\(ApplicationConstants.presenceUsername):\(ApplicationConstants.presencePassword)".data(using: .utf8)!
             return "Basic \(data.base64EncodedString())"
         }
@@ -47,7 +51,8 @@ enum CCMNApi {
         case .gettingAesUID, .todayVisitors,
              .repeatedVisitorsInRange, .repeatedVisitorsForSpecificDate,
              .dwellInRange, .dwellForSpecificDate,
-             .passerbyInRange, .passerbyForSpecificDate:
+             .passerbyInRange, .passerbyForSpecificDate,
+             .connectedVisitorsInRange, .connectedVisitorsForSpecificDate:
             return ApplicationConstants.presenceURLString
         }
     }
@@ -82,6 +87,10 @@ extension CCMNApi: TargetType {
             return "/api/presence/v1/passerby/daily"
         case .passerbyForSpecificDate:
             return "/api/presence/v1/passerby/hourly"
+        case .connectedVisitorsInRange:
+            return "/api/presence/v1/connected/daily"
+        case .connectedVisitorsForSpecificDate:
+            return "/api/presence/v1/connected/hourly"
         }
     }
     
@@ -99,15 +108,19 @@ extension CCMNApi: TargetType {
             return Task.requestPlain
         case .todayVisitors(let siteId):
             return Task.requestParameters(parameters: ["siteId": siteId], encoding: URLEncoding.queryString)
-        case let .repeatedVisitorsInRange(siteId, startDate, endDate),
-             let .dwellInRange(siteId, startDate, endDate),
-             let .passerbyInRange(siteId, startDate, endDate):
-            return Task.requestParameters(parameters: ["siteId": siteId, "startDate": startDate, "endDate": endDate ?? ""],
+        case let .repeatedVisitorsInRange(model),
+             let .dwellInRange(model),
+             let .passerbyInRange(model),
+             let .connectedVisitorsInRange(model):
+            
+            return Task.requestParameters(parameters: ["siteId": model.siteId, "startDate": model.startDate, "endDate": model.endDate ?? ""],
                                           encoding: URLEncoding.queryString)
-        case let .repeatedVisitorsForSpecificDate(siteId, date),
-             let .dwellForSpecificDate(siteId, date),
-             let .passerbyForSpecificDate(siteId, date):
-            return Task.requestParameters(parameters: ["siteId": siteId, "date": date],
+        case let .repeatedVisitorsForSpecificDate(model),
+             let .dwellForSpecificDate(model),
+             let .passerbyForSpecificDate(model),
+             let .connectedVisitorsForSpecificDate(model):
+            
+            return Task.requestParameters(parameters: ["siteId": model.siteId, "date": model.date],
                                           encoding: URLEncoding.queryString)
         }
     }

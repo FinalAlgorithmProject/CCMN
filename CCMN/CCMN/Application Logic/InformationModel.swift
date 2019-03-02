@@ -38,37 +38,43 @@ struct InformationModel {
     }
     
     func repeatedVisitorsInRange() {
-        networkService.repeatedVisitorsInRange(fromDate: startDate, to: endDate) { result in
+        let model = StatisticRangeEntity(startDate: startDate, endDate: endDate)
+        networkService.repeatedVisitorsInRange(model: model) { result in
             guard let statistic = result else { return }
         }
     }
     
     func repeatedVisitorsForDate() {
-        networkService.repeatedVisitorsForSpecificDate(date) { result in
+        let model = StatisticDateEntity(date: date)
+        networkService.repeatedVisitorsForSpecificDate(model) { result in
             guard let statistic = result else { return }
         }
     }
     
     func dwellInRange() {
-        networkService.dwellInRange(fromDate: startDate, to: endDate) { result in
+        let model = StatisticRangeEntity(startDate: startDate, endDate: endDate)
+        networkService.dwellInRange(model: model) { result in
             guard let statistic = result else { return }
         }
     }
-    
+
     func dwellForDate() {
-        networkService.dwellForSpecificDate(date) { result in
+        let model = StatisticDateEntity(date: date)
+        networkService.dwellForSpecificDate(model) { result in
             guard let statistic = result else { return }
         }
     }
-    
+
     func passerbyInRange() {
-        networkService.passerbyInRange(fromDate: startDate, to: endDate) { result in
+        let model = StatisticRangeEntity(startDate: startDate, endDate: endDate)
+        networkService.passerbyInRange(model: model) { result in
              guard let statistic = result else { return }
         }
     }
-    
+
     func passerbyForDate() {
-        networkService.passerbyForSpecificDate(date) { result in
+        let model = StatisticDateEntity(date: date)
+        networkService.passerbyForSpecificDate(model) { result in
             guard let statistic = result else { return }
         }
     }

@@ -11,6 +11,8 @@
 		1D1021CA222309110008E3B7 /* InformationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1021C9222309110008E3B7 /* InformationModel.swift */; };
 		1D1217BA222AB32A00855EB4 /* RepeatedVisitorsStatisticEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1217B9222AB32A00855EB4 /* RepeatedVisitorsStatisticEntity.swift */; };
 		1D1217BC222ABB1700855EB4 /* DWELLStatisticEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1217BB222ABB1700855EB4 /* DWELLStatisticEntity.swift */; };
+		1D1217BE222ACA8800855EB4 /* StatisticRangeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1217BD222ACA8800855EB4 /* StatisticRangeEntity.swift */; };
+		1D1217C0222ACE8900855EB4 /* StatisticDateEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1217BF222ACE8900855EB4 /* StatisticDateEntity.swift */; };
 		1D613612222319A70057068A /* CampusEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D613611222319A70057068A /* CampusEntity.swift */; };
 		1DC5D7C72222AFE00015530F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5D7C62222AFE00015530F /* AppDelegate.swift */; };
 		1DC5D7C92222AFE00015530F /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5D7C82222AFE00015530F /* InformationViewController.swift */; };
@@ -30,6 +32,8 @@
 		1D1021C9222309110008E3B7 /* InformationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationModel.swift; sourceTree = "<group>"; };
 		1D1217B9222AB32A00855EB4 /* RepeatedVisitorsStatisticEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatedVisitorsStatisticEntity.swift; sourceTree = "<group>"; };
 		1D1217BB222ABB1700855EB4 /* DWELLStatisticEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWELLStatisticEntity.swift; sourceTree = "<group>"; };
+		1D1217BD222ACA8800855EB4 /* StatisticRangeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticRangeEntity.swift; sourceTree = "<group>"; };
+		1D1217BF222ACE8900855EB4 /* StatisticDateEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticDateEntity.swift; sourceTree = "<group>"; };
 		1D613611222319A70057068A /* CampusEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusEntity.swift; sourceTree = "<group>"; };
 		1DC5D7C32222AFE00015530F /* CCMN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCMN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DC5D7C62222AFE00015530F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +140,8 @@
 				1D613611222319A70057068A /* CampusEntity.swift */,
 				1D1217B9222AB32A00855EB4 /* RepeatedVisitorsStatisticEntity.swift */,
 				1D1217BB222ABB1700855EB4 /* DWELLStatisticEntity.swift */,
+				1D1217BD222ACA8800855EB4 /* StatisticRangeEntity.swift */,
+				1D1217BF222ACE8900855EB4 /* StatisticDateEntity.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -292,6 +298,8 @@
 				1D1217BC222ABB1700855EB4 /* DWELLStatisticEntity.swift in Sources */,
 				1D1021C42223058D0008E3B7 /* ClientsCountEntity.swift in Sources */,
 				1DC5D7DD2222BDAF0015530F /* ApplicationConstants.swift in Sources */,
+				1D1217C0222ACE8900855EB4 /* StatisticDateEntity.swift in Sources */,
+				1D1217BE222ACA8800855EB4 /* StatisticRangeEntity.swift in Sources */,
 				1DC5D7C72222AFE00015530F /* AppDelegate.swift in Sources */,
 				1DC5D7E52222D0AA0015530F /* CCMNApi.swift in Sources */,
 				1D613612222319A70057068A /* CampusEntity.swift in Sources */,

@@ -16,6 +16,7 @@ final class NetworkManager {
     typealias RepeatedVisitors = [String: RepeatedVisitorsStatisticEntity]?
     typealias DWELLTime = [String: DWELLStatisticEntity]?
     typealias Passerby = [String: Int]?
+    typealias Connected = [String: Int]?
     
     // Why not?
     static var shared = NetworkManager()
@@ -39,7 +40,7 @@ final class NetworkManager {
 
     
     func showAlert(_ message: String) {
-        let alertController = UIAlertController(title: "Unknown Error", message: message, preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         (UIApplication.shared.delegate as! AppDelegate).window?
             .rootViewController?.present(alertController, animated: true, completion: nil)
@@ -114,10 +115,9 @@ extension NetworkManager {
         }
     }
     
-    func repeatedVisitorsInRange(fromDate startDate: String,
-                                 to endDate: String?,
+    func repeatedVisitorsInRange(model: StatisticRangeEntity,
                                  completion: @escaping (RepeatedVisitors) -> Void) {
-        provider.request(.repeatedVisitorsInRange(siteId: siteId, startDate: startDate, endDate: endDate)) { [weak self] result in
+        provider.request(.repeatedVisitorsInRange(model: model)) { [weak self] result in
             guard let `self` = self else { return }
             switch result {
             case .success(let response):
@@ -126,13 +126,13 @@ extension NetworkManager {
             case .failure(let error):
                 print(error.errorDescription!)
                 completion(nil)
-                self.showAlert(error.localizedDescription)
+                 self.defaultFailureCase(error)
             }
         }
     }
     
-    func repeatedVisitorsForSpecificDate(_ date: String, completion: @escaping (RepeatedVisitors) -> Void) {
-        provider.request(.repeatedVisitorsForSpecificDate(siteId: siteId, date: date)) { [weak self] result in
+    func repeatedVisitorsForSpecificDate(_ model: StatisticDateEntity, completion: @escaping (RepeatedVisitors) -> Void) {
+        provider.request(.repeatedVisitorsForSpecificDate(model: model)) { [weak self] result in
             guard let `self` = self else { return }
             switch result {
             case .success(let response):
@@ -141,14 +141,13 @@ extension NetworkManager {
             case .failure(let error):
                 print(error.errorDescription!)
                 completion(nil)
-                self.showAlert(error.localizedDescription)
+                self.defaultFailureCase(error)
             }
         }
     }
     
-    func dwellInRange(fromDate startDate: String,
-                      to endDate: String?, completion: @escaping (DWELLTime) -> Void) {
-        provider.request(.dwellInRange(siteId: siteId, startDate: startDate, endDate: endDate)) { [weak self] result in
+    func dwellInRange(model: StatisticRangeEntity, completion: @escaping (DWELLTime) -> Void) {
+        provider.request(.dwellInRange(model: model)) { [weak self] result in
             guard let `self` = self else { return }
             switch result {
             case .success(let response):
@@ -162,8 +161,8 @@ extension NetworkManager {
         }
     }
     
-    func dwellForSpecificDate(_ date: String, completion: @escaping (DWELLTime) -> Void) {
-        provider.request(.dwellForSpecificDate(siteId: siteId, date: date)) { [weak self] result in
+    func dwellForSpecificDate(_ model: StatisticDateEntity, completion: @escaping (DWELLTime) -> Void) {
+        provider.request(.dwellForSpecificDate(model: model)) { [weak self] result in
             guard let `self` = self else { return }
             switch result {
             case .success(let response):
@@ -177,9 +176,8 @@ extension NetworkManager {
         }
     }
     
-    func passerbyInRange(fromDate startDate: String,
-                         to endDate: String?, completion: @escaping (Passerby) -> Void) {
-        provider.request(.passerbyInRange(siteId: siteId, startDate: startDate, endDate: endDate)) { [weak self] result in
+    func passerbyInRange(model: StatisticRangeEntity, completion: @escaping (Passerby) -> Void) {
+        provider.request(.passerbyInRange(model: model)) { [weak self] result in
             guard let `self` = self else { return }
             switch result {
             case .success(let response):
@@ -193,12 +191,42 @@ extension NetworkManager {
         }
     }
     
-    func passerbyForSpecificDate(_ date: String, completion: @escaping (Passerby) -> Void) {
-        provider.request(.passerbyForSpecificDate(siteId: siteId, date: date)) { [weak self] result in
+    func passerbyForSpecificDate(_ model: StatisticDateEntity, completion: @escaping (Passerby) -> Void) {
+        provider.request(.passerbyForSpecificDate(model: model)) { [weak self] result in
             guard let `self` = self else { return }
             switch result {
             case .success(let response):
                 let result = try! response.map(Passerby.self)
+                completion(result)
+            case .failure(let error):
+                print(error.errorDescription!)
+                completion(nil)
+                self.showAlert(error.localizedDescription)
+            }
+        }
+    }
+    
+    func connectedInRange(model: StatisticRangeEntity, completion: @escaping (Connected) -> Void) {
+        provider.request(.connectedVisitorsInRange(model: model)) { [weak self] result in
+            guard let `self` = self else { return }
+            switch result {
+            case .success(let response):
+                let result = try! response.map(Connected.self)
+                completion(result)
+            case .failure(let error):
+                print(error.errorDescription!)
+                completion(nil)
+                self.showAlert(error.localizedDescription)
+            }
+        }
+    }
+    
+    func connectedForSpecificDate(_ model: StatisticDateEntity, completion: @escaping (Connected) -> Void) {
+        provider.request(.connectedVisitorsForSpecificDate(model: model)) { [weak self] result in
+            guard let `self` = self else { return }
+            switch result {
+            case .success(let response):
+                let result = try! response.map(Connected.self)
                 completion(result)
             case .failure(let error):
                 print(error.errorDescription!)

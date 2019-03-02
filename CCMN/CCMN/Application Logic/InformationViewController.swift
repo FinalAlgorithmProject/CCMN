@@ -25,6 +25,7 @@ class InformationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        /// Tested requests
         model.getOnlineUsers { count in
             self.devicesOnline.text = "Now online: \(count)"
         }
@@ -43,10 +44,10 @@ class InformationViewController: UIViewController {
         
         model.repeatedVisitorsInRange()
         model.repeatedVisitorsForDate()
-        
+
         model.dwellInRange()
         model.dwellForDate()
-        
+
         model.passerbyInRange()
         model.passerbyForDate()
     }
