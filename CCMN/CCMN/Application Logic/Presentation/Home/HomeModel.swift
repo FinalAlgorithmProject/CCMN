@@ -11,5 +11,7 @@ import Foundation
 struct HomeModel {
     
     let buildingName: String
+    let network: NCNetworkManager
+
     
 }

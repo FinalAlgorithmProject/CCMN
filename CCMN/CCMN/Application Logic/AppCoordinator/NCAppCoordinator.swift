@@ -30,6 +30,7 @@ final class NCAppCoordinator {
         let homeItem = tabBarController.createTabItem(ofType: .home, with: "Home")
         let statisticItem = tabBarController.createTabItem(ofType: .statistic, with: "Statistic")
         
+        let buldingName = campusInfo?.campusCounts.first?.buildingCounts.first?.buildingName ?? "Unknown"
         /// Creates for each floor tabbaritem
         let floorsNames = campusInfo?.campusCounts.first?.buildingCounts.first?.floorCounts.map { $0.floorName }.sorted() ?? []
         var floorItems: [UITabBarItem] = []
@@ -40,7 +41,7 @@ final class NCAppCoordinator {
             floorItems.append(freshTab)
         }
         
-        let homeTabController = homeTab(withItem: homeItem)
+        let homeTabController = homeTab(withItem: homeItem, buldingName: buldingName)
         let statisticTabController = statisticTab(withItem: statisticItem)
         
         /// Creates for each tabbaritem viewcontroller embed in with navigation
@@ -54,10 +55,10 @@ final class NCAppCoordinator {
     }
     
     // MARK: - Private API - Creating navigation for each tabs
-    private func homeTab(withItem item: UITabBarItem) -> UINavigationController {
+    private func homeTab(withItem item: UITabBarItem, buldingName: String) -> UINavigationController {
         let navigationController = NCNavigationViewController()
         let homeCoordinator = NCHomeCoordinator(navigationController: navigationController, appCoordinator: self)
-        let viewController = homeCoordinator.homeViewController()
+        let viewController = homeCoordinator.homeViewController(buildingName: buldingName)
         
         viewController.tabBarItem = item
         navigationController.viewControllers = [viewController]
