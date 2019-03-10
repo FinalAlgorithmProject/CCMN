@@ -8,28 +8,41 @@
 
 import UIKit
 
+enum TabTypes: Int {
+    case home, statistic, floor
+}
+
 class NCTabBarViewController: UITabBarController {
+
+    private var tabs = [
+        (selectedImage: "icHome", tag: 0),
+        (selectedImage: "icPay", tag: 1),
+        (selectedImage: "icStatements", tag: 2),
+        (selectedImage: "icSettings", tag: 3)
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+//        tabBar.tintColor = UIColor.mainRedColor
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func createTabItem(ofType type: TabTypes, with name: String) -> UITabBarItem {
+        var tabItem: UITabBarItem!
+        
+        let defaultImage =  UIImage(named: tabs[type.rawValue].selectedImage)
+        let selectedImage = UIImage(named: tabs[type.rawValue].selectedImage)
+        
+        tabItem = UITabBarItem(title: name,
+                               image: defaultImage?.withRenderingMode(.alwaysOriginal),
+                               selectedImage: selectedImage?.withRenderingMode(.alwaysTemplate))
+        tabItem.tag = tabs[type.rawValue].tag
+        
+        print("Created tab with name: \(name)")
+//        #warning("Debug")
+//        tabItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.init(rawValue: type.rawValue)!, tag: 0)
+//        tabItem.title = name
+        
+        return tabItem
     }
-    */
-
+    
 }

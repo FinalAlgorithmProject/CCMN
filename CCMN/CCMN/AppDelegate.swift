@@ -11,17 +11,40 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var coordinator: NCAppCoordinator!
+    var appCoordinator: NCAppCoordinator!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        coordinator = NCAppCoordinator()
+        appCoordinator = NCAppCoordinator()
         
-        NCNetworkManager.shared.siteId {
-              // show launch while getting site id
+        if !NCNetworkManager.isHostReachable {
+            appCoordinator.tabBarRoot(campusInfo: nil)
+        } else {
+            appCoordinator.loadingScreenRoot()
+            madeRequests { result in
+                self.appCoordinator.tabBarRoot(campusInfo: result)
+            }
         }
-    
+        
         return true
+    }
+    
+    private func madeRequests(whenFinish completion: @escaping (NCCampusEntity?) -> Void) {
+        let group = DispatchGroup()
+        var campusInfo: NCCampusEntity?
+        
+        group.enter()
+        NCNetworkManager.shared.siteId { group.leave() }
+        
+        group.enter()
+        NCNetworkManager.shared.campusInformation { result in
+            campusInfo = result
+            group.leave()
+        }
+        
+        group.notify(queue: DispatchQueue.main) {
+            completion(campusInfo)
+        }
     }
     
     

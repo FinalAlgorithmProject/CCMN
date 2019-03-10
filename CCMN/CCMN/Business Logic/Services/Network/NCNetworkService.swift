@@ -6,10 +6,9 @@
 //  Copyright © 2019 unit. All rights reserved.
 //
 
-import UIKit
-import Foundation
 import Alamofire
 import Moya
+import UIKit
 
 final class NCNetworkManager {
     
@@ -19,9 +18,15 @@ final class NCNetworkManager {
     
     // Why not?
     static var shared = NCNetworkManager()
+    
+    static var isHostReachable: Bool {
+        let reachablitity = NetworkReachabilityManager(host: "http://captive.apple.com")!
+        return reachablitity.isReachable
+    }
+    
     private init() { }
     
-    var siteId: Int { return NCUserDefaultsService.siteId }
+    private var siteId: Int { return NCUserDefaultsService.siteId }
     
     // Custom manager, because unsecure fucking Cisco site and SSL Connection etc ...
     private lazy var manager: Manager = {
@@ -33,16 +38,14 @@ final class NCNetworkManager {
                        serverTrustPolicyManager: ServerTrustPolicyManager(policies: policies))
     }()
     
-    // Provider part
-    private lazy var provider = MoyaProvider<NCApi>(manager: manager,
-                                                      plugins: [])
-
+    private lazy var provider = MoyaProvider<NCApi>(manager: manager)
+    
     
     func showAlert(_ message: String) {
         let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-//        (UIApplication.shared.delegate as! AppDelegate).window?
-//            .rootViewController?.present(alertController, animated: true, completion: nil)
+        (UIApplication.shared.delegate as! AppDelegate).appCoordinator.window.rootViewController?
+            .present(alertController, animated: true, completion: nil)
     }
     
     private func defaultFailureCase(_ error: MoyaError) {

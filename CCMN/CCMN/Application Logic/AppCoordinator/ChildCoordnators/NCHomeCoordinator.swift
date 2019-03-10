@@ -10,4 +10,9 @@ import Foundation
 
 class NCHomeCoordinator: NCBaseCoordinator {
     
+    func homeViewController() -> HomeViewController {
+        let viewController = HomeViewController.init(nibName: HomeViewController.className, bundle: nil)
+        return viewController
+    }
+    
 }
