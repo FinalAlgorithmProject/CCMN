@@ -276,7 +276,7 @@ extension NetworkManager {
             switch result {
             case .success(let response):
                 let result = try! response.map(KpiStatisticEntity.self)
-                print(result)
+                print("Request ✅ SUCCESS")
                 completion()
             case .failure(let error):
                 completion()
@@ -291,6 +291,7 @@ extension NetworkManager {
             switch result {
             case .success(let response):
                 let result = try? response.mapJSON() // nil if not found
+                print("Request ✅ SUCCESS")
                 completion()
             case .failure(let error):
                 completion()
@@ -305,6 +306,7 @@ extension NetworkManager {
             switch result {
             case .success(let response):
                 let result = try? response.mapJSON() // empty if not found
+                print("Request ✅ SUCCESS")
                 completion()
             case .failure(let error):
                 completion()
