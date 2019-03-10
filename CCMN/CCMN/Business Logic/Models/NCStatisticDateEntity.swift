@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct StatisticDateEntity {
-    let siteId: Int = UserDefaultsService.siteId
+struct NCStatisticDateEntity {
+    let siteId: Int = NCUserDefaultsService.siteId
     let date: String
 }

@@ -10,10 +10,10 @@ import Foundation
 
 struct InformationModel {
     
-    private var networkService = NetworkManager.shared
+    private var networkService = NCNetworkManager.shared
     
-    let inRangeModel = StatisticRangeEntity(startDate: "2019-03-01", endDate: nil)
-    let specDateModel = StatisticDateEntity(date: "2019-03-02")
+    let inRangeModel = NCStatisticRangeEntity(startDate: "2019-03-01", endDate: nil)
+    let specDateModel = NCStatisticDateEntity(date: "2019-03-02")
     
     // Nah ..
     func getOnlineUsers(completion: @escaping (Int?) -> Void) {

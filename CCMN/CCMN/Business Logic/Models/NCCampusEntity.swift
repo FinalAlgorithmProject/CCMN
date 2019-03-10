@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct CampusEntity: Codable {
+struct NCCampusEntity: Codable {
     let totalCampuses: Int
     let totalBuildings: Int
     let totalFloors: Int

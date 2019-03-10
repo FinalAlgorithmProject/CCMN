@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct KpiStatisticEntity: Codable {
+struct NCKpiStatisticEntity: Codable {
     let visitorCount: Int
     let totalPasserbyCount: Int
     let totalVisitorCount: Int

@@ -9,7 +9,7 @@
 import Foundation
 import Moya
 
-enum CCMNApi {
+enum NCApi {
     
     case gettingAesUID
     case numberOfOnlineUsers
@@ -19,27 +19,27 @@ enum CCMNApi {
     case searchUserByName(name: String)
     case searchUserByMacAddress(macAddress: String)
     
-    case repeatedVisitorsInRange(model: StatisticRangeEntity)
-    case repeatedVisitorsForSpecificDate(model: StatisticDateEntity)
+    case repeatedVisitorsInRange(model: NCStatisticRangeEntity)
+    case repeatedVisitorsForSpecificDate(model: NCStatisticDateEntity)
     
-    case dwellInRange(model: StatisticRangeEntity)
-    case dwellForSpecificDate(model: StatisticDateEntity)
+    case dwellInRange(model: NCStatisticRangeEntity)
+    case dwellForSpecificDate(model: NCStatisticDateEntity)
 
-    case passerbyInRange(model: StatisticRangeEntity)
-    case passerbyForSpecificDate(model: StatisticDateEntity)
+    case passerbyInRange(model: NCStatisticRangeEntity)
+    case passerbyForSpecificDate(model: NCStatisticDateEntity)
 
-    case connectedVisitorsInRange(model: StatisticRangeEntity)
-    case connectedVisitorsForSpecificDate(model: StatisticDateEntity)
+    case connectedVisitorsInRange(model: NCStatisticRangeEntity)
+    case connectedVisitorsForSpecificDate(model: NCStatisticDateEntity)
     
-    case visitorsInRange(model: StatisticRangeEntity)
-    case visitorsForSpecificDate(model: StatisticDateEntity)
+    case visitorsInRange(model: NCStatisticRangeEntity)
+    case visitorsForSpecificDate(model: NCStatisticDateEntity)
     
     
     // ------------------------------------- Custom properties -------------------------------------
     var environmentHeaders: String {
         switch self {
         case .numberOfOnlineUsers, .campusInformation, .searchUserByName, .searchUserByMacAddress:
-            let data = "\(ApplicationConstants.cmxUsername):\(ApplicationConstants.cmxPassword)".data(using: .utf8)!
+            let data = "\(NCApplicationConstants.cmxUsername):\(NCApplicationConstants.cmxPassword)".data(using: .utf8)!
             return "Basic \(data.base64EncodedString())"
         case .gettingAesUID, .todayVisitors, .todayKPI,
              .repeatedVisitorsInRange, .repeatedVisitorsForSpecificDate,
@@ -48,7 +48,7 @@ enum CCMNApi {
              .connectedVisitorsInRange, .connectedVisitorsForSpecificDate,
              .visitorsInRange, .visitorsForSpecificDate:
             
-            let data = "\(ApplicationConstants.presenceUsername):\(ApplicationConstants.presencePassword)".data(using: .utf8)!
+            let data = "\(NCApplicationConstants.presenceUsername):\(NCApplicationConstants.presencePassword)".data(using: .utf8)!
             return "Basic \(data.base64EncodedString())"
         }
     }
@@ -56,19 +56,19 @@ enum CCMNApi {
     var environmentBaseURL: String {
         switch self {
         case .numberOfOnlineUsers, .campusInformation, .searchUserByName, .searchUserByMacAddress:
-            return ApplicationConstants.cmxURLString
+            return NCApplicationConstants.cmxURLString
         case .gettingAesUID, .todayVisitors, .todayKPI,
              .repeatedVisitorsInRange, .repeatedVisitorsForSpecificDate,
              .dwellInRange, .dwellForSpecificDate,
              .passerbyInRange, .passerbyForSpecificDate,
              .connectedVisitorsInRange, .connectedVisitorsForSpecificDate,
              .visitorsInRange, .visitorsForSpecificDate:
-            return ApplicationConstants.presenceURLString
+            return NCApplicationConstants.presenceURLString
         }
     }
 }
 
-extension CCMNApi: TargetType {
+extension NCApi: TargetType {
     
     // Protocols properties
     var baseURL: URL {

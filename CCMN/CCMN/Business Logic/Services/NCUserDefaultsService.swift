@@ -12,7 +12,7 @@ private struct DefaultsKeys {
     static let siteId = "siteId"
 }
 
-struct UserDefaultsService {
+struct NCUserDefaultsService {
 
     static var siteId: Int {
         set { save(newValue, forKey: DefaultsKeys.siteId) }
@@ -20,7 +20,7 @@ struct UserDefaultsService {
     }
     
     // MARK: Private API
-    private static func save<T>(_ value: T, forKey key: String) {
+    private static func save(_ value: Any, forKey key: String) {
         UserDefaults.standard.set(value, forKey: key)
     }
     

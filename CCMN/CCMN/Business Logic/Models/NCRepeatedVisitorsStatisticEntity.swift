@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct RepeatedVisitorsStatisticEntity: Codable {
+struct NCRepeatedVisitorsStatisticEntity: Codable {
     let daily: Int
     let weekly: Int
     let occasional: Int

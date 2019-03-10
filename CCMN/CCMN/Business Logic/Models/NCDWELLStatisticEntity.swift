@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct DWELLStatisticEntity: Codable {
+struct NCDWELLStatisticEntity: Codable {
     let fiveToThirtyMinutes: Int
     let thirtyToSixtyMinutes: Int
     let oneToFiveHours: Int

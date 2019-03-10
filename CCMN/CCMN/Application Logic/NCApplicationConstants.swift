@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ApplicationConstants {
+struct NCApplicationConstants {
     
     // Endpoint credentials
     static let cmxURLString = "https://cisco-cmx.unit.ua"

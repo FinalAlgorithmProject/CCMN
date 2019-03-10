@@ -11,13 +11,14 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
+    var coordinator: NCAppCoordinator!
     
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        NetworkManager.shared.siteId {
-              // show launch while getting aesuid
+        coordinator = NCAppCoordinator()
+        
+        NCNetworkManager.shared.siteId {
+              // show launch while getting site id
         }
     
         return true

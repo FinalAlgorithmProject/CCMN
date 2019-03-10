@@ -1,5 +1,5 @@
 //
-//  ClientsCountEntity.swift
+//  SitesEntity.swift
 //  CCMN
 //
 //  Created by Vitalii Poltavets on 2/24/19.
@@ -8,7 +8,6 @@
 
 import Foundation
 
-struct ClientsCountEntity: Codable {
-    let deviceType: String
-    let count: Int
+struct NCSitesEntity: Codable {
+    let aesUId: Int // This is site id
 }

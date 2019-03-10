@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct StatisticRangeEntity {
-    let siteId: Int = UserDefaultsService.siteId
+struct NCStatisticRangeEntity {
+    let siteId: Int = NCUserDefaultsService.siteId
     let startDate: String
     let endDate: String?
 }
