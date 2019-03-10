@@ -142,6 +142,7 @@
 		1D6437172235685E00617C47 /* ChildCoordnators */ = {
 			isa = PBXGroup;
 			children = (
+				1D811F36223543930082CF9B /* NCBaseCoordinator.swift */,
 				1D6437132235681900617C47 /* NCHomeCoordinator.swift */,
 				1D64373F2235900F00617C47 /* NCStatisticCoordinator.swift */,
 				1D6437412235905700617C47 /* NCFloorCoordinator.swift */,
@@ -239,7 +240,6 @@
 			children = (
 				1D6437172235685E00617C47 /* ChildCoordnators */,
 				1D6437152235683600617C47 /* NCAppCoordinator.swift */,
-				1D811F36223543930082CF9B /* NCBaseCoordinator.swift */,
 			);
 			path = AppCoordinator;
 			sourceTree = "<group>";

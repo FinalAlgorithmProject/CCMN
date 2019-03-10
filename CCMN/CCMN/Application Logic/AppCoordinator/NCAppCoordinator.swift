@@ -30,23 +30,22 @@ final class NCAppCoordinator {
         let homeItem = tabBarController.createTabItem(ofType: .home, with: "Home")
         let statisticItem = tabBarController.createTabItem(ofType: .statistic, with: "Statistic")
         
-        let floorsNames = campusInfo?.campusCounts.first?.buildingCounts.first?.floorCounts.map { $0.floorName } ?? []
+        /// Creates for each floor tabbaritem
+        let floorsNames = campusInfo?.campusCounts.first?.buildingCounts.first?.floorCounts.map { $0.floorName }.sorted() ?? []
         var floorItems: [UITabBarItem] = []
         
+        /// it can be shorter, but who cares?
         for floorName in floorsNames {
             let freshTab = tabBarController.createTabItem(ofType: .floor, with: floorName)
             floorItems.append(freshTab)
         }
         
-        
         let homeTabController = homeTab(withItem: homeItem)
         let statisticTabController = statisticTab(withItem: statisticItem)
         
+        /// Creates for each tabbaritem viewcontroller embed in with navigation
         var floorTabController: [UINavigationController] = []
-        for floorItem in floorItems {
-            let freshFloor = floorTab(withItem: floorItem)
-            floorTabController.append(freshFloor)
-        }
+        floorItems.forEach { floorTabController.append(floorTab(withItem: $0)) }
         
         var viewControllers = [homeTabController, statisticTabController]
         floorTabController.forEach { viewControllers.append($0) }
@@ -84,7 +83,4 @@ final class NCAppCoordinator {
         navigationController.viewControllers = [viewController]
         return navigationController
     }
-    
-    
-    
 }
