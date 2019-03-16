@@ -8,5 +8,6 @@ target 'CCMN' do
   pod 'Alamofire'
   pod 'Moya'
   pod 'lottie-ios'
+  pod 'Charts'
 
 end

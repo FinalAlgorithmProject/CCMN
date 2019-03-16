@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="CCMN" customModuleProvider="target">
             <connections>
+                <outlet property="todayVisitorsLabel" destination="m0e-oB-weE" id="PqW-vq-cvV"/>
                 <outlet property="totalDeviceConnectedLabel" destination="Dl2-t3-h0i" id="vbg-5r-MrB"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -20,17 +21,28 @@
             <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Now connected: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dl2-t3-h0i">
-                    <rect key="frame" x="314" y="511.5" width="140" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Xif-oc-Dfg">
+                    <rect key="frame" x="313" y="476" width="142.5" height="92"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fetching ..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dl2-t3-h0i">
+                            <rect key="frame" x="0.0" y="0.0" width="142.5" height="36"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fetching ..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m0e-oB-weE">
+                            <rect key="frame" x="0.0" y="56" width="142.5" height="36"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="Dl2-t3-h0i" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="5lS-69-yRD"/>
-                <constraint firstItem="Dl2-t3-h0i" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="gqM-aR-CJz"/>
+                <constraint firstItem="Xif-oc-Dfg" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="U4m-eb-ase"/>
+                <constraint firstItem="Xif-oc-Dfg" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="y0f-w6-Ycy"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>

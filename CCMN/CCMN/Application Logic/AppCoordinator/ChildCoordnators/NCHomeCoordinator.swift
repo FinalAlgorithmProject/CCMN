@@ -12,7 +12,8 @@ class NCHomeCoordinator: NCBaseCoordinator {
     
     func homeViewController(buildingName name: String) -> HomeViewController {
         let viewController = HomeViewController.init(nibName: HomeViewController.className, bundle: nil)
-        viewController.model = HomeModel(buildingName: name, network: NCNetworkManager.shared)
+        let network = NCNetworkManager.shared
+        viewController.model = HomeModel(buildingName: name, network: network)
         return viewController
     }
     

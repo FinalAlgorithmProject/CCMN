@@ -9,13 +9,13 @@
 import UIKit
 
 protocol Toastable: class {
-    func showToastLabel(with message: String)
+    func showToastLabel(with message: String, backgroundColor: UIColor?)
     func showNoInternetLabel()
 }
 
 extension Toastable where Self: UIViewController {
-    func showToastLabel(with message: String) {
-        showToast(with: message)
+    func showToastLabel(with message: String, backgroundColor: UIColor? = UIColor.toastBackground) {
+        showToast(with: message, backgroundColor: backgroundColor)
     }
     func showNoInternetLabel() {
         showNoInternetConnectionToast()
@@ -23,13 +23,13 @@ extension Toastable where Self: UIViewController {
 }
 
 private extension UIViewController {
-    func showToast(with message: String, backgroundColor: UIColor? = UIColor.toastBackground) {
+    func showToast(with message: String, backgroundColor: UIColor?) {
         if view.viewWithTag(10) != nil { return } // Little hack
         
-//        let statusBarHeight = UIApplication.shared.statusBarFrame.height
+        let statusBarHeight = UIApplication.shared.statusBarFrame.height
         
         /// What a hack? it was working with statusBarHeight
-        let viewY = -navigationBarHeight //statusBarHeight
+        let viewY = statusBarHeight //-navigationBarHeight //
         let viewHeight = navigationBarHeight
         
         let labelY: CGFloat = 0

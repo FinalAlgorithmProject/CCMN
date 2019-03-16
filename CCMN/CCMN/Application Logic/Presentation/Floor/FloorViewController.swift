@@ -10,10 +10,12 @@ import UIKit
 
 class FloorViewController: UIViewController {
 
+    var model: FloorModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        navigationItem.title = "Floor Information"
     }
 
 

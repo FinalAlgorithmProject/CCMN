@@ -10,9 +10,13 @@ import UIKit
 
 class StatisticViewController: UIViewController {
 
+    var model: StatisticModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        navigationItem.title = "Statistic"
+        
+        model.repeatedVisitors()
     }
 }

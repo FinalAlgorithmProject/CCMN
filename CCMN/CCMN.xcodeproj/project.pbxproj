@@ -49,6 +49,7 @@
 		1DC5D7E02222CE260015530F /* NCSitesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5D7DF2222CE260015530F /* NCSitesEntity.swift */; };
 		1DC5D7E32222CE620015530F /* NCUserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5D7E22222CE620015530F /* NCUserDefaultsService.swift */; };
 		1DC5D7E52222D0AA0015530F /* NCApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5D7E42222D0AA0015530F /* NCApi.swift */; };
+		1DD7F7BD223D43B000121E4D /* FloorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7F7BC223D43B000121E4D /* FloorModel.swift */; };
 		40417388863F6491D27B6DF8 /* Pods_CCMN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E5D2654C1199F6BCC8A832 /* Pods_CCMN.framework */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +98,7 @@
 		1DC5D7DF2222CE260015530F /* NCSitesEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NCSitesEntity.swift; sourceTree = "<group>"; };
 		1DC5D7E22222CE620015530F /* NCUserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NCUserDefaultsService.swift; sourceTree = "<group>"; };
 		1DC5D7E42222D0AA0015530F /* NCApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NCApi.swift; sourceTree = "<group>"; };
+		1DD7F7BC223D43B000121E4D /* FloorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorModel.swift; sourceTree = "<group>"; };
 		2B27B75E49991F74544E4B2F /* Pods-CCMN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCMN.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CCMN/Pods-CCMN.debug.xcconfig"; sourceTree = "<group>"; };
 		561ADB571E8F688689EA0C45 /* Pods-CCMN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCMN.release.xcconfig"; path = "Pods/Target Support Files/Pods-CCMN/Pods-CCMN.release.xcconfig"; sourceTree = "<group>"; };
 		D3E5D2654C1199F6BCC8A832 /* Pods_CCMN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CCMN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -181,8 +183,8 @@
 		1D64373A22358A9B00617C47 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				1D64373822358A9500617C47 /* HomeModel.swift */,
 				1D811F24223539260082CF9B /* HomeViewController.swift */,
+				1D64373822358A9500617C47 /* HomeModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -200,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				1D811F2C2235396B0082CF9B /* FloorViewController.swift */,
+				1DD7F7BC223D43B000121E4D /* FloorModel.swift */,
 			);
 			path = Floor;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CCMN/Pods-CCMN-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -428,6 +432,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
@@ -476,6 +481,7 @@
 				1D64373D22358B1700617C47 /* StatisticModel.swift in Sources */,
 				1DC5D7C92222AFE00015530F /* InformationViewController.swift in Sources */,
 				1D64371F22356A8300617C47 /* NCNavigationViewController.swift in Sources */,
+				1DD7F7BD223D43B000121E4D /* FloorModel.swift in Sources */,
 				1D1217BA222AB32A00855EB4 /* NCRepeatedVisitorsStatisticEntity.swift in Sources */,
 				1D64372622356C7500617C47 /* NSObject+Extension.swift in Sources */,
 				1DC5D7DA2222BC220015530F /* NCNetworkService.swift in Sources */,

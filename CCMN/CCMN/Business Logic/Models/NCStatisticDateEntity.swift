@@ -10,5 +10,5 @@ import Foundation
 
 struct NCStatisticDateEntity {
     let siteId: Int = NCUserDefaultsService.siteId
-    let date: String
+    let date: String // format: yyyy-mm-dd
 }

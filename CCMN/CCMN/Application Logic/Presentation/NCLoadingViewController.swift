@@ -16,13 +16,13 @@ class NCLoadingViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        if animationView == nil {
-            animationView = LOTAnimationView(name: "loadingAnimation")
-            animationView.center = view.center
-            view.addSubview(animationView)
-            view.backgroundColor = .black
-            animationView.play()
-        }
+//        if animationView == nil {
+//            animationView = LOTAnimationView(name: "loadingAnimation")
+//            animationView.center = view.center
+//            view.addSubview(animationView)
+//            view.backgroundColor = .black
+//            animationView.play()
+//        }
     }
 
 }

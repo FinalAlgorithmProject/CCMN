@@ -12,6 +12,8 @@ class NCStatisticCoordinator: NCBaseCoordinator {
     
     func statisticViewController() -> StatisticViewController {
         let viewController = StatisticViewController.init(nibName: StatisticViewController.className, bundle: nil)
+        let network = NCNetworkManager.shared
+        viewController.model = StatisticModel(network: network)
         return viewController
     }
     

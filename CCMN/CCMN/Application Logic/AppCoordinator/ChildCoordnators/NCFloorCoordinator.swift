@@ -12,6 +12,8 @@ class NCFloorCoordinator: NCBaseCoordinator {
     
     func floorViewController() -> FloorViewController {
         let viewController = FloorViewController.init(nibName: FloorViewController.className, bundle: nil)
+        let network = NCNetworkManager.shared
+        viewController.model = FloorModel(network: network)
         return viewController
     }
     

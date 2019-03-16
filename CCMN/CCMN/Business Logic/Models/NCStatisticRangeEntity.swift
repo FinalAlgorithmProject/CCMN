@@ -10,6 +10,6 @@ import Foundation
 
 struct NCStatisticRangeEntity {
     let siteId: Int = NCUserDefaultsService.siteId
-    let startDate: String
-    let endDate: String?
+    let startDate: String // Date in format of yyyy-mm-dd
+    let endDate: String? // Date in format of yyyy-mm-dd
 }

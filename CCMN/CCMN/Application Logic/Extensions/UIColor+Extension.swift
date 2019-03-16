@@ -11,7 +11,7 @@ import UIKit
 extension UIColor {
     
     static var warningRedColor: UIColor {
-        return UIColor(red:0.91, green:0.35, blue:0.39, alpha:1.0)
+        return UIColor(red:0.91, green:0.35, blue:0.39, alpha:0.9)
     }
     
     static var navigationBarBackground: UIColor {
@@ -29,6 +29,10 @@ extension UIColor {
     }
     
     static var toastBackground: UIColor {
-        return UIColor(red: 216.0 / 255.0, green: 213.0 / 255.0, blue: 213.0 / 255.0, alpha: 1)
+        return UIColor(red: 216.0 / 255.0, green: 213.0 / 255.0, blue: 213.0 / 255.0, alpha: 0.9)
+    }
+    
+    static var successToastBackground: UIColor {
+        return UIColor(red:0.11, green:0.76, blue:0.22, alpha:0.9)
     }
 }
