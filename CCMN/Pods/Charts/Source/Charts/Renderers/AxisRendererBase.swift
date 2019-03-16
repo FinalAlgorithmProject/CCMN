@@ -54,10 +54,8 @@ open class AxisRendererBase: Renderer
     }
     
     /// Computes the axis values.
-    ///
-    /// - Parameters:
-    ///   - min: the minimum value in the data object for this axis
-    ///   - max: the maximum value in the data object for this axis
+    /// - parameter min: the minimum value in the data object for this axis
+    /// - parameter max: the maximum value in the data object for this axis
     @objc open func computeAxis(min: Double, max: Double, inverted: Bool)
     {
         var min = min, max = max
@@ -121,8 +119,7 @@ open class AxisRendererBase: Renderer
         if intervalSigDigit > 5
         {
             // Use one order of magnitude higher, to avoid intervals like 0.9 or 90
-            // if it's 0.0 after floor(), we use the old value
-            interval = floor(10.0 * intervalMagnitude) == 0.0 ? interval : floor(10.0 * intervalMagnitude)
+            interval = floor(10.0 * Double(intervalMagnitude))
         }
         
         var n = axis.centerAxisLabelsEnabled ? 1 : 0

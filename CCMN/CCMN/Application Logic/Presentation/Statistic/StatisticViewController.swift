@@ -7,16 +7,26 @@
 //
 
 import UIKit
+import Charts
 
 class StatisticViewController: UIViewController {
 
-    var model: StatisticModel!
+    @IBOutlet weak var statsView: BarChartView!
     
+    var model: StatisticModel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationItem.title = "Statistic"
         
-        model.repeatedVisitors()
+        model.repeatedVisitors {
+            
+        }
+        
     }
+    
+//    @IBAction func repeatedVisitors(_ sender: UIButton) {
+//
+//    }
 }

@@ -39,7 +39,7 @@ class HomeViewController: UIViewController {
     
     @objc func reloadData() {
         model.refreshUserData()
-        showToastLabel(with: "Succefully refreshed! Wait ...", backgroundColor: UIColor.successToastBackground)
+        showToastLabel(with: "Succefully refreshed!", backgroundColor: UIColor.successToastBackground)
     }
 
 }

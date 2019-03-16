@@ -1,8 +1,8 @@
 PODS:
   - Alamofire (4.8.1)
-  - Charts (3.2.2):
-    - Charts/Core (= 3.2.2)
-  - Charts/Core (3.2.2)
+  - Charts (3.0.5):
+    - Charts/Core (= 3.0.5)
+  - Charts/Core (3.0.5)
   - lottie-ios (2.5.2)
   - Moya (12.0.1):
     - Moya/Core (= 12.0.1)
@@ -13,7 +13,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
-  - Charts
+  - Charts (~> 3.0.4)
   - lottie-ios
   - Moya
 
@@ -27,11 +27,11 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
-  Charts: f69cf0518b6d1d62608ca504248f1bbe0b6ae77e
+  Charts: 45cdc985b764c838b35ee47eb1365d15735f6d1a
   lottie-ios: 3fef45d3fabe63e3c7c2eb603dd64ddfffc73062
   Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
 
-PODFILE CHECKSUM: fd0efc423e1df19005ad38b53378df7bf7fd2559
+PODFILE CHECKSUM: ae59940032061f7a8d99be2729d1c72aeaf7dcc5
 
 COCOAPODS: 1.5.3

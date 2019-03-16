@@ -21,7 +21,10 @@ final class NCAppCoordinator {
     func loadingScreenRoot() {
         let viewController = NCLoadingViewController.init(nibName: NCLoadingViewController.className,
                                                           bundle: nil)
-        window.rootViewController = viewController
+        let fakeTabBar = NCTabBarViewController()
+        let fakeNavigation = NCNavigationViewController(rootViewController: viewController)
+        fakeTabBar.viewControllers = [fakeNavigation]
+        window.rootViewController = fakeTabBar
     }
     
     func tabBarRoot(campusInfo: NCCampusEntity?) {

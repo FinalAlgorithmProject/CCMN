@@ -9,12 +9,12 @@
 import Foundation
 
 final class HomeModel {
-    
-    let network: NCNetworkManager
-    
+
     let buildingName: String
-    var todayVisitorsTimer: Timer!
-    var nowDevicesConnectedTimer: Timer!
+    
+    private let network: NCNetworkManager
+    private var todayVisitorsTimer: Timer!
+    private var nowDevicesConnectedTimer: Timer!
     
     init(buildingName: String, network: NCNetworkManager) {
         self.buildingName = buildingName
