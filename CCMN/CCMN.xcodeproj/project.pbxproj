@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1D1021C42223058D0008E3B7 /* NCClientsCountEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1021C32223058D0008E3B7 /* NCClientsCountEntity.swift */; };
-		1D1021CA222309110008E3B7 /* InformationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1021C9222309110008E3B7 /* InformationModel.swift */; };
 		1D1217BA222AB32A00855EB4 /* NCRepeatedVisitorsStatisticEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1217B9222AB32A00855EB4 /* NCRepeatedVisitorsStatisticEntity.swift */; };
 		1D1217BC222ABB1700855EB4 /* NCDWELLStatisticEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1217BB222ABB1700855EB4 /* NCDWELLStatisticEntity.swift */; };
 		1D1217BE222ACA8800855EB4 /* NCStatisticRangeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1217BD222ACA8800855EB4 /* NCStatisticRangeEntity.swift */; };
@@ -41,7 +40,6 @@
 		1D811F2F2235396B0082CF9B /* FloorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D811F2D2235396B0082CF9B /* FloorViewController.xib */; };
 		1D811F37223543930082CF9B /* NCBaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D811F36223543930082CF9B /* NCBaseCoordinator.swift */; };
 		1DC5D7C72222AFE00015530F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5D7C62222AFE00015530F /* AppDelegate.swift */; };
-		1DC5D7C92222AFE00015530F /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5D7C82222AFE00015530F /* InformationViewController.swift */; };
 		1DC5D7CE2222AFE00015530F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DC5D7CD2222AFE00015530F /* Assets.xcassets */; };
 		1DC5D7D12222AFE00015530F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DC5D7CF2222AFE00015530F /* LaunchScreen.storyboard */; };
 		1DC5D7DA2222BC220015530F /* NCNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5D7D92222BC220015530F /* NCNetworkService.swift */; };
@@ -65,7 +63,6 @@
 
 /* Begin PBXFileReference section */
 		1D1021C32223058D0008E3B7 /* NCClientsCountEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NCClientsCountEntity.swift; sourceTree = "<group>"; };
-		1D1021C9222309110008E3B7 /* InformationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationModel.swift; sourceTree = "<group>"; };
 		1D1217B9222AB32A00855EB4 /* NCRepeatedVisitorsStatisticEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NCRepeatedVisitorsStatisticEntity.swift; sourceTree = "<group>"; };
 		1D1217BB222ABB1700855EB4 /* NCDWELLStatisticEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NCDWELLStatisticEntity.swift; sourceTree = "<group>"; };
 		1D1217BD222ACA8800855EB4 /* NCStatisticRangeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NCStatisticRangeEntity.swift; sourceTree = "<group>"; };
@@ -99,7 +96,6 @@
 		1D811F36223543930082CF9B /* NCBaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NCBaseCoordinator.swift; sourceTree = "<group>"; };
 		1DC5D7C32222AFE00015530F /* CCMN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCMN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DC5D7C62222AFE00015530F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1DC5D7C82222AFE00015530F /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		1DC5D7CD2222AFE00015530F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1DC5D7D02222AFE00015530F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1DC5D7D22222AFE00015530F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -145,8 +141,6 @@
 				1D811F23223538FC0082CF9B /* Presentation */,
 				1D811F22223538F60082CF9B /* Screens */,
 				1D64372422356C5C00617C47 /* Extensions */,
-				1DC5D7C82222AFE00015530F /* InformationViewController.swift */,
-				1D1021C9222309110008E3B7 /* InformationModel.swift */,
 			);
 			path = "Application Logic";
 			sourceTree = "<group>";
@@ -536,7 +530,6 @@
 				1D6437162235683600617C47 /* NCAppCoordinator.swift in Sources */,
 				1D64373922358A9500617C47 /* HomeModel.swift in Sources */,
 				1DF3D730223E7E30000ECDBB /* NCChartTableViewCell.swift in Sources */,
-				1D1021CA222309110008E3B7 /* InformationModel.swift in Sources */,
 				1D811F37223543930082CF9B /* NCBaseCoordinator.swift in Sources */,
 				1D811F2E2235396B0082CF9B /* FloorViewController.swift in Sources */,
 				1D1217C2222AF49E00855EB4 /* NCKpiStatisticEntity.swift in Sources */,
@@ -546,7 +539,6 @@
 				1D6437422235905700617C47 /* NCFloorCoordinator.swift in Sources */,
 				1D64373D22358B1700617C47 /* StatisticModel.swift in Sources */,
 				1DF3D735223EB907000ECDBB /* NCStatisticButton.swift in Sources */,
-				1DC5D7C92222AFE00015530F /* InformationViewController.swift in Sources */,
 				1DF3D733223E7E8C000ECDBB /* UITableView+Extension.swift in Sources */,
 				1D64371F22356A8300617C47 /* NCNavigationViewController.swift in Sources */,
 				1DF3D73C223EBC21000ECDBB /* NCDwellTimeViewController.swift in Sources */,
