@@ -5,6 +5,8 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,17 +19,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logo ..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cae-QC-Qbu">
-                                <rect key="frame" x="305.5" y="489.5" width="157.5" height="60"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cisco-icon" translatesAutoresizingMaskIntoConstraints="NO" id="iTB-Xw-MFs">
+                                <rect key="frame" x="191.5" y="330.5" width="385" height="378"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="iTB-Xw-MFs" secondAttribute="height" multiplier="351:344" id="ZTH-vk-t47"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="cae-QC-Qbu" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="58m-07-c5v"/>
-                            <constraint firstItem="cae-QC-Qbu" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="JZG-aT-FEF"/>
+                            <constraint firstItem="iTB-Xw-MFs" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="46j-vT-K28"/>
+                            <constraint firstItem="iTB-Xw-MFs" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.5" constant="1" id="hFO-jI-aHc"/>
+                            <constraint firstItem="iTB-Xw-MFs" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="zYZ-4X-kGd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -63,6 +66,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="IrO-6M-LNg"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TpT-o3-71Q">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -75,4 +79,7 @@
             <point key="canvasLocation" x="951.5625" y="351.5625"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="cisco-icon" width="702" height="688"/>
+    </resources>
 </document>

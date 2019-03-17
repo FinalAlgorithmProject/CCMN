@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             appCoordinator.tabBarRoot(campusInfo: nil)
         } else {
             appCoordinator.loadingScreenRoot()
-            madeRequests { result in
+            self.madeRequests { result in
                 self.appCoordinator.tabBarRoot(campusInfo: result)
             }
         }

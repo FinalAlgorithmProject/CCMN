@@ -23,6 +23,9 @@ class NCLoadingViewController: UIViewController {
 //            view.backgroundColor = .black
 //            animationView.play()
 //        }
+
     }
+    
+    
 
 }

@@ -12,6 +12,7 @@ class HomeViewController: UIViewController {
 
     @IBOutlet weak var totalDeviceConnectedLabel: UILabel!
     @IBOutlet weak var todayVisitorsLabel: UILabel!
+    @IBOutlet weak var ciscoIconImage: UIImageView!
     
     var model: HomeModel!
     
@@ -19,13 +20,19 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
 
         initNavigation()
+        
+        UIView.animate(withDuration: 1) {
+            let degrees: Float = 250
+            let radians = CGFloat(degrees * Float.pi / 180)
+            self.ciscoIconImage.transform = CGAffineTransform(scaleX: 3, y: 3).rotated(by: radians)
+            self.ciscoIconImage.alpha = 0
+        }
     
         model.devicesConnected { count in
             self.totalDeviceConnectedLabel!.text = "Now connected: \(count)"
             
         }
         model.todayVisitors { count in
-            
             self.todayVisitorsLabel!.text = "Today visitors: \(count)"
         }
     }
