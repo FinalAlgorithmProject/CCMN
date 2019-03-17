@@ -8,10 +8,16 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="FiraSans-Medium.ttf">
+            <string>FiraSans-Medium</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StatisticViewController" customModule="CCMN" customModuleProvider="target">
             <connections>
-                <outlet property="statsView" destination="Q7U-R8-ro9" id="F31-Uc-gf2"/>
+                <outlet property="endDateTextField" destination="JR2-l0-e2S" id="ky9-k3-AgE"/>
+                <outlet property="startDateTextField" destination="niX-df-uj6" id="0ex-sx-hwz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,20 +26,70 @@
             <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q7U-R8-ro9" customClass="BarChartView" customModule="Charts">
-                    <rect key="frame" x="10" y="322" width="748" height="400"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="PjY-aq-YnN">
+                    <rect key="frame" x="100" y="392" width="568" height="260"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nnL-hR-3GX" customClass="NCStatisticButton" customModule="CCMN" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="568" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="905-8R-6GU"/>
+                            </constraints>
+                            <state key="normal" title="Repeated Visitors"/>
+                            <connections>
+                                <action selector="repeatedVisitors:" destination="-1" eventType="touchUpInside" id="F5w-jE-FHR"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bej-8k-t0v" customClass="NCStatisticButton" customModule="CCMN" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="70" width="568" height="50"/>
+                            <state key="normal" title="Dwell Time"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4wh-Nv-SID" customClass="NCStatisticButton" customModule="CCMN" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="140" width="568" height="50"/>
+                            <state key="normal" title="Passer by Visitors"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tuF-Fi-glA" customClass="NCStatisticButton" customModule="CCMN" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="210" width="568" height="50"/>
+                            <state key="normal" title="Connected Visitors"/>
+                        </button>
+                    </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="400" id="DhJ-t8-Djd"/>
+                        <constraint firstItem="4wh-Nv-SID" firstAttribute="height" secondItem="Bej-8k-t0v" secondAttribute="height" id="FRK-pf-vm7"/>
+                        <constraint firstItem="tuF-Fi-glA" firstAttribute="height" secondItem="4wh-Nv-SID" secondAttribute="height" id="m6I-6A-e7I"/>
+                        <constraint firstItem="Bej-8k-t0v" firstAttribute="height" secondItem="nnL-hR-3GX" secondAttribute="height" id="r3z-e5-vff"/>
                     </constraints>
-                </view>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="K0o-ZK-ECy">
+                    <rect key="frame" x="100" y="242" width="568" height="110"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Choose start date please! " textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="niX-df-uj6">
+                            <rect key="frame" x="0.0" y="0.0" width="568" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="fSQ-FW-OJJ"/>
+                            </constraints>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" name="FiraSans-Medium" family="Fira Sans" pointSize="17"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Choose end date please! (optional)" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JR2-l0-e2S">
+                            <rect key="frame" x="0.0" y="65" width="568" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="7Gj-2S-WBd"/>
+                            </constraints>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" name="FiraSans-Medium" family="Fira Sans" pointSize="17"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                    </subviews>
+                </stackView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="Q7U-R8-ro9" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="2Cs-Le-Umw"/>
-                <constraint firstItem="Q7U-R8-ro9" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="Suo-lt-pFu"/>
-                <constraint firstItem="Q7U-R8-ro9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="o19-aN-NNt"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Q7U-R8-ro9" secondAttribute="trailing" constant="10" id="xLM-ac-q9f"/>
+                <constraint firstItem="PjY-aq-YnN" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="5cC-JO-uZI"/>
+                <constraint firstItem="PjY-aq-YnN" firstAttribute="leading" secondItem="K0o-ZK-ECy" secondAttribute="leading" id="8gV-2Q-VrH"/>
+                <constraint firstItem="PjY-aq-YnN" firstAttribute="top" secondItem="K0o-ZK-ECy" secondAttribute="bottom" constant="40" id="LcP-AJ-4oR"/>
+                <constraint firstItem="PjY-aq-YnN" firstAttribute="trailing" secondItem="K0o-ZK-ECy" secondAttribute="trailing" id="dW6-LD-elF"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="K0o-ZK-ECy" secondAttribute="trailing" constant="100" id="qZf-47-kCf"/>
+                <constraint firstItem="K0o-ZK-ECy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="100" id="qi4-wI-Pge"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>

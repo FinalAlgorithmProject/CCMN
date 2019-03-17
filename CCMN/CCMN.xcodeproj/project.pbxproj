@@ -50,6 +50,13 @@
 		1DC5D7E32222CE620015530F /* NCUserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5D7E22222CE620015530F /* NCUserDefaultsService.swift */; };
 		1DC5D7E52222D0AA0015530F /* NCApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5D7E42222D0AA0015530F /* NCApi.swift */; };
 		1DD7F7BD223D43B000121E4D /* FloorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7F7BC223D43B000121E4D /* FloorModel.swift */; };
+		1DF3D729223E7A19000ECDBB /* NCRepeatedVisitorsChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF3D727223E7A19000ECDBB /* NCRepeatedVisitorsChartViewController.swift */; };
+		1DF3D72A223E7A19000ECDBB /* NCRepeatedVisitorsChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DF3D728223E7A19000ECDBB /* NCRepeatedVisitorsChartViewController.xib */; };
+		1DF3D72C223E7A32000ECDBB /* NCRepeatedVisitorsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF3D72B223E7A32000ECDBB /* NCRepeatedVisitorsModel.swift */; };
+		1DF3D730223E7E30000ECDBB /* NCChartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF3D72E223E7E30000ECDBB /* NCChartTableViewCell.swift */; };
+		1DF3D731223E7E30000ECDBB /* NCChartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DF3D72F223E7E30000ECDBB /* NCChartTableViewCell.xib */; };
+		1DF3D733223E7E8C000ECDBB /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF3D732223E7E8C000ECDBB /* UITableView+Extension.swift */; };
+		1DF3D735223EB907000ECDBB /* NCStatisticButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF3D734223EB907000ECDBB /* NCStatisticButton.swift */; };
 		40417388863F6491D27B6DF8 /* Pods_CCMN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E5D2654C1199F6BCC8A832 /* Pods_CCMN.framework */; };
 /* End PBXBuildFile section */
 
@@ -99,6 +106,13 @@
 		1DC5D7E22222CE620015530F /* NCUserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NCUserDefaultsService.swift; sourceTree = "<group>"; };
 		1DC5D7E42222D0AA0015530F /* NCApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NCApi.swift; sourceTree = "<group>"; };
 		1DD7F7BC223D43B000121E4D /* FloorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorModel.swift; sourceTree = "<group>"; };
+		1DF3D727223E7A19000ECDBB /* NCRepeatedVisitorsChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NCRepeatedVisitorsChartViewController.swift; sourceTree = "<group>"; };
+		1DF3D728223E7A19000ECDBB /* NCRepeatedVisitorsChartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NCRepeatedVisitorsChartViewController.xib; sourceTree = "<group>"; };
+		1DF3D72B223E7A32000ECDBB /* NCRepeatedVisitorsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NCRepeatedVisitorsModel.swift; sourceTree = "<group>"; };
+		1DF3D72E223E7E30000ECDBB /* NCChartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NCChartTableViewCell.swift; sourceTree = "<group>"; };
+		1DF3D72F223E7E30000ECDBB /* NCChartTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NCChartTableViewCell.xib; sourceTree = "<group>"; };
+		1DF3D732223E7E8C000ECDBB /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		1DF3D734223EB907000ECDBB /* NCStatisticButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NCStatisticButton.swift; sourceTree = "<group>"; };
 		2B27B75E49991F74544E4B2F /* Pods-CCMN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCMN.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CCMN/Pods-CCMN.debug.xcconfig"; sourceTree = "<group>"; };
 		561ADB571E8F688689EA0C45 /* Pods-CCMN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCMN.release.xcconfig"; path = "Pods/Target Support Files/Pods-CCMN/Pods-CCMN.release.xcconfig"; sourceTree = "<group>"; };
 		D3E5D2654C1199F6BCC8A832 /* Pods_CCMN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CCMN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,6 +172,7 @@
 				1D64372522356C7500617C47 /* NSObject+Extension.swift */,
 				1D64372D22357DCD00617C47 /* UIViewController+Extension.swift */,
 				1D64372F22357DFE00617C47 /* UIColor+Extension.swift */,
+				1DF3D732223E7E8C000ECDBB /* UITableView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -210,9 +225,11 @@
 		1D811F22223538F60082CF9B /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				1DF3D72D223E7E12000ECDBB /* Cells */,
 				1D811F25223539260082CF9B /* HomeViewController.xib */,
 				1D811F292235394A0082CF9B /* StatisticViewController.xib */,
 				1D811F2D2235396B0082CF9B /* FloorViewController.xib */,
+				1DF3D728223E7A19000ECDBB /* NCRepeatedVisitorsChartViewController.xib */,
 				1D64372122356BD700617C47 /* NCLoadingViewController.xib */,
 			);
 			path = Screens;
@@ -221,6 +238,7 @@
 		1D811F23223538FC0082CF9B /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				1DF3D724223E784B000ECDBB /* Chart */,
 				1D64373E22358B2000617C47 /* Floor */,
 				1D64373B22358B0900617C47 /* Statistic */,
 				1D64373A22358A9B00617C47 /* Home */,
@@ -234,6 +252,7 @@
 			children = (
 				1D64371C22356A6F00617C47 /* NCTabBarViewController.swift */,
 				1D64371E22356A8300617C47 /* NCNavigationViewController.swift */,
+				1DF3D734223EB907000ECDBB /* NCStatisticButton.swift */,
 			);
 			path = CustomElements;
 			sourceTree = "<group>";
@@ -321,6 +340,24 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		1DF3D724223E784B000ECDBB /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				1DF3D727223E7A19000ECDBB /* NCRepeatedVisitorsChartViewController.swift */,
+				1DF3D72B223E7A32000ECDBB /* NCRepeatedVisitorsModel.swift */,
+			);
+			path = Chart;
+			sourceTree = "<group>";
+		};
+		1DF3D72D223E7E12000ECDBB /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1DF3D72E223E7E30000ECDBB /* NCChartTableViewCell.swift */,
+				1DF3D72F223E7E30000ECDBB /* NCChartTableViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		688878181F4D0CAABD24196E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -406,6 +443,8 @@
 				1DC5D7CE2222AFE00015530F /* Assets.xcassets in Resources */,
 				1D811F27223539260082CF9B /* HomeViewController.xib in Resources */,
 				1D64373522357E5600617C47 /* FiraSans-Medium.ttf in Resources */,
+				1DF3D72A223E7A19000ECDBB /* NCRepeatedVisitorsChartViewController.xib in Resources */,
+				1DF3D731223E7E30000ECDBB /* NCChartTableViewCell.xib in Resources */,
 				1D811F2B2235394A0082CF9B /* StatisticViewController.xib in Resources */,
 				1D64372322356BD700617C47 /* NCLoadingViewController.xib in Resources */,
 				1D811F2F2235396B0082CF9B /* FloorViewController.xib in Resources */,
@@ -470,6 +509,7 @@
 				1D64372E22357DCD00617C47 /* UIViewController+Extension.swift in Sources */,
 				1D6437162235683600617C47 /* NCAppCoordinator.swift in Sources */,
 				1D64373922358A9500617C47 /* HomeModel.swift in Sources */,
+				1DF3D730223E7E30000ECDBB /* NCChartTableViewCell.swift in Sources */,
 				1D1021CA222309110008E3B7 /* InformationModel.swift in Sources */,
 				1D811F37223543930082CF9B /* NCBaseCoordinator.swift in Sources */,
 				1D811F2E2235396B0082CF9B /* FloorViewController.swift in Sources */,
@@ -479,7 +519,9 @@
 				1D64372222356BD700617C47 /* NCLoadingViewController.swift in Sources */,
 				1D6437422235905700617C47 /* NCFloorCoordinator.swift in Sources */,
 				1D64373D22358B1700617C47 /* StatisticModel.swift in Sources */,
+				1DF3D735223EB907000ECDBB /* NCStatisticButton.swift in Sources */,
 				1DC5D7C92222AFE00015530F /* InformationViewController.swift in Sources */,
+				1DF3D733223E7E8C000ECDBB /* UITableView+Extension.swift in Sources */,
 				1D64371F22356A8300617C47 /* NCNavigationViewController.swift in Sources */,
 				1DD7F7BD223D43B000121E4D /* FloorModel.swift in Sources */,
 				1D1217BA222AB32A00855EB4 /* NCRepeatedVisitorsStatisticEntity.swift in Sources */,
@@ -488,6 +530,7 @@
 				1DC5D7E32222CE620015530F /* NCUserDefaultsService.swift in Sources */,
 				1DC5D7E02222CE260015530F /* NCSitesEntity.swift in Sources */,
 				1D1217BC222ABB1700855EB4 /* NCDWELLStatisticEntity.swift in Sources */,
+				1DF3D729223E7A19000ECDBB /* NCRepeatedVisitorsChartViewController.swift in Sources */,
 				1D6437402235900F00617C47 /* NCStatisticCoordinator.swift in Sources */,
 				1D1021C42223058D0008E3B7 /* NCClientsCountEntity.swift in Sources */,
 				1DC5D7DD2222BDAF0015530F /* NCApplicationConstants.swift in Sources */,
@@ -500,6 +543,7 @@
 				1DC5D7E52222D0AA0015530F /* NCApi.swift in Sources */,
 				1D613612222319A70057068A /* NCCampusEntity.swift in Sources */,
 				1D64371D22356A6F00617C47 /* NCTabBarViewController.swift in Sources */,
+				1DF3D72C223E7A32000ECDBB /* NCRepeatedVisitorsModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

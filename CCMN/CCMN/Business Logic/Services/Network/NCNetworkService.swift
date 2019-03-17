@@ -12,9 +12,9 @@ import UIKit
 
 final class NCNetworkManager {
     
-    typealias RepeatedVisitors = [String: NCRepeatedVisitorsStatisticEntity]?
-    typealias DWELLTime = [String: NCDWELLStatisticEntity]?
-    typealias StringIntDictinary = [String: Int]?
+    typealias RepeatedVisitors = [String: NCRepeatedVisitorsStatisticEntity]
+    typealias DWELLTime = [String: NCDWELLStatisticEntity]
+    typealias StringIntDictinary = [String: Int]
     
     // Why not?
     static var shared = NCNetworkManager()
@@ -112,7 +112,7 @@ extension NCNetworkManager {
             guard let `self` = self else { return }
             switch result {
             case .success(let response):
-                let result = try! response.map(NCCampusEntity.self)
+                let result = try? response.map(NCCampusEntity.self)
                 completion(result)
                 print("Request ✅ SUCCESS")
             case .failure(let error):
@@ -123,12 +123,12 @@ extension NCNetworkManager {
     }
     
     func repeatedVisitorsInRange(model: NCStatisticRangeEntity,
-                                 completion: @escaping (RepeatedVisitors) -> Void) {
+                                 completion: @escaping (RepeatedVisitors?) -> Void) {
         provider.request(.repeatedVisitorsInRange(model: model)) { [weak self] result in
             guard let `self` = self else { return }
             switch result {
             case .success(let response):
-                let result = try! response.map(RepeatedVisitors.self)
+                let result = try? response.map(RepeatedVisitors.self)
                 completion(result)
                 print("Request ✅ SUCCESS")
             case .failure(let error):
@@ -138,12 +138,12 @@ extension NCNetworkManager {
         }
     }
     
-    func repeatedVisitorsForSpecificDate(_ model: NCStatisticDateEntity, completion: @escaping (RepeatedVisitors) -> Void) {
+    func repeatedVisitorsForSpecificDate(_ model: NCStatisticDateEntity, completion: @escaping (RepeatedVisitors?) -> Void) {
         provider.request(.repeatedVisitorsForSpecificDate(model: model)) { [weak self] result in
             guard let `self` = self else { return }
             switch result {
             case .success(let response):
-                let result = try! response.map(RepeatedVisitors.self)
+                let result = try? response.map(RepeatedVisitors.self)
                 completion(result)
                 print("Request ✅ SUCCESS")
             case .failure(let error):
@@ -153,12 +153,12 @@ extension NCNetworkManager {
         }
     }
     
-    func dwellInRange(model: NCStatisticRangeEntity, completion: @escaping (DWELLTime) -> Void) {
+    func dwellInRange(model: NCStatisticRangeEntity, completion: @escaping (DWELLTime?) -> Void) {
         provider.request(.dwellInRange(model: model)) { [weak self] result in
             guard let `self` = self else { return }
             switch result {
             case .success(let response):
-                let result = try! response.map(DWELLTime.self)
+                let result = try? response.map(DWELLTime.self)
                 completion(result)
                 print("Request ✅ SUCCESS")
             case .failure(let error):
@@ -168,12 +168,12 @@ extension NCNetworkManager {
         }
     }
     
-    func dwellForSpecificDate(_ model: NCStatisticDateEntity, completion: @escaping (DWELLTime) -> Void) {
+    func dwellForSpecificDate(_ model: NCStatisticDateEntity, completion: @escaping (DWELLTime?) -> Void) {
         provider.request(.dwellForSpecificDate(model: model)) { [weak self] result in
             guard let `self` = self else { return }
             switch result {
             case .success(let response):
-                let result = try! response.map(DWELLTime.self)
+                let result = try? response.map(DWELLTime.self)
                 completion(result)
                 print("Request ✅ SUCCESS")
             case .failure(let error):
@@ -183,12 +183,12 @@ extension NCNetworkManager {
         }
     }
     
-    func passerbyInRange(model: NCStatisticRangeEntity, completion: @escaping (StringIntDictinary) -> Void) {
+    func passerbyInRange(model: NCStatisticRangeEntity, completion: @escaping (StringIntDictinary?) -> Void) {
         provider.request(.passerbyInRange(model: model)) { [weak self] result in
             guard let `self` = self else { return }
             switch result {
             case .success(let response):
-                let result = try! response.map(StringIntDictinary.self)
+                let result = try? response.map(StringIntDictinary.self)
                 completion(result)
                 print("Request ✅ SUCCESS")
             case .failure(let error):
@@ -198,12 +198,12 @@ extension NCNetworkManager {
         }
     }
     
-    func passerbyForSpecificDate(_ model: NCStatisticDateEntity, completion: @escaping (StringIntDictinary) -> Void) {
+    func passerbyForSpecificDate(_ model: NCStatisticDateEntity, completion: @escaping (StringIntDictinary?) -> Void) {
         provider.request(.passerbyForSpecificDate(model: model)) { [weak self] result in
             guard let `self` = self else { return }
             switch result {
             case .success(let response):
-                let result = try! response.map(StringIntDictinary.self)
+                let result = try? response.map(StringIntDictinary.self)
                 completion(result)
                 print("Request ✅ SUCCESS")
             case .failure(let error):
@@ -213,12 +213,12 @@ extension NCNetworkManager {
         }
     }
     
-    func connectedInRange(model: NCStatisticRangeEntity, completion: @escaping (StringIntDictinary) -> Void) {
+    func connectedInRange(model: NCStatisticRangeEntity, completion: @escaping (StringIntDictinary?) -> Void) {
         provider.request(.connectedVisitorsInRange(model: model)) { [weak self] result in
             guard let `self` = self else { return }
             switch result {
             case .success(let response):
-                let result = try! response.map(StringIntDictinary.self)
+                let result = try? response.map(StringIntDictinary.self)
                 completion(result)
                 print("Request ✅ SUCCESS")
             case .failure(let error):
@@ -228,12 +228,12 @@ extension NCNetworkManager {
         }
     }
     
-    func connectedForSpecificDate(_ model: NCStatisticDateEntity, completion: @escaping (StringIntDictinary) -> Void) {
+    func connectedForSpecificDate(_ model: NCStatisticDateEntity, completion: @escaping (StringIntDictinary?) -> Void) {
         provider.request(.connectedVisitorsForSpecificDate(model: model)) { [weak self] result in
             guard let `self` = self else { return }
             switch result {
             case .success(let response):
-                let result = try! response.map(StringIntDictinary.self)
+                let result = try? response.map(StringIntDictinary.self)
                 completion(result)
                 print("Request ✅ SUCCESS")
             case .failure(let error):
@@ -243,12 +243,12 @@ extension NCNetworkManager {
         }
     }
     
-    func visitorsInRange(model: NCStatisticRangeEntity, completion: @escaping (StringIntDictinary) -> Void) {
+    func visitorsInRange(model: NCStatisticRangeEntity, completion: @escaping (StringIntDictinary?) -> Void) {
         provider.request(.visitorsInRange(model: model)) { [weak self] result in
             guard let `self` = self else { return }
             switch result {
             case .success(let response):
-                let result = try! response.map(StringIntDictinary.self)
+                let result = try? response.map(StringIntDictinary.self)
                 completion(result)
                 print("Request ✅ SUCCESS")
             case .failure(let error):
@@ -258,12 +258,12 @@ extension NCNetworkManager {
         }
     }
     
-    func visitorsForSpecificDate(_ model: NCStatisticDateEntity, completion: @escaping (StringIntDictinary) -> Void) {
+    func visitorsForSpecificDate(_ model: NCStatisticDateEntity, completion: @escaping (StringIntDictinary?) -> Void) {
         provider.request(.visitorsForSpecificDate(model: model)) { [weak self] result in
             guard let `self` = self else { return }
             switch result {
             case .success(let response):
-                let result = try! response.map(StringIntDictinary.self)
+                let result = try? response.map(StringIntDictinary.self)
                 completion(result)
                 print("Request ✅ SUCCESS")
             case .failure(let error):

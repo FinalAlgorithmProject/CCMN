@@ -12,11 +12,13 @@ final class HomeModel {
 
     let buildingName: String
     
+    private let coordinator: NCHomeCoordinator
     private let network: NCNetworkManager
     private var todayVisitorsTimer: Timer!
     private var nowDevicesConnectedTimer: Timer!
     
-    init(buildingName: String, network: NCNetworkManager) {
+    init(coordinator: NCHomeCoordinator, buildingName: String, network: NCNetworkManager) {
+        self.coordinator = coordinator
         self.buildingName = buildingName
         self.network = network
     }

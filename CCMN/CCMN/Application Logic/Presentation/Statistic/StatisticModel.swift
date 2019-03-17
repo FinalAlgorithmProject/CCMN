@@ -7,25 +7,23 @@
 //
 
 import Foundation
+import Charts
 
 final class StatisticModel {
     
-    let network: NCNetworkManager
+    private let coordinator: NCStatisticCoordinator
+    private let network: NCNetworkManager
     
-    private var hours: [Int] = []
+    var startDate: String?
+    var endDate: String? = nil
     
-    init(network: NCNetworkManager) {
+    init(coordinator: NCStatisticCoordinator, network: NCNetworkManager) {
+        self.coordinator = coordinator
         self.network = network
     }
     
-    func repeatedVisitors(completion: @escaping () -> Void) {
-        network.repeatedVisitorsForSpecificDate(NCStatisticDateEntity(date: "2019-03-15")) { [weak self] result in
-            guard let `self` = self, let stats = result else { return }
-            let sortedArray = Array(stats).sorted { Int($0.key)! < Int($1.key)! }
-            self.hours = sortedArray.map { Int($0.key)! }
-            print(self.hours)
-            completion()
-        }
+    func openRepeatedVisitors() {
+        coordinator.openRepeatedVisitorsCharts(with: startDate, endDate: endDate)
     }
-    
+ 
 }

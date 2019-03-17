@@ -35,4 +35,23 @@ extension UIColor {
     static var successToastBackground: UIColor {
         return UIColor(red:0.11, green:0.76, blue:0.22, alpha:0.9)
     }
+    
+    
+    // Charts colors
+    static var greenChartColor: UIColor {
+        return UIColor(red: 104/255, green: 241/255, blue: 175/255, alpha: 1)
+    }
+    
+    static var blueChartColor: UIColor {
+        return UIColor(red: 164/255, green: 228/255, blue: 251/255, alpha: 1)
+    }
+    
+    static var yellowChartColor: UIColor {
+        return UIColor(red: 242/255, green: 247/255, blue: 158/255, alpha: 1)
+    }
+    
+    static var orangeChartColor: UIColor {
+        return UIColor(red: 255/255, green: 102/255, blue: 0/255, alpha: 1)
+    }
+
 }
