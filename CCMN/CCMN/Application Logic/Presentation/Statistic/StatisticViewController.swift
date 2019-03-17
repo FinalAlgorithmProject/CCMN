@@ -67,6 +67,10 @@ class StatisticViewController: UIViewController {
         model.openRepeatedVisitors()
     }
     
+    @IBAction func dwellTime(_ sender: UIButton) {
+        model.openDwellTimeStatistic()
+    }
+    
     @objc func startDateChange(_ sender: UIDatePicker) {
         let stringDate = formatter.string(from: sender.date)
         startDateTextField.text = stringDate

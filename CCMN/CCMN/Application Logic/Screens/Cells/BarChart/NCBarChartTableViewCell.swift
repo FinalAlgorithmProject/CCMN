@@ -9,7 +9,7 @@
 import UIKit
 import Charts
 
-class NCChartTableViewCell: UITableViewCell {
+class NCBarChartTableViewCell: UITableViewCell {
 
     @IBOutlet weak var barChartView: BarChartView!
     

@@ -24,4 +24,11 @@ class NCStatisticCoordinator: NCBaseCoordinator {
         pushViewController(viewController)
     }
     
+    func openDwellTimeCharts(with startDate: String?, endDate: String?) {
+        let viewController = NCDwellTimeViewController.init(nibName: NCDwellTimeViewController.className, bundle: nil)
+        let network = NCNetworkManager.shared
+        viewController.model = NCDwellTimeModel(coordinator: self, network: network, startDate: startDate, endDate: endDate)
+        pushViewController(viewController)
+    }
+    
 }

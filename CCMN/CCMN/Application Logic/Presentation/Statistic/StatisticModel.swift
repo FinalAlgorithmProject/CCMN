@@ -25,5 +25,9 @@ final class StatisticModel {
     func openRepeatedVisitors() {
         coordinator.openRepeatedVisitorsCharts(with: startDate, endDate: endDate)
     }
+    
+    func openDwellTimeStatistic() {
+        coordinator.openDwellTimeCharts(with: startDate, endDate: endDate)
+    }
  
 }

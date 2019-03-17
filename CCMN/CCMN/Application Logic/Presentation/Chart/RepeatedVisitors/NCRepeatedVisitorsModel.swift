@@ -42,7 +42,11 @@ final class NCRepeatedVisitorsModel {
     
     var dataSource: [ChartData] = []
     
-    init(coordinator: NCStatisticCoordinator, network: NCNetworkManager, startDate: String?, endDate: String?) {
+    init(coordinator: NCStatisticCoordinator,
+         network: NCNetworkManager,
+         startDate: String?,
+         endDate: String?) {
+        
         self.coordinator = coordinator
         self.network = network
         self.startDate = startDate

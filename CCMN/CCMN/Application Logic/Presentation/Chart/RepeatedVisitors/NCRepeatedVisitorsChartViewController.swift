@@ -14,7 +14,7 @@ class NCRepeatedVisitorsChartViewController: UIViewController {
     @IBOutlet weak var chartsTableView: UITableView!
     
     var model: NCRepeatedVisitorsModel!
-    private let identifier = NCChartTableViewCell.className
+    private let identifier = NCBarChartTableViewCell.className
     
     private let rowHeight: CGFloat = 300
     
@@ -50,7 +50,7 @@ extension NCRepeatedVisitorsChartViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! NCChartTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! NCBarChartTableViewCell
         let data = model.dataSource[indexPath.row]
         cell.setData(data: data.data, maxYValue: data.maxValue)
         return cell
