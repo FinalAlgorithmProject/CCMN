@@ -8,37 +8,40 @@
 
 import Foundation
 import Moya
+import Alamofire
 
 enum NCApi {
     
-    case gettingAesUID
-    case numberOfOnlineUsers
-    case todayVisitors(siteId: Int)
-    case campusInformation
+    case gettingAesUID // Done
+    case allClients
+    case numberOfOnlineUsers // Done
+    case todayVisitors(siteId: Int) // Done
+    case campusInformation // Done
     case todayKPI(siteId: Int)
     case searchUserByName(name: String)
     case searchUserByMacAddress(macAddress: String)
     
-    case repeatedVisitorsInRange(model: NCStatisticRangeEntity)
-    case repeatedVisitorsForSpecificDate(model: NCStatisticDateEntity)
+    case repeatedVisitorsInRange(model: NCStatisticRangeEntity) // Done
+    case repeatedVisitorsForSpecificDate(model: NCStatisticDateEntity) // Done
     
-    case dwellInRange(model: NCStatisticRangeEntity)
-    case dwellForSpecificDate(model: NCStatisticDateEntity)
+    case dwellInRange(model: NCStatisticRangeEntity) // Done
+    case dwellForSpecificDate(model: NCStatisticDateEntity) // Done
 
-    case passerbyInRange(model: NCStatisticRangeEntity)
-    case passerbyForSpecificDate(model: NCStatisticDateEntity)
+    case passerbyInRange(model: NCStatisticRangeEntity) // Done
+    case passerbyForSpecificDate(model: NCStatisticDateEntity) // Done
 
-    case connectedVisitorsInRange(model: NCStatisticRangeEntity)
-    case connectedVisitorsForSpecificDate(model: NCStatisticDateEntity)
+    case connectedVisitorsInRange(model: NCStatisticRangeEntity) // Done
+    case connectedVisitorsForSpecificDate(model: NCStatisticDateEntity) // Done
     
-    case visitorsInRange(model: NCStatisticRangeEntity)
-    case visitorsForSpecificDate(model: NCStatisticDateEntity)
+    case visitorsInRange(model: NCStatisticRangeEntity) // Done
+    case visitorsForSpecificDate(model: NCStatisticDateEntity) // Done
     
+    case floorImageName(campusName: String, buildingName: String, floorName: String) // Done
     
     // ------------------------------------- Custom properties -------------------------------------
     var environmentHeaders: String {
         switch self {
-        case .numberOfOnlineUsers, .campusInformation, .searchUserByName, .searchUserByMacAddress:
+        case .allClients, .numberOfOnlineUsers, .campusInformation, .searchUserByName, .searchUserByMacAddress, .floorImageName:
             let data = "\(NCApplicationConstants.cmxUsername):\(NCApplicationConstants.cmxPassword)".data(using: .utf8)!
             return "Basic \(data.base64EncodedString())"
         case .gettingAesUID, .todayVisitors, .todayKPI,
@@ -55,7 +58,7 @@ enum NCApi {
     
     var environmentBaseURL: String {
         switch self {
-        case .numberOfOnlineUsers, .campusInformation, .searchUserByName, .searchUserByMacAddress:
+        case .allClients, .numberOfOnlineUsers, .campusInformation, .searchUserByName, .searchUserByMacAddress, .floorImageName:
             return NCApplicationConstants.cmxURLString
         case .gettingAesUID, .todayVisitors, .todayKPI,
              .repeatedVisitorsInRange, .repeatedVisitorsForSpecificDate,
@@ -87,7 +90,7 @@ extension NCApi: TargetType {
             return "/api/config/v1/maps/count"
         case .todayKPI:
             return "/api/presence/v1/kpisummary/today"
-        case .searchUserByMacAddress, .searchUserByName:
+        case .allClients, .searchUserByMacAddress, .searchUserByName:
             return "api/location/v2/clients"
         case .repeatedVisitorsInRange:
             return "/api/presence/v1/repeatvisitors/daily"
@@ -109,6 +112,8 @@ extension NCApi: TargetType {
             return "/api/presence/v1/visitor/daily"
         case .visitorsForSpecificDate:
             return "/api/presence/v1/visitor/hourly"
+        case let .floorImageName(campusName, buildingName, floorName):
+            return "/api/config/v1/maps/image/\(campusName)/\(buildingName)/\(floorName)"
         }
     }
     
@@ -122,7 +127,7 @@ extension NCApi: TargetType {
     
     var task: Task {
         switch self {
-        case .gettingAesUID, .numberOfOnlineUsers, .campusInformation:
+        case .allClients, .gettingAesUID, .numberOfOnlineUsers, .campusInformation, .floorImageName:
             return Task.requestPlain
         case .todayVisitors(let siteId), .todayKPI(let siteId):
             return Task.requestParameters(parameters: ["siteId": siteId], encoding: URLEncoding.queryString)

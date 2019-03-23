@@ -31,4 +31,24 @@ class NCStatisticCoordinator: NCBaseCoordinator {
         pushViewController(viewController)
     }
     
+    func openPasserbyCharts(with startDate: String?, endDate: String?) {
+        let viewController = NCPasserbyViewController.init(nibName: NCPasserbyViewController.className, bundle: nil)
+        let network = NCNetworkManager.shared
+        viewController.model = NCPasserbyModel(coordinator: self, network: network, startDate: startDate, endDate: endDate)
+        pushViewController(viewController)
+    }
+    
+    func openConnectedUsersCharts(with startDate: String?, endDate: String?) {
+        let viewController = NCConnectedUsersViewController.init(nibName: NCConnectedUsersViewController.className, bundle: nil)
+        let network = NCNetworkManager.shared
+        viewController.model = NCConnectedUsersModel(coordinator: self, network: network, startDate: startDate, endDate: endDate)
+        pushViewController(viewController)
+    }
+    
+    func openVisitorsCharts(with startDate: String?, endDate: String?) {
+        let viewController = NCVisitorsViewController.init(nibName: NCVisitorsViewController.className, bundle: nil)
+        let network = NCNetworkManager.shared
+        viewController.model = NCVisitorsModel(coordinator: self, network: network, startDate: startDate, endDate: endDate)
+        pushViewController(viewController)
+    }
 }

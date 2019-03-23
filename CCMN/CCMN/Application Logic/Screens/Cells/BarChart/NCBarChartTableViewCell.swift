@@ -20,7 +20,7 @@ class NCBarChartTableViewCell: UITableViewCell {
         selectionStyle = .none
     }
     
-    func setData(data: BarChartData?, maxYValue: Double?) {
+    func setData(_ data: BarChartData?, maxYValue: Double?) {
         guard let data = data else { return }
         barChartView.data = data
         barChartView.leftAxis.axisMaximum = maxYValue ?? 0

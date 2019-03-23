@@ -10,10 +10,10 @@ import Foundation
 
 class NCFloorCoordinator: NCBaseCoordinator {
     
-    func floorViewController() -> FloorViewController {
+    func floorViewController(with name: String, campusInfo: NCCampusImportantInfo?) -> FloorViewController {
         let viewController = FloorViewController.init(nibName: FloorViewController.className, bundle: nil)
         let network = NCNetworkManager.shared
-        viewController.model = FloorModel(network: network)
+        viewController.model = FloorModel(network: network, floorName: name, campusInfo: campusInfo)
         return viewController
     }
     

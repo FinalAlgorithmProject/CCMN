@@ -1,15 +1,15 @@
 //
-//  NCDwellTime.swift
+//  NCVisitorsModel.swift
 //  CCMN
 //
-//  Created by Vitalii Poltavets on 3/17/19.
+//  Created by Vitalii Poltavets on 3/23/19.
 //  Copyright © 2019 unit. All rights reserved.
 //
 
 import Foundation
 import Charts
 
-final class NCDwellTimeModel {
+final class NCVisitorsModel {
     
     typealias ChartData = (data: BarChartData?, maxValue: Double?)
     
@@ -53,31 +53,31 @@ final class NCDwellTimeModel {
         self.endDate = endDate
     }
     
-    func dwellTimeStatistic(completion: @escaping () -> Void) {
+    func visitorsStatistic(completion: @escaping () -> Void) {
         if endDate == nil {
-            dwellForSpecificDate(completion: completion)
+            visitorsForSpecificDate(completion: completion)
         } else {
-            dwellInRange(completion: completion)
+            visitorsInRange(completion: completion)
         }
     }
     
-    private func dwellForSpecificDate(completion: @escaping () -> Void) {
+    private func visitorsForSpecificDate(completion: @escaping () -> Void) {
         let model = NCStatisticDateEntity(date: startDate)
-        network.dwellForSpecificDate(model) { [weak self] result in
+        network.visitorsForSpecificDate(model) { [weak self] result in
             guard let `self` = self, let data = result else { completion(); return }
             self.fillDataSource(with: data, completion: completion)
         }
     }
     
-    private func dwellInRange(completion: @escaping () -> Void) {
+    private func visitorsInRange(completion: @escaping () -> Void) {
         let model = NCStatisticRangeEntity(startDate: startDate, endDate: endDate!) // safe
-        network.dwellInRange(model: model) { [weak self] result in
+        network.visitorsInRange(model: model) { [weak self] result in
             guard let `self` = self, let data = result else { completion(); return }
             self.fillDataSource(with: data, completion: completion)
         }
     }
     
-    private func fillDataSource(with data: [String: NCDWELLStatisticEntity], completion: @escaping () -> Void) {
+    private func fillDataSource(with data: [String: Int], completion: @escaping () -> Void) {
         let sortedArray = Array(data).sorted { lhs, rhs in
             if let firstHour = Int(lhs.key), let secondHour = Int(rhs.key) {
                 return firstHour < secondHour
@@ -86,7 +86,6 @@ final class NCDwellTimeModel {
         }
         let allKeys = sortedArray.map { $0.key }
         
-        print(allKeys)
         if endDate != nil {
             self.units = sortedArray
                 .map { dateFormatter.string(from: formatter.date(from: $0.key)!) }
@@ -94,34 +93,15 @@ final class NCDwellTimeModel {
         } else {
             self.units = sortedArray.map { Int($0.key)! }
         }
-        self.values = self.units.indices.map { Double(data[allKeys[$0]]!.eightPlusHours) }
-        let eightPlusMaxValue = self.values.max() ?? 0
-        let eightPlusChartData = self.createChartDataSet(label: "8+ Hours", color: UIColor.greenChartColor)
         
-        self.values = self.units.indices.map { Double(data[allKeys[$0]]!.fiveToEightHours) }
-        let fiveToEightHoursMaxValue = self.values.max() ?? 0
-        let fiveToEightHoursChartData = self.createChartDataSet(label: "5 - 8 Hours", color: UIColor.blueChartColor)
+        self.values = self.units.indices.map { Double(data[allKeys[$0]] ?? 0) }
+        let passerbyMaxValue = self.values.max() ?? 0
+        let passerbyChartData = self.createChartDataSet(label: "Visitors", color: UIColor.yellowChartColor)
         
-        self.values = self.units.indices.map { Double(data[allKeys[$0]]!.oneToFiveHours) }
-        let oneToFiveHoursMaxValue = self.values.max() ?? 0
-        let oneToFiveHoursChartData = self.createChartDataSet(label: "5 - 1 Hours", color: UIColor.yellowChartColor)
-        
-        self.values = self.units.indices.map { Double(data[allKeys[$0]]!.thirtyToSixtyMinutes) }
-        let thirtyToSixtyMinutesMaxValue = self.values.max() ?? 0
-        let thirtyToSixtyMinutesChartData = self.createChartDataSet(label: "30 - 6 Minutes", color: UIColor.orangeChartColor)
-        
-        self.values = self.units.indices.map { Double(data[allKeys[$0]]!.fiveToThirtyMinutes) }
-        let fiveToThirtyMinutesMaxValue = self.values.max() ?? 0
-        let fiveToThirtyMinutesChartData = self.createChartDataSet(label: "5 - 30 Minutes", color: UIColor.mainRedColor)
-        
-        self.dataSource.append(ChartData(data: eightPlusChartData, maxValue: eightPlusMaxValue + 5))
-        self.dataSource.append(ChartData(data: fiveToEightHoursChartData, maxValue: fiveToEightHoursMaxValue + 5))
-        self.dataSource.append(ChartData(data: oneToFiveHoursChartData, maxValue: oneToFiveHoursMaxValue + 5))
-        self.dataSource.append(ChartData(data: thirtyToSixtyMinutesChartData, maxValue: thirtyToSixtyMinutesMaxValue + 5))
-        self.dataSource.append(ChartData(data: fiveToThirtyMinutesChartData, maxValue: fiveToThirtyMinutesMaxValue + 5))
+        self.dataSource.append(ChartData(data: passerbyChartData, maxValue: passerbyMaxValue + 5))
         completion()
     }
-
+    
     private func createChartDataSet(label: String, color: UIColor) -> BarChartData? {
         if self.values.isEmpty { return nil }
         
@@ -138,5 +118,6 @@ final class NCDwellTimeModel {
         
         return BarChartData(dataSet: chartDataSet)
     }
+
     
 }

@@ -21,15 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             appCoordinator.tabBarRoot(campusInfo: nil)
         } else {
             appCoordinator.loadingScreenRoot()
-            self.madeRequests { result in
-                self.appCoordinator.tabBarRoot(campusInfo: result)
+            self.madeRequests { campusInfo in
+                self.appCoordinator.tabBarRoot(campusInfo: campusInfo)
             }
         }
         
         return true
     }
     
-    private func madeRequests(whenFinish completion: @escaping (NCCampusEntity?) -> Void) {
+    private func madeRequests(whenFinish completion: @escaping (NCCampusImportantInfo?) -> Void) {
         let group = DispatchGroup()
         var campusInfo: NCCampusEntity?
         
@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         group.notify(queue: DispatchQueue.main) {
-            completion(campusInfo)
+            completion(campusInfo?.decodeMyselfIntoCampusImportantInfo())
         }
     }
     

@@ -8,6 +8,12 @@
 
 import Foundation
 
+struct NCCampusImportantInfo {
+    let campusName: String
+    let buildingName: String
+    let floorNames: [String]
+}
+
 struct NCCampusEntity: Codable {
     let totalCampuses: Int
     let totalBuildings: Int
@@ -15,6 +21,13 @@ struct NCCampusEntity: Codable {
 //    let totalAps: Int
     
     let campusCounts: [CampusInfoEntity]
+    
+    func decodeMyselfIntoCampusImportantInfo() -> NCCampusImportantInfo {
+        let campusName = campusCounts.first?.campusName ?? "Unknown"
+        let buildingName = campusCounts.first?.buildingCounts.first?.buildingName ?? "Unknown"
+        let floorNames = campusCounts.first?.buildingCounts.first?.floorCounts.map { $0.floorName } ?? ["Unknown"]
+        return NCCampusImportantInfo(campusName: campusName, buildingName: buildingName, floorNames: floorNames)
+    }
 }
 
 struct CampusInfoEntity: Codable {

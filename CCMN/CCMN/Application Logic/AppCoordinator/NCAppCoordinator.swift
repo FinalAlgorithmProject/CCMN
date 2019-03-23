@@ -27,32 +27,33 @@ final class NCAppCoordinator {
         window.rootViewController = fakeTabBar
     }
     
-    func tabBarRoot(campusInfo: NCCampusEntity?) {
+    func tabBarRoot(campusInfo: NCCampusImportantInfo?) {
         let tabBarController = NCTabBarViewController()
         
         let homeItem = tabBarController.createTabItem(ofType: .home, with: "Home")
         let statisticItem = tabBarController.createTabItem(ofType: .statistic, with: "Statistic")
         
-        let buldingName = campusInfo?.campusCounts.first?.buildingCounts.first?.buildingName ?? "Unknown"
-        /// Creates for each floor tabbaritem
-        let floorsNames = campusInfo?.campusCounts.first?.buildingCounts.first?.floorCounts.map { $0.floorName }.sorted() ?? []
         var floorItems: [UITabBarItem] = []
         
         /// it can be shorter, but who cares?
-        for floorName in floorsNames {
-            let freshTab = tabBarController.createTabItem(ofType: .floor, with: floorName)
-            floorItems.append(freshTab)
+        if let campus = campusInfo {
+            let names = campus.floorNames.sorted()
+            for floorName in names {
+                let freshTab = tabBarController.createTabItem(ofType: .floor, with: floorName)
+                floorItems.append(freshTab)
+            }
         }
         
-        let homeTabController = homeTab(withItem: homeItem, buldingName: buldingName)
+        let homeTabController = homeTab(withItem: homeItem, buldingName: campusInfo?.buildingName ?? "Unknown")
         let statisticTabController = statisticTab(withItem: statisticItem)
         
         /// Creates for each tabbaritem viewcontroller embed in with navigation
         var floorTabController: [UINavigationController] = []
-        floorItems.forEach { floorTabController.append(floorTab(withItem: $0)) }
+        floorItems.forEach { floorTabController.append(floorTab(withItem: $0, floorName: $0.title!, campus: campusInfo)) }
         
         var viewControllers = [homeTabController, statisticTabController]
-        floorTabController.forEach { viewControllers.append($0) }
+        floorTabController
+            .forEach { viewControllers.append($0) }
         tabBarController.viewControllers = viewControllers
         window.rootViewController = tabBarController
     }
@@ -78,10 +79,10 @@ final class NCAppCoordinator {
         return navigationController
     }
 
-    private func floorTab(withItem item: UITabBarItem) -> UINavigationController {
+    private func floorTab(withItem item: UITabBarItem, floorName: String, campus: NCCampusImportantInfo?) -> UINavigationController {
         let navigationController = NCNavigationViewController()
         let floorCoordinator = NCFloorCoordinator(navigationController: navigationController, appCoordinator: self)
-        let viewController = floorCoordinator.floorViewController()
+        let viewController = floorCoordinator.floorViewController(with: floorName, campusInfo: campus)
 
         viewController.tabBarItem = item
         navigationController.viewControllers = [viewController]

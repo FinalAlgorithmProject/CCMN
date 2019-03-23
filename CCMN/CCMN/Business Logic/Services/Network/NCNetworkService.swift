@@ -77,6 +77,20 @@ extension NCNetworkManager {
         }
     }
     
+    func allClients(completion: @escaping ([NCClientEntity]?) -> Void) {
+        provider.request(.allClients) { [weak self] result in
+            guard let `self` = self else { return }
+            switch result {
+            case .success(let response):
+                let result = try! response.map([NCClientEntity].self)
+                completion(result)
+            case .failure(let error):
+                completion(nil)
+                self.defaultFailureCase(error)
+            }
+        }
+    }
+    
     func usersOnline(completion: @escaping (Int?) -> Void) {
         provider.request(.numberOfOnlineUsers) { [weak self] result in
             guard let `self` = self else { return }
@@ -318,6 +332,22 @@ extension NCNetworkManager {
         }
     }
     
+    func floorImageName(by campusInfo: NCCampusImportantInfo, floorName: String, completion: @escaping (UIImage?) -> Void) {
+        let floorImageCase = NCApi.floorImageName(campusName: campusInfo.campusName,
+                                                  buildingName: campusInfo.buildingName,
+                                                  floorName: floorName)
+        provider.request(floorImageCase) { [weak self] result in
+            guard let `self` = self else { return }
+            switch result {
+            case .success(let response):
+                let image = try? response.mapImage()
+                completion(image)
+            case .failure(let error):
+                completion(nil)
+                self.defaultFailureCase(error)
+            }
+        }
+    }
 }
 
 

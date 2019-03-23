@@ -52,7 +52,7 @@ extension NCRepeatedVisitorsChartViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! NCBarChartTableViewCell
         let data = model.dataSource[indexPath.row]
-        cell.setData(data: data.data, maxYValue: data.maxValue)
+        cell.setData(data.data, maxYValue: data.maxValue)
         return cell
     }
     

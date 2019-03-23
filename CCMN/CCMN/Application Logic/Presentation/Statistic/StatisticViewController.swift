@@ -13,7 +13,11 @@ class StatisticViewController: UIViewController {
     
     @IBOutlet weak var startDateTextField: UITextField!
     @IBOutlet weak var endDateTextField: UITextField!
+    
     var model: StatisticModel!
+    
+    private var startDatePicker: UIDatePicker!
+    private var endDatePicker: UIDatePicker!
     
     private lazy var formatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -26,29 +30,22 @@ class StatisticViewController: UIViewController {
 
         navigationItem.title = "Analytics and Presence"
         
-        let startDatePicker = createDatePicker()
-        startDatePicker.addTarget(self, action: #selector(startDateChange), for: .valueChanged)
-        
-        let endDatePicker = createDatePicker()
-        endDatePicker.addTarget(self, action: #selector(endDateChange), for: .valueChanged)
+        startDatePicker = createDatePicker()
+        endDatePicker = createDatePicker()
         
         startDateTextField.inputView = startDatePicker
         startDateTextField.layer.borderColor = NCApplicationConstants.mainRedColor.cgColor
         startDateTextField.layer.borderWidth = 1.5
         startDateTextField.layer.cornerRadius = 10
         startDateTextField.clipsToBounds = true
+        startDateTextField.delegate = self
         
         endDateTextField.inputView = endDatePicker
         endDateTextField.layer.borderColor = NCApplicationConstants.mainRedColor.cgColor
         endDateTextField.layer.borderWidth = 1.5
         endDateTextField.layer.cornerRadius = 10
         endDateTextField.clipsToBounds = true
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        model.startDate = nil
-        model.endDate = nil
+        endDateTextField.delegate = self
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -71,15 +68,44 @@ class StatisticViewController: UIViewController {
         model.openDwellTimeStatistic()
     }
     
-    @objc func startDateChange(_ sender: UIDatePicker) {
-        let stringDate = formatter.string(from: sender.date)
-        startDateTextField.text = stringDate
-        model.startDate = stringDate
+    @IBAction func passerby(_ sender: UIButton) {
+        model.openPasserbyStatistic()
     }
     
-    @objc func endDateChange(_ sender: UIDatePicker) {
-        let stringDate = formatter.string(from: sender.date)
-        endDateTextField.text = stringDate
-        model.endDate = stringDate
+    @IBAction func connectedUsers(_ sender: UIButton) {
+        model.openConnectedUsers()
+    }
+    
+    @IBAction func visitors(_ sender: UIButton) {
+        model.openVisitorsStatistic()
     }
 }
+
+extension StatisticViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == startDateTextField {
+            let stringDate = formatter.string(from: startDatePicker.date)
+            startDateTextField.text = stringDate
+            model.startDate = stringDate
+        } else if textField == endDateTextField {
+            let stringDate = formatter.string(from: endDatePicker.date)
+            endDateTextField.text = stringDate
+            model.endDate = stringDate
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

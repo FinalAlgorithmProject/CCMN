@@ -49,14 +49,11 @@ final class NCRepeatedVisitorsModel {
         
         self.coordinator = coordinator
         self.network = network
-        self.startDate = startDate
+        self.startDate = startDate ?? formatter.string(from: Date())
         self.endDate = endDate
     }
     
     func repeatedVisitors(completion: @escaping () -> Void) {
-        if startDate == nil {
-            startDate = formatter.string(from: Date())
-        }
         if endDate == nil {
             repeatedVisitorsForDate(completion: completion)
         } else {
@@ -99,35 +96,35 @@ final class NCRepeatedVisitorsModel {
         }
 
         self.values = self.units.indices.map { Double(data[allKeys[$0]]!.daily) }
-        let dailyMaxValue = self.values.max()
+        let dailyMaxValue = self.values.max() ?? 0
         let dailyChartData = self.createChartDataSet(label: "Daily Repeated Visitors",
                                                      color: UIColor.greenChartColor)
         
         self.values = self.units.indices.map { Double(data[allKeys[$0]]!.weekly) }
-        let weeklyMaxValue = self.values.max()
+        let weeklyMaxValue = self.values.max() ?? 0
         let weeklyChartData = self.createChartDataSet(label: "Weekly Repeated Visitors",
                                                       color: UIColor.blueChartColor)
         
         self.values = self.units.indices.map { Double(data[allKeys[$0]]!.occasional) }
-        let occasionalMaxValue = self.values.max()
+        let occasionalMaxValue = self.values.max() ?? 0
         let occasionalChartData = self.createChartDataSet(label: "Occasional Repeated Visitors",
                                                           color: UIColor.yellowChartColor)
         
         self.values = self.units.indices.map { Double(data[allKeys[$0]]!.firstTime) }
-        let firstTimeMaxValue = self.values.max()
+        let firstTimeMaxValue = self.values.max() ?? 0
         let firstTimeChartData = self.createChartDataSet(label: "First Time Repeated Visitors",
                                                          color: UIColor.orangeChartColor)
         
         self.values = self.units.indices.map { Double(data[allKeys[$0]]!.firstTime) }
-        let yesterdayMaxValue = self.values.max()
+        let yesterdayMaxValue = self.values.max() ?? 0
         let yesterdayChartData = self.createChartDataSet(label: "Yesterday Repeated Visitors",
                                                          color: UIColor.mainRedColor)
         
-        self.dataSource.append(ChartData(data: dailyChartData, maxValue: dailyMaxValue ?? 0 + 2))
-        self.dataSource.append(ChartData(data: weeklyChartData, maxValue: weeklyMaxValue ?? 0 + 2))
-        self.dataSource.append(ChartData(data: occasionalChartData, maxValue: occasionalMaxValue ?? 0 + 2))
-        self.dataSource.append(ChartData(data: firstTimeChartData, maxValue: firstTimeMaxValue ?? 0 + 2))
-        self.dataSource.append(ChartData(data: yesterdayChartData, maxValue: yesterdayMaxValue ?? 0 + 2))
+        self.dataSource.append(ChartData(data: dailyChartData, maxValue: dailyMaxValue + 5))
+        self.dataSource.append(ChartData(data: weeklyChartData, maxValue: weeklyMaxValue + 5))
+        self.dataSource.append(ChartData(data: occasionalChartData, maxValue: occasionalMaxValue + 5))
+        self.dataSource.append(ChartData(data: firstTimeChartData, maxValue: firstTimeMaxValue + 5))
+        self.dataSource.append(ChartData(data: yesterdayChartData, maxValue: yesterdayMaxValue + 5))
         completion()
     }
     

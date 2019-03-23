@@ -10,12 +10,18 @@ import UIKit
 
 class FloorViewController: UIViewController {
 
+    @IBOutlet weak var floorImageView: UIImageView!
+    
     var model: FloorModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationItem.title = "Floor Information"
+        
+        model.getImage { image in
+            self.floorImageView.image = image
+        }
     }
 
 

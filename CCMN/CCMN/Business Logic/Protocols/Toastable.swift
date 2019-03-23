@@ -54,7 +54,7 @@ private extension UIViewController {
         UIView.animate(withDuration: 0.25, delay: 0.25, options: [.curveEaseInOut], animations: {
             toastView.transform = CGAffineTransform(translationX: 0, y: animationMovingHeight)
         }, completion: nil)
-        UIView.animate(withDuration: 0.25, delay: 2.5, options: [.curveEaseInOut], animations: {
+        UIView.animate(withDuration: 0.25, delay: 3.5, options: [.curveEaseInOut], animations: {
             toastView.transform = .identity
         }) { _ in toastView.removeFromSuperview() }
     }

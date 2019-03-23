@@ -9,7 +9,7 @@
 import Foundation
 
 final class HomeModel {
-
+    
     let buildingName: String
     
     private let coordinator: NCHomeCoordinator
@@ -32,7 +32,7 @@ final class HomeModel {
         }
         nowDevicesConnectedTimer.fire()
     }
-
+    
     func todayVisitors(completion: @escaping (Int) -> Void) {
         todayVisitorsTimer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { _ in
             self.network.todayVisitors { result in
@@ -41,6 +41,26 @@ final class HomeModel {
             }
         }
         todayVisitorsTimer.fire()
+    }
+    
+    func allClients(completion: @escaping (String, String, String) -> Void) {
+        var oldClients: [NCClientEntity]?
+        
+        Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { [weak self] _ in
+            self?.network.allClients { result in
+                guard let clients = result else { return }
+                let newClient = clients.filter {
+                    if oldClients != nil, !oldClients!.contains($0) {
+                        return true
+                    }
+                    return false
+                    }.first
+                oldClients = clients
+                if let user = newClient {
+                    completion(user.macAddress, user.userName, user.userFloor)
+                }
+            }
+            }.fire()
     }
     
     func refreshUserData() {

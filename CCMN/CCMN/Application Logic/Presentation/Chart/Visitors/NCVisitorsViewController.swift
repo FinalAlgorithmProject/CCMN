@@ -1,18 +1,18 @@
 //
-//  NCDwellTimeViewController.swift
+//  NCVisitorsViewController.swift
 //  CCMN
 //
-//  Created by Vitalii Poltavets on 3/17/19.
+//  Created by Vitalii Poltavets on 3/23/19.
 //  Copyright © 2019 unit. All rights reserved.
 //
 
 import UIKit
 
-class NCDwellTimeViewController: UIViewController {
+class NCVisitorsViewController: UIViewController {
 
     @IBOutlet weak var chartsTableView: UITableView!
     
-    var model: NCDwellTimeModel!
+    var model: NCVisitorsModel!
     
     private let identifier = NCBarChartTableViewCell.className
     private let rowHeight: CGFloat = 300
@@ -20,18 +20,19 @@ class NCDwellTimeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "DWell Time"
+        navigationItem.title = "Visitors"
         
         chartsTableView.registerNib(with: identifier)
         chartsTableView.tableFooterView = UIView()
-     
-        model.dwellTimeStatistic {
+        
+        model.visitorsStatistic {
             self.chartsTableView.reloadSections(IndexSet(integer: 0), with: .fade)
         }
     }
+
 }
 
-extension NCDwellTimeViewController: UITableViewDelegate {
+extension NCVisitorsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return rowHeight
     }
@@ -41,7 +42,7 @@ extension NCDwellTimeViewController: UITableViewDelegate {
     }
 }
 
-extension NCDwellTimeViewController: UITableViewDataSource {
+extension NCVisitorsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return model.dataSource.count
     }
@@ -51,5 +52,5 @@ extension NCDwellTimeViewController: UITableViewDataSource {
         let data = model.dataSource[indexPath.row]
         cell.setData(data.data, maxYValue: data.maxValue)
         return cell
-    } 
+    }
 }

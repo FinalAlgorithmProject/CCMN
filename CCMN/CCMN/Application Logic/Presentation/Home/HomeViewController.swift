@@ -35,6 +35,9 @@ class HomeViewController: UIViewController {
         model.todayVisitors { count in
             self.todayVisitorsLabel!.text = "Today visitors: \(count)"
         }
+        model.allClients { macAddress, userName, userLocation in
+            self.showToastLabel(with: "Hi, \"\(userName)\" or mac: \(macAddress) now is on \(userLocation)")
+        }
     }
     
     func initNavigation() {
