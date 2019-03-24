@@ -7,13 +7,19 @@
 //
 
 import UIKit
+import Charts
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var pieChartsView: PieChartView!
     @IBOutlet weak var totalDeviceConnectedLabel: UILabel!
     @IBOutlet weak var todayVisitorsLabel: UILabel!
     @IBOutlet weak var ciscoIconImage: UIImageView!
-    @IBOutlet weak var buildingNameLabel: UILabel!
+    @IBOutlet weak var buildingNameLabel: UILabel! {
+        didSet {
+            buildingNameLabel.text = model.buildingName
+        }
+    }
     
     lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
@@ -31,8 +37,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
 
         initNavigation()
-        
-        buildingNameLabel.text = model.buildingName
+        initChart()
         
         UIView.animate(withDuration: 1) {
             let degrees: Float = 250
@@ -52,6 +57,10 @@ class HomeViewController: UIViewController {
             print(userLocation)
             self.showToastLabel(with: "Hi, \"\(userName)\" or mac: \(macAddress) now is on \(userLocation)")
         }
+        model.todayKPI { data in
+            self.pieChartsView.data = data
+            self.pieChartsView.animate(xAxisDuration: 1, easingOption: .easeOutBack)
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -70,6 +79,10 @@ class HomeViewController: UIViewController {
         model.refreshUserData()
         showToastLabel(with: "Succefully refreshed!",
                        backgroundColor: UIColor.successToastBackground)
+    }
+    
+    private func initChart() {
+        pieChartsView.chartDescription?.text = ""
     }
 }
 
@@ -103,7 +116,6 @@ extension HomeViewController: UISearchBarDelegate {
     }
     
 }
-
 
 
 

@@ -8,7 +8,17 @@
 
 import UIKit
 
+extension CGFloat {
+    static var random:CGFloat {
+        return CGFloat(arc4random()) / CGFloat(UInt32.max)
+    }
+}
+
 extension UIColor {
+    
+    static func random() -> UIColor {
+        return UIColor(red: .random, green: .random, blue: .random, alpha: 1.0)
+    }
     
     static var warningRedColor: UIColor {
         return UIColor(red:0.91, green:0.35, blue:0.39, alpha:0.9)

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Charts
 
 final class HomeModel {
     
@@ -48,6 +49,35 @@ final class HomeModel {
             }
         }
         todayVisitorsTimer.fire()
+    }
+    
+    func todayKPI(completion: @escaping (PieChartData) -> Void) {
+        network.todayKPI { result in
+            guard let kpi = result else { return }
+
+            let entries = (kpi.topManufacturers.manufacturerCounts.map { $0.key }).map { i -> PieChartDataEntry in
+                let value = kpi.topManufacturers.manufacturerCounts[i]
+                return PieChartDataEntry(value: Double(value!), label: i)
+            }
+            
+            let set = PieChartDataSet(values: entries, label: "")
+            set.drawIconsEnabled = false
+            set.sliceSpace = 2
+            set.colors = ChartColorTemplates.vordiplom()
+                + ChartColorTemplates.liberty()
+                + ChartColorTemplates.colorful()
+            
+            let data = PieChartData(dataSet: set)
+            
+            let pFormatter = NumberFormatter()
+            pFormatter.numberStyle = .none
+            
+            data.setValueFormatter(DefaultValueFormatter(formatter: pFormatter))
+            data.setValueFont(NCApplicationConstants.medium13)
+            data.setValueTextColor(UIColor.gray)
+            
+            completion(data)
+        }
     }
     
     func allClients(completion: @escaping (String, String, String) -> Void) {

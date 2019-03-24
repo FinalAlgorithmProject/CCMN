@@ -13,13 +13,13 @@ import Alamofire
 enum NCApi {
     
     case gettingAesUID // Done
-    case allClients
+    case allClients // Done
     case numberOfOnlineUsers // Done
     case todayVisitors(siteId: Int) // Done
     case campusInformation // Done
     case todayKPI(siteId: Int)
-    case searchUserByName(name: String)
-    case searchUserByMacAddress(macAddress: String)
+    case searchUserByName(name: String) // Done
+    case searchUserByMacAddress(macAddress: String) // Done
     
     case repeatedVisitorsInRange(model: NCStatisticRangeEntity) // Done
     case repeatedVisitorsForSpecificDate(model: NCStatisticDateEntity) // Done

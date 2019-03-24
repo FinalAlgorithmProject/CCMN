@@ -287,16 +287,15 @@ extension NCNetworkManager {
         }
     }
     
-    func todayKPI(completion: @escaping () -> Void) {
+    func todayKPI(completion: @escaping (NCKpiStatisticEntity?) -> Void) {
         provider.request(.todayKPI(siteId: siteId)) { [weak self] result in
             guard let `self` = self else { return }
             switch result {
             case .success(let response):
                 let result = try! response.map(NCKpiStatisticEntity.self)
-                print("Request ✅ SUCCESS")
-                completion()
+                completion(result)
             case .failure(let error):
-                completion()
+                completion(nil)
                 self.defaultFailureCase(error)
             }
         }
