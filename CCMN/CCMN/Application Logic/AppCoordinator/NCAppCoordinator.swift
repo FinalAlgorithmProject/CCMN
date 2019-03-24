@@ -11,6 +11,7 @@ import UIKit
 final class NCAppCoordinator {
     
     var window: UIWindow
+    var tabBarController: NCTabBarViewController!
     
     init() {
         self.window = UIWindow(frame: UIScreen.main.bounds)
@@ -28,7 +29,7 @@ final class NCAppCoordinator {
     }
     
     func tabBarRoot(campusInfo: NCCampusImportantInfo?) {
-        let tabBarController = NCTabBarViewController()
+        tabBarController = NCTabBarViewController()
         
         let homeItem = tabBarController.createTabItem(ofType: .home, with: "Home")
         let statisticItem = tabBarController.createTabItem(ofType: .statistic, with: "Statistic")

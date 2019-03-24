@@ -35,4 +35,8 @@ class NCBaseCoordinator {
     func popViewController(animated: Bool = true) {
         navigationController.popViewController(animated: animated)
     }
+    
+    func selectTabIndex(_ index: Int) {
+        appCoordinator.tabBarController.selectedIndex = index
+    }
 }

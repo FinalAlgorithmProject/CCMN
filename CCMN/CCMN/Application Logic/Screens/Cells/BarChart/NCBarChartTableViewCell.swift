@@ -25,7 +25,7 @@ class NCBarChartTableViewCell: UITableViewCell {
         barChartView.data = data
         barChartView.leftAxis.axisMaximum = maxYValue ?? 0
     }
-
+    
     private func initChartView() {
         barChartView.chartDescription?.text = ""
         

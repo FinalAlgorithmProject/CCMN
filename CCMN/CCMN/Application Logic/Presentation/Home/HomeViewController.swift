@@ -11,6 +11,8 @@ import Charts
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var todayVisitorsDifferenceLabel: UILabel!
+    @IBOutlet weak var onlineUsersDifferenceLabel: UILabel!
     @IBOutlet weak var pieChartsView: PieChartView!
     @IBOutlet weak var totalDeviceConnectedLabel: UILabel!
     @IBOutlet weak var todayVisitorsLabel: UILabel!
@@ -38,19 +40,35 @@ class HomeViewController: UIViewController {
 
         initNavigation()
         initChart()
-        
-        UIView.animate(withDuration: 1) {
-            let degrees: Float = 250
-            let radians = CGFloat(degrees * Float.pi / 180)
-            self.ciscoIconImage.transform = CGAffineTransform(scaleX: 3, y: 3).rotated(by: radians)
-            self.ciscoIconImage.alpha = 0
-        }
+        startAnimation()
     
-        model.devicesConnected { count in
-            self.totalDeviceConnectedLabel!.text = "Now connected: \(count)"
+        model.usersOnline { count, userDifference in
+            switch userDifference {
+            case .equel(let value):
+                self.onlineUsersDifferenceLabel.text = "🤝 \(value)"
+                self.onlineUsersDifferenceLabel.textColor = UIColor.grafitBlack
+            case .down(let value):
+                self.onlineUsersDifferenceLabel.text = "👇 \(value)"
+                self.onlineUsersDifferenceLabel.textColor = UIColor.warningRedColor
+            case .up(let value):
+                self.onlineUsersDifferenceLabel.text = "👆 \(value)"
+                self.onlineUsersDifferenceLabel.textColor = UIColor.successToastBackground
+            }
+            self.totalDeviceConnectedLabel!.text = "Users online: \(count)"
             
         }
-        model.todayVisitors { count in
+        model.todayVisitors { count, userDifference in
+            switch userDifference {
+            case .equel(let value):
+                self.todayVisitorsDifferenceLabel.text = "🤝 \(value)"
+                self.todayVisitorsDifferenceLabel.textColor = UIColor.grafitBlack
+            case .down(let value):
+                self.todayVisitorsDifferenceLabel.text = "👇 \(value)"
+                self.todayVisitorsDifferenceLabel.textColor = UIColor.warningRedColor
+            case .up(let value):
+                self.todayVisitorsDifferenceLabel.text = "👆 \(value)"
+                self.todayVisitorsDifferenceLabel.textColor = UIColor.successToastBackground
+            }
             self.todayVisitorsLabel!.text = "Today visitors: \(count)"
         }
         model.allClients { macAddress, userName, userLocation in
@@ -59,7 +77,7 @@ class HomeViewController: UIViewController {
         }
         model.todayKPI { data in
             self.pieChartsView.data = data
-            self.pieChartsView.animate(xAxisDuration: 1, easingOption: .easeOutBack)
+            self.pieChartsView.animate(xAxisDuration: 1.5, easingOption: .easeOutBack)
         }
     }
     
@@ -67,7 +85,7 @@ class HomeViewController: UIViewController {
         searchBar.endEditing(true)
     }
     
-    func initNavigation() {
+    private func initNavigation() {
         let refreshItem = UIBarButtonItem(barButtonSystemItem: .refresh,
                                           target: self,
                                           action: #selector(reloadData))
@@ -75,14 +93,23 @@ class HomeViewController: UIViewController {
         navigationItem.titleView = searchBar
     }
     
+    private func initChart() {
+        pieChartsView.chartDescription?.text = ""
+    }
+    
+    private func startAnimation() {
+        UIView.animate(withDuration: 1) {
+            let degrees: Float = 250
+            let radians = CGFloat(degrees * Float.pi / 180)
+            self.ciscoIconImage.transform = CGAffineTransform(scaleX: 3, y: 3).rotated(by: radians)
+            self.ciscoIconImage.alpha = 0
+        }
+    }
+    
     @objc func reloadData() {
         model.refreshUserData()
         showToastLabel(with: "Succefully refreshed!",
                        backgroundColor: UIColor.successToastBackground)
-    }
-    
-    private func initChart() {
-        pieChartsView.chartDescription?.text = ""
     }
 }
 
@@ -99,7 +126,7 @@ extension HomeViewController: UISearchBarDelegate {
             if let user = result, let index = index {
                 let alert = UIAlertController(title: "Success", message: "We found something. Do you want to be redirected to user location?", preferredStyle: .alert)
                 let yesAction = UIAlertAction(title: "Yes", style: .default, handler: { _ in
-                    self.tabBarController?.selectedIndex = index
+                    self.model.redirectWithUser(user, withIndex: index)
                 })
                 alert.addAction(yesAction)
                 alert.addAction(UIAlertAction(title: "No", style: .destructive, handler: nil))

@@ -9,6 +9,12 @@
 import Foundation
 import Charts
 
+enum UserDifference {
+    case up(Int)
+    case down(Int)
+    case equel(Int)
+}
+
 final class HomeModel {
     
     private let campusInfo: NCCampusImportantInfo?
@@ -16,7 +22,7 @@ final class HomeModel {
     private let coordinator: NCHomeCoordinator
     private let network: NCNetworkManager
     private var todayVisitorsTimer: Timer!
-    private var nowDevicesConnectedTimer: Timer!
+    private var usersOnlineTimer: Timer!
     
     var buildingName: String {
         return campusInfo?.buildingName ?? "Unknown"
@@ -31,53 +37,81 @@ final class HomeModel {
         self.network = network
     }
     
-    func devicesConnected(completion: @escaping (Int) -> Void) {
-        nowDevicesConnectedTimer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { _ in
+    func usersOnline(completion: @escaping (Int, UserDifference) -> Void) {
+        var previousResult: Int!
+        usersOnlineTimer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { _ in
             self.network.usersOnline { result in
                 guard let count = result else { return }
-                completion(count)
+                
+                if previousResult == nil { previousResult = count }
+                let difference = count - previousResult 
+                var diff: UserDifference!
+                if difference < 0 {
+                    diff = UserDifference.down(difference)
+                } else if difference > 0 {
+                    diff = UserDifference.up(difference)
+                } else {
+                    diff = UserDifference.equel(difference)
+                }
+                completion(count, diff)
+                previousResult = count
             }
         }
-        nowDevicesConnectedTimer.fire()
+        usersOnlineTimer.fire()
     }
     
-    func todayVisitors(completion: @escaping (Int) -> Void) {
+    func todayVisitors(completion: @escaping (Int, UserDifference) -> Void) {
+        var previousResult: Int!
         todayVisitorsTimer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { _ in
             self.network.todayVisitors { result in
                 guard let count = result else { return }
-                completion(count)
+                
+                if previousResult == nil { previousResult = count }
+                let difference = count - previousResult
+                var diff: UserDifference!
+                if difference < 0 {
+                    diff = UserDifference.down(difference)
+                } else if difference > 0 {
+                    diff = UserDifference.up(difference)
+                } else {
+                    diff = UserDifference.equel(difference)
+                }
+                completion(count, diff)
+                previousResult = count
             }
         }
         todayVisitorsTimer.fire()
     }
     
     func todayKPI(completion: @escaping (PieChartData) -> Void) {
-        network.todayKPI { result in
-            guard let kpi = result else { return }
-
-            let entries = (kpi.topManufacturers.manufacturerCounts.map { $0.key }).map { i -> PieChartDataEntry in
-                let value = kpi.topManufacturers.manufacturerCounts[i]
-                return PieChartDataEntry(value: Double(value!), label: i)
+        Timer.scheduledTimer(withTimeInterval: 300, repeats: true) { _ in
+            self.network.todayKPI { result in
+                guard let kpi = result else { return }
+                
+                let entries = (kpi.topManufacturers.manufacturerCounts.map { $0.key }).map { i -> PieChartDataEntry in
+                    let value = kpi.topManufacturers.manufacturerCounts[i]
+                    return PieChartDataEntry(value: Double(value!), label: i)
+                }
+                
+                let set = PieChartDataSet(values: entries, label: "")
+                set.drawIconsEnabled = false
+                set.sliceSpace = 2
+                set.colors = ChartColorTemplates.vordiplom()
+                    + ChartColorTemplates.liberty()
+                    + ChartColorTemplates.colorful()
+                
+                let data = PieChartData(dataSet: set)
+                
+                let pFormatter = NumberFormatter()
+                pFormatter.numberStyle = .none
+                
+                data.setValueFormatter(DefaultValueFormatter(formatter: pFormatter))
+                data.setValueFont(NCApplicationConstants.medium13)
+                data.setValueTextColor(UIColor.gray)
+                
+                completion(data)
             }
-            
-            let set = PieChartDataSet(values: entries, label: "")
-            set.drawIconsEnabled = false
-            set.sliceSpace = 2
-            set.colors = ChartColorTemplates.vordiplom()
-                + ChartColorTemplates.liberty()
-                + ChartColorTemplates.colorful()
-            
-            let data = PieChartData(dataSet: set)
-            
-            let pFormatter = NumberFormatter()
-            pFormatter.numberStyle = .none
-            
-            data.setValueFormatter(DefaultValueFormatter(formatter: pFormatter))
-            data.setValueFont(NCApplicationConstants.medium13)
-            data.setValueTextColor(UIColor.gray)
-            
-            completion(data)
-        }
+        }.fire()
     }
     
     func allClients(completion: @escaping (String, String, String) -> Void) {
@@ -113,6 +147,15 @@ final class HomeModel {
         }
     }
     
+    func redirectWithUser(_ user: NCClientEntity, withIndex index: Int) {
+        coordinator.selectTabIndex(index)
+    }
+    
+    func refreshUserData() {
+        todayVisitorsTimer.fire()
+        usersOnlineTimer.fire()
+    }
+    
     private func checkWhere(_ result: [NCClientEntity]?, completion: @escaping (NCClientEntity?, Int?) -> Void) {
         guard let user = result?.first else { completion(nil, nil); return }
         let floorName = user.floorName(floorNames: self.floorsNames)
@@ -128,10 +171,6 @@ final class HomeModel {
         }
     }
 
-    func refreshUserData() {
-        todayVisitorsTimer.fire()
-        nowDevicesConnectedTimer.fire()
-    }
     
 }
 
