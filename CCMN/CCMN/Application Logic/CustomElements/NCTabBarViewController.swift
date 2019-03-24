@@ -13,12 +13,8 @@ enum TabTypes: Int {
 }
 
 class NCTabBarViewController: UITabBarController {
-
-    private var tabs = [
-        (selectedImage: "home", tag: 0),
-        (selectedImage: "stats", tag: 1),
-        (selectedImage: "floor", tag: 2),
-    ]
+    
+    private var tabs = ["home", "stats", "floor"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,10 +22,11 @@ class NCTabBarViewController: UITabBarController {
     }
     
     func createTabItem(ofType type: TabTypes, with name: String) -> UITabBarItem {
-        let defaultImage =  UIImage(named: tabs[type.rawValue].selectedImage)
+        let defaultImage =  UIImage(named: tabs[type.rawValue])
         
-        // TODO: tags is not correct
-        let tabItem = UITabBarItem(title: name, image: defaultImage, tag: type.rawValue)
+        tabBarItem.tag += 1
+        let currentTag = tabBarItem.tag
+        let tabItem = UITabBarItem(title: name, image: defaultImage, tag: currentTag)
         return tabItem
     }
     

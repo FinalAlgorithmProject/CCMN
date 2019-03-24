@@ -302,31 +302,29 @@ extension NCNetworkManager {
         }
     }
     
-    func searchUser(byMacAddress macAddress: String, completion: @escaping () -> Void) {
+    func searchUser(byMacAddress macAddress: String, completion: @escaping ([NCClientEntity]?) -> Void) {
         provider.request(.searchUserByMacAddress(macAddress: macAddress)) { [weak self] result in
             guard let `self` = self else { return }
             switch result {
             case .success(let response):
-                let result = try? response.mapJSON() // nil if not found
-                print("Request ✅ SUCCESS")
-                completion()
+                let result = try? response.map([NCClientEntity].self) // nil if not found
+                completion(result)
             case .failure(let error):
-                completion()
+                completion(nil)
                 self.defaultFailureCase(error)
             }
         }
     }
     
-    func searchUser(byUsername username: String, completion: @escaping () -> Void) {
+    func searchUser(byUsername username: String, completion: @escaping ([NCClientEntity]?) -> Void) {
         provider.request(.searchUserByName(name: username)) { [weak self] result in
             guard let `self` = self else { return }
             switch result {
             case .success(let response):
-                let result = try? response.mapJSON() // empty if not found
-                print("Request ✅ SUCCESS")
-                completion()
+                let result = try? response.map([NCClientEntity].self) // empty if not found
+                completion(result)
             case .failure(let error):
-                completion()
+                completion(nil)
                 self.defaultFailureCase(error)
             }
         }

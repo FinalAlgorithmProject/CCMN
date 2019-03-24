@@ -39,17 +39,17 @@ final class NCAppCoordinator {
         if let campus = campusInfo {
             let names = campus.floorNames.sorted()
             for floorName in names {
-                let freshTab = tabBarController.createTabItem(ofType: .floor, with: floorName)
+                let freshTab = tabBarController.createTabItem(ofType: .floor, with: floorName.replacingOccurrences(of: "_", with: " "))
                 floorItems.append(freshTab)
             }
         }
         
-        let homeTabController = homeTab(withItem: homeItem, buldingName: campusInfo?.buildingName ?? "Unknown")
+        let homeTabController = homeTab(withItem: homeItem, campusInfo: campusInfo )
         let statisticTabController = statisticTab(withItem: statisticItem)
         
         /// Creates for each tabbaritem viewcontroller embed in with navigation
         var floorTabController: [UINavigationController] = []
-        floorItems.forEach { floorTabController.append(floorTab(withItem: $0, floorName: $0.title!, campus: campusInfo)) }
+        floorItems.forEach { floorTabController.append(floorTab(withItem: $0, floorName: $0.title!.replacingOccurrences(of: " ", with: "_"), campus: campusInfo)) }
         
         var viewControllers = [homeTabController, statisticTabController]
         floorTabController
@@ -58,11 +58,15 @@ final class NCAppCoordinator {
         window.rootViewController = tabBarController
     }
     
+    func changeSelectedTabBarItem(_ tag: Int) {
+        
+    }
+    
     // MARK: - Private API - Creating navigation for each tabs
-    private func homeTab(withItem item: UITabBarItem, buldingName: String) -> UINavigationController {
+    private func homeTab(withItem item: UITabBarItem, campusInfo: NCCampusImportantInfo?) -> UINavigationController {
         let navigationController = NCNavigationViewController()
         let homeCoordinator = NCHomeCoordinator(navigationController: navigationController, appCoordinator: self)
-        let viewController = homeCoordinator.homeViewController(buildingName: buldingName)
+        let viewController = homeCoordinator.homeViewController(campusInfo: campusInfo)
         
         viewController.tabBarItem = item
         navigationController.viewControllers = [viewController]

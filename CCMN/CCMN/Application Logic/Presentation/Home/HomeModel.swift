@@ -10,16 +10,23 @@ import Foundation
 
 final class HomeModel {
     
-    let buildingName: String
+    private let campusInfo: NCCampusImportantInfo?
     
     private let coordinator: NCHomeCoordinator
     private let network: NCNetworkManager
     private var todayVisitorsTimer: Timer!
     private var nowDevicesConnectedTimer: Timer!
     
-    init(coordinator: NCHomeCoordinator, buildingName: String, network: NCNetworkManager) {
+    var buildingName: String {
+        return campusInfo?.buildingName ?? "Unknown"
+    }
+    var floorsNames: [String] {
+        return campusInfo?.floorNames ?? [""]
+    }
+    
+    init(coordinator: NCHomeCoordinator, campusInfo: NCCampusImportantInfo?, network: NCNetworkManager) {
         self.coordinator = coordinator
-        self.buildingName = buildingName
+        self.campusInfo = campusInfo
         self.network = network
     }
     
@@ -47,7 +54,8 @@ final class HomeModel {
         var oldClients: [NCClientEntity]?
         
         Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { [weak self] _ in
-            self?.network.allClients { result in
+            guard let `self` = self else { return }
+            self.network.allClients { result in
                 guard let clients = result else { return }
                 let newClient = clients.filter {
                     if oldClients != nil, !oldClients!.contains($0) {
@@ -57,15 +65,50 @@ final class HomeModel {
                     }.first
                 oldClients = clients
                 if let user = newClient {
-                    completion(user.macAddress, user.userName, user.userFloor)
+                    completion(user.macAddress, user.userName, user.floorName(floorNames: self.floorsNames))
                 }
             }
             }.fire()
     }
     
+    func searchUser(by text: String, completion: @escaping (NCClientEntity?, Int?) -> Void) {
+        if text.matches("^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$") {
+            network.searchUser(byMacAddress: text, completion: { [weak self] result in
+                self?.checkWhere(result, completion: completion)
+            })
+        } else {
+            network.searchUser(byUsername: text) { [weak self] result in
+                self?.checkWhere(result, completion: completion)
+            }
+        }
+    }
+    
+    private func checkWhere(_ result: [NCClientEntity]?, completion: @escaping (NCClientEntity?, Int?) -> Void) {
+        guard let user = result?.first else { completion(nil, nil); return }
+        let floorName = user.floorName(floorNames: self.floorsNames)
+        /// This is pain :)
+        if floorName.contains("1") {
+            completion(user, 2)
+        } else if floorName.contains("2") {
+            completion(user, 3)
+        } else if floorName.contains("3") {
+            completion(user, 4)
+        } else {
+            completion(nil, nil)
+        }
+    }
+
     func refreshUserData() {
         todayVisitorsTimer.fire()
         nowDevicesConnectedTimer.fire()
     }
     
 }
+
+
+extension String {
+    func matches(_ regex: String) -> Bool {
+        return self.range(of: regex, options: .regularExpression, range: nil, locale: nil) != nil
+    }
+}
+

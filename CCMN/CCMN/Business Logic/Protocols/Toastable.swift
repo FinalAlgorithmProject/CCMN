@@ -42,11 +42,12 @@ private extension UIViewController {
         toastView.clipsToBounds = true
         let toastLabel = UILabel(frame: CGRect(x: 0, y: labelY, width: UIScreen.main.bounds.width, height: labelHeight))
         toastLabel.tag = 10
-        toastLabel.font = NCApplicationConstants.medium15
+        toastLabel.font = NCApplicationConstants.medium17
         toastLabel.backgroundColor = .clear
         toastLabel.textColor = UIColor.white
         toastLabel.text = message
         toastLabel.textAlignment = .center
+        toastLabel.lineBreakMode = .byTruncatingTail
         toastView.addSubview(toastLabel)
         view.addSubview(toastView)
         view.bringSubview(toFront: toastView)
@@ -54,7 +55,7 @@ private extension UIViewController {
         UIView.animate(withDuration: 0.25, delay: 0.25, options: [.curveEaseInOut], animations: {
             toastView.transform = CGAffineTransform(translationX: 0, y: animationMovingHeight)
         }, completion: nil)
-        UIView.animate(withDuration: 0.25, delay: 3.5, options: [.curveEaseInOut], animations: {
+        UIView.animate(withDuration: 0.25, delay: 4.0, options: [.curveEaseInOut], animations: {
             toastView.transform = .identity
         }) { _ in toastView.removeFromSuperview() }
     }

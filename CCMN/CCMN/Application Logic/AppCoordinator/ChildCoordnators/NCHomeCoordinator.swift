@@ -10,10 +10,10 @@ import Foundation
 
 class NCHomeCoordinator: NCBaseCoordinator {
     
-    func homeViewController(buildingName name: String) -> HomeViewController {
+    func homeViewController(campusInfo: NCCampusImportantInfo?) -> HomeViewController {
         let viewController = HomeViewController.init(nibName: HomeViewController.className, bundle: nil)
         let network = NCNetworkManager.shared
-        viewController.model = HomeModel(coordinator: self, buildingName: name, network: network)
+        viewController.model = HomeModel(coordinator: self, campusInfo: campusInfo, network: network)
         return viewController
     }
     

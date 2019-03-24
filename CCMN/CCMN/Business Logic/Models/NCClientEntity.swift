@@ -14,10 +14,11 @@ struct NCClientEntity: Codable {
     let userName: String
     let mapInfo: MapInfo
     
-    var userFloor: String {
-        return mapInfo.mapHierarchyString
+    func floorName(floorNames: [String]) -> String {
+        let name = floorNames.first { mapInfo.mapHierarchyString.contains($0) }?
+            .replacingOccurrences(of: "_", with: " ")
+        return name ?? "???"
     }
-    
 }
 
 struct MapInfo: Codable {

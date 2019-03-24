@@ -13,6 +13,17 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var totalDeviceConnectedLabel: UILabel!
     @IBOutlet weak var todayVisitorsLabel: UILabel!
     @IBOutlet weak var ciscoIconImage: UIImageView!
+    @IBOutlet weak var buildingNameLabel: UILabel!
+    
+    lazy var searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.sizeToFit()
+        searchBar.delegate = self
+        searchBar.autocapitalizationType = .none
+        searchBar.autocorrectionType = .no
+        searchBar.placeholder = "Search by MAC address or xlogin(username)..."
+        return searchBar
+    }()
     
     var model: HomeModel!
     
@@ -20,6 +31,8 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
 
         initNavigation()
+        
+        buildingNameLabel.text = model.buildingName
         
         UIView.animate(withDuration: 1) {
             let degrees: Float = 250
@@ -36,24 +49,64 @@ class HomeViewController: UIViewController {
             self.todayVisitorsLabel!.text = "Today visitors: \(count)"
         }
         model.allClients { macAddress, userName, userLocation in
+            print(userLocation)
             self.showToastLabel(with: "Hi, \"\(userName)\" or mac: \(macAddress) now is on \(userLocation)")
         }
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        searchBar.endEditing(true)
+    }
+    
     func initNavigation() {
-        navigationItem.title = "\(model.buildingName)"
-        
-        let item = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(reloadData))
-        navigationItem.rightBarButtonItem = item
+        let refreshItem = UIBarButtonItem(barButtonSystemItem: .refresh,
+                                          target: self,
+                                          action: #selector(reloadData))
+        navigationItem.rightBarButtonItem = refreshItem
+        navigationItem.titleView = searchBar
     }
     
     @objc func reloadData() {
         model.refreshUserData()
-        showToastLabel(with: "Succefully refreshed!", backgroundColor: UIColor.successToastBackground)
+        showToastLabel(with: "Succefully refreshed!",
+                       backgroundColor: UIColor.successToastBackground)
     }
-
 }
 
 extension HomeViewController: Toastable {
     
 }
+
+extension HomeViewController: UISearchBarDelegate {
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        if (searchBar.text?.isEmpty ?? true) { return }
+        model.searchUser(by: searchBar.text!) { [weak self] result, index in
+            guard let `self` = self else { return }
+            if let user = result, let index = index {
+                let alert = UIAlertController(title: "Success", message: "We found something. Do you want to be redirected to user location?", preferredStyle: .alert)
+                let yesAction = UIAlertAction(title: "Yes", style: .default, handler: { _ in
+                    self.tabBarController?.selectedIndex = index
+                })
+                alert.addAction(yesAction)
+                alert.addAction(UIAlertAction(title: "No", style: .destructive, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                self.showToastLabel(with: "Sorry, but we can't find this: [\(searchBar.text!)] :(",
+                                     backgroundColor: UIColor.warningRedColor)
+            }
+        }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+    }
+    
+}
+
+
+
+
+
+
+
