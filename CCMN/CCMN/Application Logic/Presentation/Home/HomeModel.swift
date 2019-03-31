@@ -97,8 +97,6 @@ final class HomeModel {
                 set.drawIconsEnabled = false
                 set.sliceSpace = 2
                 set.colors = ChartColorTemplates.vordiplom()
-                    + ChartColorTemplates.liberty()
-                    + ChartColorTemplates.colorful()
                 
                 let data = PieChartData(dataSet: set)
                 

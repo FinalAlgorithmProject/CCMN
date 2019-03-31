@@ -17,7 +17,7 @@ enum NCApi {
     case numberOfOnlineUsers // Done
     case todayVisitors(siteId: Int) // Done
     case campusInformation // Done
-    case todayKPI(siteId: Int)
+    case todayKPI(siteId: Int) // Done
     case searchUserByName(name: String) // Done
     case searchUserByMacAddress(macAddress: String) // Done
     

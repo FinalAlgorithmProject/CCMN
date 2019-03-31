@@ -96,33 +96,34 @@ final class NCDwellTimeModel {
         }
         self.values = self.units.indices.map { Double(data[allKeys[$0]]!.eightPlusHours) }
         let eightPlusMaxValue = self.values.max() ?? 0
-        let eightPlusChartData = self.createChartDataSet(label: "8+ Hours", color: UIColor.greenChartColor)
+        let eightPlusChartData = self.createChartDataSet(label: "8+ Hours", color: ChartColorTemplates.material())
         
         self.values = self.units.indices.map { Double(data[allKeys[$0]]!.fiveToEightHours) }
         let fiveToEightHoursMaxValue = self.values.max() ?? 0
-        let fiveToEightHoursChartData = self.createChartDataSet(label: "5 - 8 Hours", color: UIColor.blueChartColor)
+        let fiveToEightHoursChartData = self.createChartDataSet(label: "5 - 8 Hours", color: ChartColorTemplates.joyful())
         
         self.values = self.units.indices.map { Double(data[allKeys[$0]]!.oneToFiveHours) }
         let oneToFiveHoursMaxValue = self.values.max() ?? 0
-        let oneToFiveHoursChartData = self.createChartDataSet(label: "5 - 1 Hours", color: UIColor.yellowChartColor)
+        let oneToFiveHoursChartData = self.createChartDataSet(label: "5 - 1 Hours", color: ChartColorTemplates.colorful())
         
         self.values = self.units.indices.map { Double(data[allKeys[$0]]!.thirtyToSixtyMinutes) }
         let thirtyToSixtyMinutesMaxValue = self.values.max() ?? 0
-        let thirtyToSixtyMinutesChartData = self.createChartDataSet(label: "30 - 6 Minutes", color: UIColor.orangeChartColor)
+        let thirtyToSixtyMinutesChartData = self.createChartDataSet(label: "30 - 6 Minutes", color: ChartColorTemplates.vordiplom())
         
         self.values = self.units.indices.map { Double(data[allKeys[$0]]!.fiveToThirtyMinutes) }
         let fiveToThirtyMinutesMaxValue = self.values.max() ?? 0
-        let fiveToThirtyMinutesChartData = self.createChartDataSet(label: "5 - 30 Minutes", color: UIColor.mainRedColor)
+        let fiveToThirtyMinutesChartData = self.createChartDataSet(label: "5 - 30 Minutes", color: ChartColorTemplates.pastel())
         
         self.dataSource.append(ChartData(data: eightPlusChartData, maxValue: eightPlusMaxValue + 5))
         self.dataSource.append(ChartData(data: fiveToEightHoursChartData, maxValue: fiveToEightHoursMaxValue + 5))
         self.dataSource.append(ChartData(data: oneToFiveHoursChartData, maxValue: oneToFiveHoursMaxValue + 5))
         self.dataSource.append(ChartData(data: thirtyToSixtyMinutesChartData, maxValue: thirtyToSixtyMinutesMaxValue + 5))
         self.dataSource.append(ChartData(data: fiveToThirtyMinutesChartData, maxValue: fiveToThirtyMinutesMaxValue + 5))
+        self.dataSource.forEach { $0.0?.setValueFont(NCApplicationConstants.regular13) }
         completion()
     }
 
-    private func createChartDataSet(label: String, color: UIColor) -> BarChartData? {
+    private func createChartDataSet(label: String, color: [UIColor]) -> BarChartData? {
         if self.values.isEmpty { return nil }
         
         var dataEntries: [BarChartDataEntry] = []
@@ -133,7 +134,7 @@ final class NCDwellTimeModel {
         }
         
         let chartDataSet = BarChartDataSet(values: dataEntries, label: label)
-        chartDataSet.colors = [color]
+        chartDataSet.colors = [color.first!]
         chartDataSet.valueFormatter = DefaultValueFormatter(formatter: NumberFormatter())
         
         return BarChartData(dataSet: chartDataSet)

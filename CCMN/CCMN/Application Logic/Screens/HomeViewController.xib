@@ -36,10 +36,10 @@
             <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Xif-oc-Dfg">
-                    <rect key="frame" x="312" y="174" width="144" height="93"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Xif-oc-Dfg">
+                    <rect key="frame" x="50" y="174" width="144" height="93"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fetching ..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dl2-t3-h0i">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fetching ..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dl2-t3-h0i">
                             <rect key="frame" x="0.0" y="0.0" width="144" height="37"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="37" id="VwE-Nr-UiB"/>
@@ -48,7 +48,7 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fetching ..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m0e-oB-weE">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fetching ..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m0e-oB-weE">
                             <rect key="frame" x="0.0" y="57" width="144" height="36"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="36" id="ArD-eI-J7A"/>
@@ -60,13 +60,13 @@
                     </subviews>
                 </stackView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fetching..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nnz-zw-6xR">
-                    <rect key="frame" x="282" y="90" width="204.5" height="54"/>
+                    <rect key="frame" x="50" y="90" width="204.5" height="54"/>
                     <fontDescription key="fontDescription" name="FiraSans-Medium" family="Fira Sans" pointSize="45"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WzH-mf-s6z" customClass="PieChartView" customModule="Charts">
-                    <rect key="frame" x="134" y="297" width="500" height="500"/>
+                    <rect key="frame" x="134" y="337" width="500" height="500"/>
                     <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="500" id="ayV-qc-MID"/>
@@ -74,13 +74,13 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ish-v9-oPd">
-                    <rect key="frame" x="466" y="180.5" width="12.5" height="25.5"/>
+                    <rect key="frame" x="204" y="180.5" width="12.5" height="25.5"/>
                     <fontDescription key="fontDescription" name="FiraSans-Medium" family="Fira Sans" pointSize="21"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wjh-EZ-RfR">
-                    <rect key="frame" x="466" y="237" width="12.5" height="25.5"/>
+                    <rect key="frame" x="204" y="237" width="12.5" height="25.5"/>
                     <fontDescription key="fontDescription" name="FiraSans-Medium" family="Fira Sans" pointSize="21"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -96,24 +96,19 @@
             <constraints>
                 <constraint firstItem="Ish-v9-oPd" firstAttribute="centerY" secondItem="Dl2-t3-h0i" secondAttribute="centerY" id="9Pb-2h-qfr"/>
                 <constraint firstItem="nnz-zw-6xR" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="70" id="CWp-4d-hWX"/>
-                <constraint firstItem="nnz-zw-6xR" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Gjg-3s-0qU"/>
                 <constraint firstItem="65g-X2-AOp" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="P8h-lw-3St"/>
+                <constraint firstItem="Xif-oc-Dfg" firstAttribute="leading" secondItem="nnz-zw-6xR" secondAttribute="leading" id="a2G-Kc-BiU"/>
                 <constraint firstItem="Wjh-EZ-RfR" firstAttribute="leading" secondItem="Xif-oc-Dfg" secondAttribute="trailing" constant="10" id="aAn-0f-hO0"/>
                 <constraint firstItem="65g-X2-AOp" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="aAz-6C-H1T"/>
+                <constraint firstItem="WzH-mf-s6z" firstAttribute="top" secondItem="Xif-oc-Dfg" secondAttribute="bottom" constant="70" id="d2s-zs-nxf"/>
                 <constraint firstItem="Ish-v9-oPd" firstAttribute="leading" secondItem="Xif-oc-Dfg" secondAttribute="trailing" constant="10" id="eNb-jM-Taq"/>
                 <constraint firstItem="WzH-mf-s6z" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="hRX-wI-pdn"/>
-                <constraint firstItem="Xif-oc-Dfg" firstAttribute="top" secondItem="nnz-zw-6xR" secondAttribute="bottom" constant="30" id="nwV-d2-hOr"/>
-                <constraint firstItem="WzH-mf-s6z" firstAttribute="top" secondItem="Xif-oc-Dfg" secondAttribute="bottom" constant="30" id="rY8-1T-3jv"/>
+                <constraint firstItem="nnz-zw-6xR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="50" id="iSF-pK-6nl"/>
                 <constraint firstItem="65g-X2-AOp" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.5" id="s1o-nh-i0I"/>
                 <constraint firstItem="Wjh-EZ-RfR" firstAttribute="centerY" secondItem="m0e-oB-weE" secondAttribute="centerY" id="u9H-3J-5ds"/>
-                <constraint firstItem="Xif-oc-Dfg" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="y0f-w6-Ycy"/>
+                <constraint firstItem="Xif-oc-Dfg" firstAttribute="top" secondItem="nnz-zw-6xR" secondAttribute="bottom" constant="30" id="z3k-p1-RWg"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <variation key="default">
-                <mask key="subviews">
-                    <exclude reference="65g-X2-AOp"/>
-                </mask>
-            </variation>
         </view>
     </objects>
     <resources>

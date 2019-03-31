@@ -301,6 +301,7 @@ extension NCNetworkManager {
         }
     }
     
+   
     func searchUser(byMacAddress macAddress: String, completion: @escaping ([NCClientEntity]?) -> Void) {
         provider.request(.searchUserByMacAddress(macAddress: macAddress)) { [weak self] result in
             guard let `self` = self else { return }

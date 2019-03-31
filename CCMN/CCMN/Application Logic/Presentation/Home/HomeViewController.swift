@@ -29,7 +29,7 @@ class HomeViewController: UIViewController {
         searchBar.delegate = self
         searchBar.autocapitalizationType = .none
         searchBar.autocorrectionType = .no
-        searchBar.placeholder = "Search by MAC address or xlogin(username)..."
+        searchBar.placeholder = "Search by MAC address or xlogin(username)"
         return searchBar
     }()
     
@@ -46,13 +46,13 @@ class HomeViewController: UIViewController {
             switch userDifference {
             case .equel(let value):
                 self.onlineUsersDifferenceLabel.text = "🤝 \(value)"
-                self.onlineUsersDifferenceLabel.textColor = UIColor.grafitBlack
+                self.onlineUsersDifferenceLabel.textColor = NCApplicationConstants.mainBlackColor
             case .down(let value):
                 self.onlineUsersDifferenceLabel.text = "👇 \(value)"
                 self.onlineUsersDifferenceLabel.textColor = UIColor.warningRedColor
             case .up(let value):
                 self.onlineUsersDifferenceLabel.text = "👆 \(value)"
-                self.onlineUsersDifferenceLabel.textColor = UIColor.successToastBackground
+                self.onlineUsersDifferenceLabel.textColor = UIColor.successGreenColor
             }
             self.totalDeviceConnectedLabel!.text = "Users online: \(count)"
             
@@ -61,13 +61,13 @@ class HomeViewController: UIViewController {
             switch userDifference {
             case .equel(let value):
                 self.todayVisitorsDifferenceLabel.text = "🤝 \(value)"
-                self.todayVisitorsDifferenceLabel.textColor = UIColor.grafitBlack
+                self.todayVisitorsDifferenceLabel.textColor = NCApplicationConstants.mainBlackColor
             case .down(let value):
                 self.todayVisitorsDifferenceLabel.text = "👇 \(value)"
                 self.todayVisitorsDifferenceLabel.textColor = UIColor.warningRedColor
             case .up(let value):
                 self.todayVisitorsDifferenceLabel.text = "👆 \(value)"
-                self.todayVisitorsDifferenceLabel.textColor = UIColor.successToastBackground
+                self.todayVisitorsDifferenceLabel.textColor = UIColor.successGreenColor
             }
             self.todayVisitorsLabel!.text = "Today visitors: \(count)"
         }
@@ -109,13 +109,11 @@ class HomeViewController: UIViewController {
     @objc func reloadData() {
         model.refreshUserData()
         showToastLabel(with: "Succefully refreshed!",
-                       backgroundColor: UIColor.successToastBackground)
+                       backgroundColor: UIColor.successGreenColor)
     }
 }
 
-extension HomeViewController: Toastable {
-    
-}
+extension HomeViewController: Toastable { }
 
 extension HomeViewController: UISearchBarDelegate {
     
@@ -123,8 +121,11 @@ extension HomeViewController: UISearchBarDelegate {
         if (searchBar.text?.isEmpty ?? true) { return }
         model.searchUser(by: searchBar.text!) { [weak self] result, index in
             guard let `self` = self else { return }
+            
             if let user = result, let index = index {
-                let alert = UIAlertController(title: "Success", message: "We found something. Do you want to be redirected to user location?", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Success",
+                                              message: "We found something. Do you want to be redirected to user location?",
+                                              preferredStyle: .alert)
                 let yesAction = UIAlertAction(title: "Yes", style: .default, handler: { _ in
                     self.model.redirectWithUser(user, withIndex: index)
                 })
@@ -141,7 +142,6 @@ extension HomeViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
     }
-    
 }
 
 

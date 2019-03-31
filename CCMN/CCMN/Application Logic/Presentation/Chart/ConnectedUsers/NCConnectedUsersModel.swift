@@ -96,13 +96,14 @@ final class NCConnectedUsersModel {
         
         self.values = self.units.indices.map { Double(data[allKeys[$0]] ?? 0) }
         let passerbyMaxValue = self.values.max() ?? 0
-        let passerbyChartData = self.createChartDataSet(label: "Connected Users", color: UIColor.blueChartColor)
+        let passerbyChartData = self.createChartDataSet(label: "Connected Users", color: ChartColorTemplates.pastel())
         
         self.dataSource.append(ChartData(data: passerbyChartData, maxValue: passerbyMaxValue + 5))
+        self.dataSource.forEach { $0.0?.setValueFont(NCApplicationConstants.regular13) }
         completion()
     }
     
-    private func createChartDataSet(label: String, color: UIColor) -> BarChartData? {
+    private func createChartDataSet(label: String, color: [UIColor]) -> BarChartData? {
         if self.values.isEmpty { return nil }
         
         var dataEntries: [BarChartDataEntry] = []
@@ -113,7 +114,7 @@ final class NCConnectedUsersModel {
         }
         
         let chartDataSet = BarChartDataSet(values: dataEntries, label: label)
-        chartDataSet.colors = [color]
+        chartDataSet.colors = [color.first!]
         chartDataSet.valueFormatter = DefaultValueFormatter(formatter: NumberFormatter())
         
         return BarChartData(dataSet: chartDataSet)

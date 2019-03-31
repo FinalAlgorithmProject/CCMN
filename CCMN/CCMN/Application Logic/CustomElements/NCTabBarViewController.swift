@@ -18,7 +18,7 @@ class NCTabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBar.tintColor = UIColor.mainRedColor
+        tabBar.tintColor = NCApplicationConstants.mainRedColor
     }
     
     func createTabItem(ofType type: TabTypes, with name: String) -> UITabBarItem {

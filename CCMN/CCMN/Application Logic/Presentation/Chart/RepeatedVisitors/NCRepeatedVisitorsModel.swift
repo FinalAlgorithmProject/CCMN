@@ -20,7 +20,7 @@ final class NCRepeatedVisitorsModel {
     private var endDate: String?
     
     private var units: [Int] = [] // hours or dates
-    private var values: [Double] = []
+    private var values: [Double] = [] // Counts of people
     
     private var doubleHoursValue: [Double] {
         return self.units.map { Double($0) }
@@ -98,37 +98,38 @@ final class NCRepeatedVisitorsModel {
         self.values = self.units.indices.map { Double(data[allKeys[$0]]!.daily) }
         let dailyMaxValue = self.values.max() ?? 0
         let dailyChartData = self.createChartDataSet(label: "Daily Repeated Visitors",
-                                                     color: UIColor.greenChartColor)
+                                                     color: ChartColorTemplates.material())
         
         self.values = self.units.indices.map { Double(data[allKeys[$0]]!.weekly) }
         let weeklyMaxValue = self.values.max() ?? 0
         let weeklyChartData = self.createChartDataSet(label: "Weekly Repeated Visitors",
-                                                      color: UIColor.blueChartColor)
+                                                      color: ChartColorTemplates.joyful())
         
         self.values = self.units.indices.map { Double(data[allKeys[$0]]!.occasional) }
         let occasionalMaxValue = self.values.max() ?? 0
         let occasionalChartData = self.createChartDataSet(label: "Occasional Repeated Visitors",
-                                                          color: UIColor.yellowChartColor)
+                                                          color: ChartColorTemplates.colorful())
         
         self.values = self.units.indices.map { Double(data[allKeys[$0]]!.firstTime) }
         let firstTimeMaxValue = self.values.max() ?? 0
         let firstTimeChartData = self.createChartDataSet(label: "First Time Repeated Visitors",
-                                                         color: UIColor.orangeChartColor)
+                                                         color: ChartColorTemplates.vordiplom())
         
         self.values = self.units.indices.map { Double(data[allKeys[$0]]!.firstTime) }
         let yesterdayMaxValue = self.values.max() ?? 0
         let yesterdayChartData = self.createChartDataSet(label: "Yesterday Repeated Visitors",
-                                                         color: UIColor.mainRedColor)
+                                                         color: ChartColorTemplates.pastel())
         
         self.dataSource.append(ChartData(data: dailyChartData, maxValue: dailyMaxValue + 5))
         self.dataSource.append(ChartData(data: weeklyChartData, maxValue: weeklyMaxValue + 5))
         self.dataSource.append(ChartData(data: occasionalChartData, maxValue: occasionalMaxValue + 5))
         self.dataSource.append(ChartData(data: firstTimeChartData, maxValue: firstTimeMaxValue + 5))
         self.dataSource.append(ChartData(data: yesterdayChartData, maxValue: yesterdayMaxValue + 5))
+        self.dataSource.forEach { $0.0?.setValueFont(NCApplicationConstants.regular13) }
         completion()
     }
     
-    private func createChartDataSet(label: String, color: UIColor) -> BarChartData? {
+    private func createChartDataSet(label: String, color: [UIColor]) -> BarChartData? {
         if self.values.isEmpty { return nil }
         
         var dataEntries: [BarChartDataEntry] = []
@@ -139,7 +140,7 @@ final class NCRepeatedVisitorsModel {
         }
         
         let chartDataSet = BarChartDataSet(values: dataEntries, label: label)
-        chartDataSet.colors = [color]
+        chartDataSet.colors = [color.first!]
         chartDataSet.valueFormatter = DefaultValueFormatter(formatter: NumberFormatter())
         
         return BarChartData(dataSet: chartDataSet)

@@ -33,36 +33,28 @@ final class NCAppCoordinator {
         
         let homeItem = tabBarController.createTabItem(ofType: .home, with: "Home")
         let statisticItem = tabBarController.createTabItem(ofType: .statistic, with: "Statistic")
+        let floorItems = campusInfo?.floorNames.sorted()
+            .map { tabBarController.createTabItem(ofType: .floor, with: $0.replacingOccurrences(of: "_", with: " ")) }
         
-        var floorItems: [UITabBarItem] = []
-        
-        /// it can be shorter, but who cares?
-        if let campus = campusInfo {
-            let names = campus.floorNames.sorted()
-            for floorName in names {
-                let freshTab = tabBarController.createTabItem(ofType: .floor, with: floorName.replacingOccurrences(of: "_", with: " "))
-                floorItems.append(freshTab)
-            }
-        }
-        
-        let homeTabController = homeTab(withItem: homeItem, campusInfo: campusInfo )
+        let homeTabController = homeTab(withItem: homeItem, campusInfo: campusInfo)
         let statisticTabController = statisticTab(withItem: statisticItem)
         
         /// Creates for each tabbaritem viewcontroller embed in with navigation
         var floorTabController: [UINavigationController] = []
-        floorItems.forEach { floorTabController.append(floorTab(withItem: $0, floorName: $0.title!.replacingOccurrences(of: " ", with: "_"), campus: campusInfo)) }
+        if let names = campusInfo?.floorNames.sorted() {
+            let floorMap: [String: Int] = [names[0]: 147, names[1]: 140, names[2]: 80]
+            floorItems?.forEach { floorTabController.append(floorTab(withItem: $0,
+                                                                     floorName: $0.title!.replacingOccurrences(of: " ", with: "_"),
+                                                                     floorCapacity: floorMap[$0.title!.replacingOccurrences(of: " ", with: "_")]!,
+                                                                     campus: campusInfo)) }
+        }
         
         var viewControllers = [homeTabController, statisticTabController]
-        floorTabController
-            .forEach { viewControllers.append($0) }
+        floorTabController.forEach { viewControllers.append($0) }
         tabBarController.viewControllers = viewControllers
         window.rootViewController = tabBarController
     }
-    
-    func changeSelectedTabBarItem(_ tag: Int) {
-        
-    }
-    
+
     // MARK: - Private API - Creating navigation for each tabs
     private func homeTab(withItem item: UITabBarItem, campusInfo: NCCampusImportantInfo?) -> UINavigationController {
         let navigationController = NCNavigationViewController()
@@ -84,10 +76,13 @@ final class NCAppCoordinator {
         return navigationController
     }
 
-    private func floorTab(withItem item: UITabBarItem, floorName: String, campus: NCCampusImportantInfo?) -> UINavigationController {
+    private func floorTab(withItem item: UITabBarItem,
+                          floorName: String,
+                          floorCapacity: Int,
+                          campus: NCCampusImportantInfo?) -> UINavigationController {
         let navigationController = NCNavigationViewController()
         let floorCoordinator = NCFloorCoordinator(navigationController: navigationController, appCoordinator: self)
-        let viewController = floorCoordinator.floorViewController(with: floorName, campusInfo: campus)
+        let viewController = floorCoordinator.floorViewController(with: floorName, floorCapacity: floorCapacity, campusInfo: campus)
 
         viewController.tabBarItem = item
         navigationController.viewControllers = [viewController]

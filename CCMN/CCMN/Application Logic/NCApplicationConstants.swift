@@ -34,6 +34,6 @@ struct NCApplicationConstants {
     static let regular15 = UIFont(name: fontRegularName, size: 15.0) ?? UIFont.systemFont(ofSize: 15.0, weight: .regular)
     static let regular13 = UIFont(name: fontRegularName, size: 13.0) ?? UIFont.systemFont(ofSize: 13.0, weight: .regular)
     
-    static let mainBlackColor = UIColor.grafitBlack
-    static let mainRedColor = UIColor.mainRedColor
+    static let mainBlackColor = UIColor(red:0.25, green:0.25, blue:0.25, alpha:1.0)
+    static let mainRedColor = UIColor(red:0.70, green:0.19, blue:0.30, alpha:1.0)
 }
