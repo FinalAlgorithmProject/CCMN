@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,6 +18,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StatisticViewController" customModule="CCMN" customModuleProvider="target">
             <connections>
                 <outlet property="endDateTextField" destination="JR2-l0-e2S" id="ky9-k3-AgE"/>
+                <outlet property="lottieView" destination="IQn-lm-kKR" id="YZq-xg-Ubq"/>
                 <outlet property="startDateTextField" destination="niX-df-uj6" id="0ex-sx-hwz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -26,69 +28,95 @@
             <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="PjY-aq-YnN">
-                    <rect key="frame" x="100" y="322" width="568" height="400"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="p7p-lK-gFf" userLabel="ButtonStackView">
+                    <rect key="frame" x="78" y="260" width="420" height="640"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nnL-hR-3GX" customClass="NCStatisticButton" customModule="CCMN" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="568" height="50"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Bbt-Tg-URv">
+                            <rect key="frame" x="0.0" y="0.0" width="420" height="200"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nnL-hR-3GX" customClass="NCStatisticButton" customModule="CCMN" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="200" id="6lz-qk-oLe"/>
+                                        <constraint firstAttribute="height" constant="200" id="FHq-nS-DRH"/>
+                                    </constraints>
+                                    <state key="normal" title="Repeated Visitors"/>
+                                    <connections>
+                                        <action selector="repeatedVisitors:" destination="-1" eventType="touchUpInside" id="F5w-jE-FHR"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bej-8k-t0v" customClass="NCStatisticButton" customModule="CCMN" customModuleProvider="target">
+                                    <rect key="frame" x="220" y="0.0" width="200" height="200"/>
+                                    <state key="normal" title="Dwell Time"/>
+                                    <connections>
+                                        <action selector="dwellTime:" destination="-1" eventType="touchUpInside" id="1Qc-bD-oau"/>
+                                    </connections>
+                                </button>
+                            </subviews>
                             <constraints>
-                                <constraint firstAttribute="height" constant="50" id="905-8R-6GU"/>
+                                <constraint firstItem="Bej-8k-t0v" firstAttribute="width" secondItem="nnL-hR-3GX" secondAttribute="width" id="fIP-Sf-bJZ"/>
+                                <constraint firstItem="Bej-8k-t0v" firstAttribute="height" secondItem="nnL-hR-3GX" secondAttribute="height" id="mRs-5v-wkV"/>
                             </constraints>
-                            <state key="normal" title="Repeated Visitors"/>
-                            <connections>
-                                <action selector="repeatedVisitors:" destination="-1" eventType="touchUpInside" id="F5w-jE-FHR"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bej-8k-t0v" customClass="NCStatisticButton" customModule="CCMN" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="70" width="568" height="50"/>
-                            <state key="normal" title="Dwell Time"/>
-                            <connections>
-                                <action selector="dwellTime:" destination="-1" eventType="touchUpInside" id="1Qc-bD-oau"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4wh-Nv-SID" customClass="NCStatisticButton" customModule="CCMN" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="140" width="568" height="50"/>
-                            <state key="normal" title="Passer by Visitors"/>
-                            <connections>
-                                <action selector="passerby:" destination="-1" eventType="touchUpInside" id="pZT-s1-XSj"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tuF-Fi-glA" customClass="NCStatisticButton" customModule="CCMN" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="210" width="568" height="50"/>
-                            <state key="normal" title="Connected Visitors"/>
-                            <connections>
-                                <action selector="connectedUsers:" destination="-1" eventType="touchUpInside" id="6d8-7T-qPf"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0kT-Ul-DoA" customClass="NCStatisticButton" customModule="CCMN" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="280" width="568" height="50"/>
-                            <state key="normal" title="Visitors"/>
-                            <connections>
-                                <action selector="visitors:" destination="-1" eventType="touchUpInside" id="rMH-qH-4lj"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kaZ-PN-UcC" customClass="NCStatisticButton" customModule="CCMN" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="350" width="568" height="50"/>
-                            <state key="normal" title="Forecasting"/>
-                            <connections>
-                                <action selector="forecast:" destination="-1" eventType="touchUpInside" id="IxI-Zx-tvS"/>
-                            </connections>
-                        </button>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="QNc-jE-Diq">
+                            <rect key="frame" x="0.0" y="220" width="420" height="200"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4wh-Nv-SID" customClass="NCStatisticButton" customModule="CCMN" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                    <state key="normal" title="Passer by Visitors"/>
+                                    <connections>
+                                        <action selector="passerby:" destination="-1" eventType="touchUpInside" id="pZT-s1-XSj"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tuF-Fi-glA" customClass="NCStatisticButton" customModule="CCMN" customModuleProvider="target">
+                                    <rect key="frame" x="220" y="0.0" width="200" height="200"/>
+                                    <state key="normal" title="Connected Visitors"/>
+                                    <connections>
+                                        <action selector="connectedUsers:" destination="-1" eventType="touchUpInside" id="6d8-7T-qPf"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="tuF-Fi-glA" firstAttribute="width" secondItem="4wh-Nv-SID" secondAttribute="width" id="OAy-QR-b4e"/>
+                                <constraint firstItem="tuF-Fi-glA" firstAttribute="height" secondItem="4wh-Nv-SID" secondAttribute="height" id="ssk-fc-1n0"/>
+                            </constraints>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="QJr-XT-CDo">
+                            <rect key="frame" x="0.0" y="440" width="420" height="200"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0kT-Ul-DoA" customClass="NCStatisticButton" customModule="CCMN" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                    <state key="normal" title="Visitors"/>
+                                    <connections>
+                                        <action selector="visitors:" destination="-1" eventType="touchUpInside" id="rMH-qH-4lj"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kaZ-PN-UcC" customClass="NCStatisticButton" customModule="CCMN" customModuleProvider="target">
+                                    <rect key="frame" x="220" y="0.0" width="200" height="200"/>
+                                    <state key="normal" title="Forecasting"/>
+                                    <connections>
+                                        <action selector="forecast:" destination="-1" eventType="touchUpInside" id="IxI-Zx-tvS"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="kaZ-PN-UcC" firstAttribute="width" secondItem="0kT-Ul-DoA" secondAttribute="width" id="jpW-ww-yXS"/>
+                                <constraint firstItem="kaZ-PN-UcC" firstAttribute="height" secondItem="0kT-Ul-DoA" secondAttribute="height" id="tgQ-Ei-HHg"/>
+                            </constraints>
+                        </stackView>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="0kT-Ul-DoA" firstAttribute="height" secondItem="tuF-Fi-glA" secondAttribute="height" id="1Q3-4w-0Os"/>
-                        <constraint firstItem="4wh-Nv-SID" firstAttribute="height" secondItem="Bej-8k-t0v" secondAttribute="height" id="FRK-pf-vm7"/>
-                        <constraint firstItem="kaZ-PN-UcC" firstAttribute="height" secondItem="0kT-Ul-DoA" secondAttribute="height" id="Ylb-Xd-US4"/>
-                        <constraint firstItem="tuF-Fi-glA" firstAttribute="height" secondItem="4wh-Nv-SID" secondAttribute="height" id="m6I-6A-e7I"/>
-                        <constraint firstItem="Bej-8k-t0v" firstAttribute="height" secondItem="nnL-hR-3GX" secondAttribute="height" id="r3z-e5-vff"/>
+                        <constraint firstItem="0kT-Ul-DoA" firstAttribute="width" secondItem="nnL-hR-3GX" secondAttribute="width" id="HRd-2N-U7o"/>
+                        <constraint firstItem="0kT-Ul-DoA" firstAttribute="height" secondItem="nnL-hR-3GX" secondAttribute="height" id="gLU-qQ-VU2"/>
                     </constraints>
                 </stackView>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="K0o-ZK-ECy">
-                    <rect key="frame" x="100" y="172" width="568" height="110"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="K0o-ZK-ECy" userLabel="TextFieldsStackView">
+                    <rect key="frame" x="78" y="120" width="420" height="110"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Choose start date please! " textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="niX-df-uj6">
-                            <rect key="frame" x="0.0" y="0.0" width="568" height="45"/>
+                            <rect key="frame" x="0.0" y="0.0" width="420" height="45"/>
                             <constraints>
+                                <constraint firstAttribute="width" constant="420" id="1kn-t1-OLB"/>
                                 <constraint firstAttribute="height" constant="45" id="fSQ-FW-OJJ"/>
                             </constraints>
                             <nil key="textColor"/>
@@ -96,7 +124,7 @@
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Choose end date please! (optional)" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JR2-l0-e2S">
-                            <rect key="frame" x="0.0" y="65" width="568" height="45"/>
+                            <rect key="frame" x="0.0" y="65" width="420" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="7Gj-2S-WBd"/>
                             </constraints>
@@ -106,15 +134,21 @@
                         </textField>
                     </subviews>
                 </stackView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IQn-lm-kKR">
+                    <rect key="frame" x="508" y="260" width="240" height="640"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="PjY-aq-YnN" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="5cC-JO-uZI"/>
-                <constraint firstItem="PjY-aq-YnN" firstAttribute="leading" secondItem="K0o-ZK-ECy" secondAttribute="leading" id="8gV-2Q-VrH"/>
-                <constraint firstItem="PjY-aq-YnN" firstAttribute="top" secondItem="K0o-ZK-ECy" secondAttribute="bottom" constant="40" id="LcP-AJ-4oR"/>
-                <constraint firstItem="PjY-aq-YnN" firstAttribute="trailing" secondItem="K0o-ZK-ECy" secondAttribute="trailing" id="dW6-LD-elF"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="K0o-ZK-ECy" secondAttribute="trailing" constant="100" id="qZf-47-kCf"/>
-                <constraint firstItem="K0o-ZK-ECy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="100" id="qi4-wI-Pge"/>
+                <constraint firstItem="K0o-ZK-ECy" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="100" id="3fa-R8-j2q"/>
+                <constraint firstItem="K0o-ZK-ECy" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" multiplier="0.75" id="IM8-qA-gJV"/>
+                <constraint firstItem="IQn-lm-kKR" firstAttribute="top" secondItem="p7p-lK-gFf" secondAttribute="top" id="XwE-SV-QgN"/>
+                <constraint firstItem="p7p-lK-gFf" firstAttribute="centerX" secondItem="K0o-ZK-ECy" secondAttribute="centerX" id="aUT-ci-cOe"/>
+                <constraint firstItem="IQn-lm-kKR" firstAttribute="leading" secondItem="p7p-lK-gFf" secondAttribute="trailing" constant="10" id="cPR-tV-255"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="IQn-lm-kKR" secondAttribute="trailing" constant="20" id="jbV-Ax-kPM"/>
+                <constraint firstItem="IQn-lm-kKR" firstAttribute="bottom" secondItem="p7p-lK-gFf" secondAttribute="bottom" id="kSI-jd-QzQ"/>
+                <constraint firstItem="p7p-lK-gFf" firstAttribute="top" secondItem="K0o-ZK-ECy" secondAttribute="bottom" constant="30" id="tDN-Ll-xz3"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>

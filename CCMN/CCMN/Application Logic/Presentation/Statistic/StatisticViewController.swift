@@ -8,14 +8,15 @@
 
 import UIKit
 import Charts
+import Lottie
 
 class StatisticViewController: UIViewController {
     
     @IBOutlet weak var startDateTextField: UITextField!
     @IBOutlet weak var endDateTextField: UITextField!
+    @IBOutlet weak var lottieView: UIView!
     
     var model: StatisticModel!
-    
     private var startDatePicker: UIDatePicker!
     private var endDatePicker: UIDatePicker!
     
@@ -46,6 +47,18 @@ class StatisticViewController: UIViewController {
         endDateTextField.layer.cornerRadius = 10
         endDateTextField.clipsToBounds = true
         endDateTextField.delegate = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let lotView = LOTAnimationView(name: "LookingAround")
+        lotView.frame = lottieView.bounds
+        lotView.contentMode = .scaleAspectFit
+        lottieView.addSubview(lotView)
+        lotView.play { finish in
+            if finish { lotView.play() }
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

@@ -45,20 +45,13 @@ final class NCForecastingModel {
     func chartData(completion: @escaping (_ weekChart: ChartData, _ monthChart: ChartData) -> Void) {
         let model = NCStatisticRangeEntity(startDate: "2018-01-01", endDate: "2018-12-31")
         network.visitorsInRange(model: model) { [weak self] result in
-            guard let `self` = self else { return }
-            guard let stats = result else { return }
+            guard let `self` = self, let stats = result else { return }
             
             let sortedArray = Array(stats).sorted { $0.key < $1.key }
 
+            // Days part ---------------------------------
             let totalWeekDaysVisitors = sortedArray.reduce([String: Int](), self.weekBlock)
-            let totalMonthVisitors = sortedArray.reduce([String: Int](), self.monthBlock)
-            
             let averageDayVisitors = totalWeekDaysVisitors.map { ($0.key, $0.value / self.numberOfWeeksInYear) }.sorted { $0.1 > $1.1 }
-            let averageMonthVisitors = totalMonthVisitors.map { ($0.key, $0.value / self.numberOfMonthInYear) }.sorted { $0.1 > $1.1 }
-            
-            print(averageDayVisitors)
-            print(averageMonthVisitors)
-            
             var days: [Int] = []
             for i in 0..<7 { days.append(i) }
             
@@ -75,7 +68,11 @@ final class NCForecastingModel {
                 let set = self.createSet(with: weekEntries[day], label: averageDayVisitors[day].0)
                 weekSets.append(set)
             }
+            // ---------------------------------------------
             
+            // Month part ---------------------------------
+            let totalMonthVisitors = sortedArray.reduce([String: Int](), self.monthBlock)
+            let averageMonthVisitors = totalMonthVisitors.map { ($0.key, $0.value / self.numberOfMonthInYear) }.sorted { $0.1 > $1.1 }
             var months: [Int] = []
             for i in 0..<self.numberOfMonthInYear { months.append(i) }
             
@@ -92,6 +89,7 @@ final class NCForecastingModel {
                 let set = self.createSet(with: monthEntries[month], label: averageMonthVisitors[month].0)
                 monthSets.append(set)
             }
+            // ---------------------------------------------
             
             let weekData = BarChartData(dataSets: weekSets)
             weekData.setValueFont(NCApplicationConstants.regular13)

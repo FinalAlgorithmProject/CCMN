@@ -64,6 +64,7 @@
 		1DDD19542250F04600C6196C /* NCForecastingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDD19532250F04600C6196C /* NCForecastingModel.swift */; };
 		1DDD19572250F06200C6196C /* NCForecastingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDD19552250F06200C6196C /* NCForecastingViewController.swift */; };
 		1DDD19582250F06200C6196C /* NCForecastingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD19562250F06200C6196C /* NCForecastingViewController.xib */; };
+		1DDD195A2251406200C6196C /* LookingAround.json in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD19592251406200C6196C /* LookingAround.json */; };
 		1DF3D729223E7A19000ECDBB /* NCRepeatedVisitorsChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF3D727223E7A19000ECDBB /* NCRepeatedVisitorsChartViewController.swift */; };
 		1DF3D72A223E7A19000ECDBB /* NCRepeatedVisitorsChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DF3D728223E7A19000ECDBB /* NCRepeatedVisitorsChartViewController.xib */; };
 		1DF3D72C223E7A32000ECDBB /* NCRepeatedVisitorsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF3D72B223E7A32000ECDBB /* NCRepeatedVisitorsModel.swift */; };
@@ -137,6 +138,7 @@
 		1DDD19532250F04600C6196C /* NCForecastingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NCForecastingModel.swift; sourceTree = "<group>"; };
 		1DDD19552250F06200C6196C /* NCForecastingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NCForecastingViewController.swift; sourceTree = "<group>"; };
 		1DDD19562250F06200C6196C /* NCForecastingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NCForecastingViewController.xib; sourceTree = "<group>"; };
+		1DDD19592251406200C6196C /* LookingAround.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LookingAround.json; sourceTree = "<group>"; };
 		1DF3D727223E7A19000ECDBB /* NCRepeatedVisitorsChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NCRepeatedVisitorsChartViewController.swift; sourceTree = "<group>"; };
 		1DF3D728223E7A19000ECDBB /* NCRepeatedVisitorsChartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NCRepeatedVisitorsChartViewController.xib; sourceTree = "<group>"; };
 		1DF3D72B223E7A32000ECDBB /* NCRepeatedVisitorsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NCRepeatedVisitorsModel.swift; sourceTree = "<group>"; };
@@ -376,6 +378,7 @@
 				1DC5D7CD2222AFE00015530F /* Assets.xcassets */,
 				1DC5D7CF2222AFE00015530F /* LaunchScreen.storyboard */,
 				1DC5D7D22222AFE00015530F /* Info.plist */,
+				1DDD19592251406200C6196C /* LookingAround.json */,
 				1D6437272235790100617C47 /* loadingAnimation.json */,
 			);
 			path = "Supporting Files";
@@ -544,6 +547,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DDD195A2251406200C6196C /* LookingAround.json in Resources */,
 				1D99BEF122468D0F00E7DCDD /* NCVisitorsViewController.xib in Resources */,
 				1DF3D73D223EBC21000ECDBB /* NCDwellTimeViewController.xib in Resources */,
 				1D64373722357E5600617C47 /* OFL.txt in Resources */,
