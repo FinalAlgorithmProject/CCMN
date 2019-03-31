@@ -58,7 +58,7 @@ final class FloorModel {
         
         if percentage >= 75 {
             return FloorLoading.high(student)
-        } else if percentage >= 50 {
+        } else if percentage >= 45 {
             return FloorLoading.medium(student)
         } else {
             return FloorLoading.low(student)
@@ -77,6 +77,6 @@ final class FloorModel {
  },
  */
 
-// b4:9c:df:04:f7:ab - my mac address
+// b4:9c:df:04:f7:ab - vpoltave
 // 38:a4:ed:1c:58:b7 - tgogol
 

@@ -79,6 +79,10 @@ class StatisticViewController: UIViewController {
     @IBAction func visitors(_ sender: UIButton) {
         model.openVisitorsStatistic()
     }
+    
+    @IBAction func forecast(_ sender: UIButton) {
+        model.openForecasting()
+    }
 }
 
 extension StatisticViewController: UITextFieldDelegate {

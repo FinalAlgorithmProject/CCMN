@@ -27,7 +27,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="PjY-aq-YnN">
-                    <rect key="frame" x="100" y="357" width="568" height="330"/>
+                    <rect key="frame" x="100" y="322" width="568" height="400"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nnL-hR-3GX" customClass="NCStatisticButton" customModule="CCMN" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="568" height="50"/>
@@ -67,16 +67,24 @@
                                 <action selector="visitors:" destination="-1" eventType="touchUpInside" id="rMH-qH-4lj"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kaZ-PN-UcC" customClass="NCStatisticButton" customModule="CCMN" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="350" width="568" height="50"/>
+                            <state key="normal" title="Forecasting"/>
+                            <connections>
+                                <action selector="forecast:" destination="-1" eventType="touchUpInside" id="IxI-Zx-tvS"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <constraints>
                         <constraint firstItem="0kT-Ul-DoA" firstAttribute="height" secondItem="tuF-Fi-glA" secondAttribute="height" id="1Q3-4w-0Os"/>
                         <constraint firstItem="4wh-Nv-SID" firstAttribute="height" secondItem="Bej-8k-t0v" secondAttribute="height" id="FRK-pf-vm7"/>
+                        <constraint firstItem="kaZ-PN-UcC" firstAttribute="height" secondItem="0kT-Ul-DoA" secondAttribute="height" id="Ylb-Xd-US4"/>
                         <constraint firstItem="tuF-Fi-glA" firstAttribute="height" secondItem="4wh-Nv-SID" secondAttribute="height" id="m6I-6A-e7I"/>
                         <constraint firstItem="Bej-8k-t0v" firstAttribute="height" secondItem="nnL-hR-3GX" secondAttribute="height" id="r3z-e5-vff"/>
                     </constraints>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="K0o-ZK-ECy">
-                    <rect key="frame" x="100" y="207" width="568" height="110"/>
+                    <rect key="frame" x="100" y="172" width="568" height="110"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Choose start date please! " textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="niX-df-uj6">
                             <rect key="frame" x="0.0" y="0.0" width="568" height="45"/>

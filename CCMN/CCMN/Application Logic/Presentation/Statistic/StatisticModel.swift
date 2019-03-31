@@ -42,4 +42,8 @@ final class StatisticModel {
     func openVisitorsStatistic() {
         coordinator.openVisitorsCharts(with: startDate, endDate: endDate)
     }
+    
+    func openForecasting() {
+        coordinator.openForecastingCharts()
+    }
 }

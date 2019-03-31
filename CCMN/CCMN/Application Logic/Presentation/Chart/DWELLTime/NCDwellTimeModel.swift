@@ -86,7 +86,6 @@ final class NCDwellTimeModel {
         }
         let allKeys = sortedArray.map { $0.key }
         
-        print(allKeys)
         if endDate != nil {
             self.units = sortedArray
                 .map { dateFormatter.string(from: formatter.date(from: $0.key)!) }
