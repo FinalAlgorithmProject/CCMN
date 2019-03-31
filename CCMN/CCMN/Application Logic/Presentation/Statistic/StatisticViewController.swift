@@ -16,6 +16,8 @@ class StatisticViewController: UIViewController {
     @IBOutlet weak var endDateTextField: UITextField!
     @IBOutlet weak var lottieView: UIView!
     
+    private var lotView: LOTAnimationView!
+    
     var model: StatisticModel!
     private var startDatePicker: UIDatePicker!
     private var endDatePicker: UIDatePicker!
@@ -30,6 +32,14 @@ class StatisticViewController: UIViewController {
         super.viewDidLoad()
 
         navigationItem.title = "Analytics and Presence"
+        
+        lotView = LOTAnimationView(name: "LookingAround")
+        lotView.frame = lottieView.bounds
+        lotView.contentMode = .scaleAspectFit
+        lottieView.addSubview(lotView)
+        
+        let panGesture = UITapGestureRecognizer(target: self, action: #selector(animateSuslik))
+        lottieView.addGestureRecognizer(panGesture)
         
         startDatePicker = createDatePicker()
         endDatePicker = createDatePicker()
@@ -49,20 +59,12 @@ class StatisticViewController: UIViewController {
         endDateTextField.delegate = self
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        let lotView = LOTAnimationView(name: "LookingAround")
-        lotView.frame = lottieView.bounds
-        lotView.contentMode = .scaleAspectFit
-        lottieView.addSubview(lotView)
-        lotView.play { finish in
-            if finish { lotView.play() }
-        }
-    }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
+    }
+    
+    @objc private func animateSuslik() {
+        lotView.play()
     }
     
     private func createDatePicker() -> UIDatePicker {
