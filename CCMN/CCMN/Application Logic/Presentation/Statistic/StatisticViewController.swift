@@ -8,14 +8,17 @@
 
 import UIKit
 import Charts
+import Lottie
 
 class StatisticViewController: UIViewController {
     
     @IBOutlet weak var startDateTextField: UITextField!
     @IBOutlet weak var endDateTextField: UITextField!
+    @IBOutlet weak var lottieView: UIView!
+    
+    private var lotView: LOTAnimationView!
     
     var model: StatisticModel!
-    
     private var startDatePicker: UIDatePicker!
     private var endDatePicker: UIDatePicker!
     
@@ -29,6 +32,14 @@ class StatisticViewController: UIViewController {
         super.viewDidLoad()
 
         navigationItem.title = "Analytics and Presence"
+        
+        lotView = LOTAnimationView(name: "LookingAround")
+        lotView.frame = lottieView.bounds
+        lotView.contentMode = .scaleAspectFit
+        lottieView.addSubview(lotView)
+        
+        let panGesture = UITapGestureRecognizer(target: self, action: #selector(animateSuslik))
+        lottieView.addGestureRecognizer(panGesture)
         
         startDatePicker = createDatePicker()
         endDatePicker = createDatePicker()
@@ -50,6 +61,10 @@ class StatisticViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
+    }
+    
+    @objc private func animateSuslik() {
+        lotView.play()
     }
     
     private func createDatePicker() -> UIDatePicker {
@@ -78,6 +93,10 @@ class StatisticViewController: UIViewController {
     
     @IBAction func visitors(_ sender: UIButton) {
         model.openVisitorsStatistic()
+    }
+    
+    @IBAction func forecast(_ sender: UIButton) {
+        model.openForecasting()
     }
 }
 

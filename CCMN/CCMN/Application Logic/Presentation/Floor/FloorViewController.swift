@@ -68,15 +68,15 @@ class FloorViewController: UIViewController {
             
             switch floorLoading {
             case .high(let students):
-                self.floorLoadingLabel.text = "High"
+                self.floorLoadingLabel.text = "High load"
                 self.floorLoadingLabel.textColor = UIColor.warningRedColor
                 self.usersCountLabel.text = "Students on selected floor: \(students)"
             case .medium(let students):
-                self.floorLoadingLabel.text = "Medium"
+                self.floorLoadingLabel.text = "Medium load"
                 self.floorLoadingLabel.textColor = UIColor.warningOrangeColor
                 self.usersCountLabel.text = "Students on selected floor: \(students)"
             case .low(let students):
-                self.floorLoadingLabel.text = "Low"
+                self.floorLoadingLabel.text = "Low load"
                 self.floorLoadingLabel.textColor = UIColor.successGreenColor
                 self.usersCountLabel.text = "Students on selected floor: \(students)"
             }

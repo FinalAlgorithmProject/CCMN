@@ -69,7 +69,6 @@ extension NCNetworkManager {
                 NCUserDefaultsService.siteId = results[0].aesUId
                 print("site id: \(NCUserDefaultsService.siteId)")
                 completion()
-                print("Request ✅ SUCCESS")
             case .failure(let error):
                 completion()
                 self.defaultFailureCase(error)
@@ -96,9 +95,8 @@ extension NCNetworkManager {
             guard let `self` = self else { return }
             switch result {
             case .success(let response):
-                let result = try! response.map(NCClientsCountEntity.self)
-                completion(result.count)
-                print("Request ✅ SUCCESS")
+                let result = try? response.map(NCClientsCountEntity.self)
+                completion(result?.count)
             case .failure(let error):
                 completion(nil)
                 self.defaultFailureCase(error)
@@ -111,9 +109,8 @@ extension NCNetworkManager {
             guard let `self` = self else { return }
             switch result {
             case .success(let response):
-                let countString = try! response.mapString()
-                completion(Int(countString)!)
-                print("Request ✅ SUCCESS")
+                let countString = try? response.mapString()
+                completion(Int(countString ?? ""))
             case .failure(let error):
                 completion(nil)
                 self.defaultFailureCase(error)
@@ -128,7 +125,6 @@ extension NCNetworkManager {
             case .success(let response):
                 let result = try? response.map(NCCampusEntity.self)
                 completion(result)
-                print("Request ✅ SUCCESS")
             case .failure(let error):
                 completion(nil)
                 self.defaultFailureCase(error)
@@ -144,7 +140,6 @@ extension NCNetworkManager {
             case .success(let response):
                 let result = try? response.map(RepeatedVisitors.self)
                 completion(result)
-                print("Request ✅ SUCCESS")
             case .failure(let error):
                 completion(nil)
                  self.defaultFailureCase(error)
@@ -159,7 +154,6 @@ extension NCNetworkManager {
             case .success(let response):
                 let result = try? response.map(RepeatedVisitors.self)
                 completion(result)
-                print("Request ✅ SUCCESS")
             case .failure(let error):
                 completion(nil)
                 self.defaultFailureCase(error)
@@ -174,7 +168,6 @@ extension NCNetworkManager {
             case .success(let response):
                 let result = try? response.map(DWELLTime.self)
                 completion(result)
-                print("Request ✅ SUCCESS")
             case .failure(let error):
                 completion(nil)
                 self.defaultFailureCase(error)
@@ -189,7 +182,6 @@ extension NCNetworkManager {
             case .success(let response):
                 let result = try? response.map(DWELLTime.self)
                 completion(result)
-                print("Request ✅ SUCCESS")
             case .failure(let error):
                 completion(nil)
                 self.defaultFailureCase(error)
@@ -204,7 +196,6 @@ extension NCNetworkManager {
             case .success(let response):
                 let result = try? response.map(StringIntDictinary.self)
                 completion(result)
-                print("Request ✅ SUCCESS")
             case .failure(let error):
                 completion(nil)
                 self.defaultFailureCase(error)
@@ -219,7 +210,6 @@ extension NCNetworkManager {
             case .success(let response):
                 let result = try? response.map(StringIntDictinary.self)
                 completion(result)
-                print("Request ✅ SUCCESS")
             case .failure(let error):
                 completion(nil)
                 self.defaultFailureCase(error)
@@ -234,7 +224,6 @@ extension NCNetworkManager {
             case .success(let response):
                 let result = try? response.map(StringIntDictinary.self)
                 completion(result)
-                print("Request ✅ SUCCESS")
             case .failure(let error):
                 completion(nil)
                 self.defaultFailureCase(error)
@@ -249,7 +238,6 @@ extension NCNetworkManager {
             case .success(let response):
                 let result = try? response.map(StringIntDictinary.self)
                 completion(result)
-                print("Request ✅ SUCCESS")
             case .failure(let error):
                 completion(nil)
                 self.defaultFailureCase(error)
@@ -264,7 +252,6 @@ extension NCNetworkManager {
             case .success(let response):
                 let result = try? response.map(StringIntDictinary.self)
                 completion(result)
-                print("Request ✅ SUCCESS")
             case .failure(let error):
                 completion(nil)
                 self.defaultFailureCase(error)
@@ -279,7 +266,6 @@ extension NCNetworkManager {
             case .success(let response):
                 let result = try? response.map(StringIntDictinary.self)
                 completion(result)
-                print("Request ✅ SUCCESS")
             case .failure(let error):
                 completion(nil)
                 self.defaultFailureCase(error)
@@ -321,7 +307,7 @@ extension NCNetworkManager {
             guard let `self` = self else { return }
             switch result {
             case .success(let response):
-                let result = try? response.map([NCClientEntity].self) // empty if not found
+                let result = try? response.map([NCClientEntity].self)
                 completion(result)
             case .failure(let error):
                 completion(nil)

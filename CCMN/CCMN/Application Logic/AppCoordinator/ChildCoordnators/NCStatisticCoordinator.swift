@@ -51,4 +51,11 @@ class NCStatisticCoordinator: NCBaseCoordinator {
         viewController.model = NCVisitorsModel(coordinator: self, network: network, startDate: startDate, endDate: endDate)
         pushViewController(viewController)
     }
+    
+    func openForecastingCharts() {
+        let viewController = NCForecastingViewController.init(nibName: NCForecastingViewController.className, bundle: nil)
+        let network = NCNetworkManager.shared
+        viewController.model = NCForecastingModel(network: network)
+        pushViewController(viewController)
+    }
 }

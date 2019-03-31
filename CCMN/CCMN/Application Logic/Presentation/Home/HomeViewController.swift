@@ -72,8 +72,13 @@ class HomeViewController: UIViewController {
             self.todayVisitorsLabel!.text = "Today visitors: \(count)"
         }
         model.allClients { macAddress, userName, userLocation in
-            print(userLocation)
-            self.showToastLabel(with: "Hi, \"\(userName)\" or mac: \(macAddress) now is on \(userLocation)")
+            print("New user from: \(userLocation)")
+            if !userName.isEmpty {
+                self.showToastLabel(with: "Hi, \"\(userName)\" and MAC address (\(macAddress)) now is on \(userLocation)")
+            } else {
+                self.showToastLabel(with: "Hi, MAC address \"\(macAddress)\" now is on \(userLocation)")
+            }
+            
         }
         model.todayKPI { data in
             self.pieChartsView.data = data
@@ -124,7 +129,7 @@ extension HomeViewController: UISearchBarDelegate {
             
             if let user = result, let index = index {
                 let alert = UIAlertController(title: "Success",
-                                              message: "We found something. Do you want to be redirected to user location?",
+                                              message: "Do you want to be redirect to user location?",
                                               preferredStyle: .alert)
                 let yesAction = UIAlertAction(title: "Yes", style: .default, handler: { _ in
                     self.model.redirectWithUser(user, withIndex: index)
@@ -133,7 +138,7 @@ extension HomeViewController: UISearchBarDelegate {
                 alert.addAction(UIAlertAction(title: "No", style: .destructive, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             } else {
-                self.showToastLabel(with: "Sorry, but we can't find this: [\(searchBar.text!)] :(",
+                self.showToastLabel(with: "Sorry, but we can't find: \"\(searchBar.text!)\" :(",
                                      backgroundColor: UIColor.warningRedColor)
             }
         }

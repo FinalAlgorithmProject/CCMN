@@ -61,6 +61,10 @@
 		1DC5D7E52222D0AA0015530F /* NCApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5D7E42222D0AA0015530F /* NCApi.swift */; };
 		1DD7F7BD223D43B000121E4D /* FloorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7F7BC223D43B000121E4D /* FloorModel.swift */; };
 		1DDD19512250E24700C6196C /* NCSelectedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDD19502250E24700C6196C /* NCSelectedUser.swift */; };
+		1DDD19542250F04600C6196C /* NCForecastingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDD19532250F04600C6196C /* NCForecastingModel.swift */; };
+		1DDD19572250F06200C6196C /* NCForecastingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDD19552250F06200C6196C /* NCForecastingViewController.swift */; };
+		1DDD19582250F06200C6196C /* NCForecastingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD19562250F06200C6196C /* NCForecastingViewController.xib */; };
+		1DDD195A2251406200C6196C /* LookingAround.json in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD19592251406200C6196C /* LookingAround.json */; };
 		1DF3D729223E7A19000ECDBB /* NCRepeatedVisitorsChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF3D727223E7A19000ECDBB /* NCRepeatedVisitorsChartViewController.swift */; };
 		1DF3D72A223E7A19000ECDBB /* NCRepeatedVisitorsChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DF3D728223E7A19000ECDBB /* NCRepeatedVisitorsChartViewController.xib */; };
 		1DF3D72C223E7A32000ECDBB /* NCRepeatedVisitorsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF3D72B223E7A32000ECDBB /* NCRepeatedVisitorsModel.swift */; };
@@ -131,6 +135,10 @@
 		1DC5D7E42222D0AA0015530F /* NCApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NCApi.swift; sourceTree = "<group>"; };
 		1DD7F7BC223D43B000121E4D /* FloorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorModel.swift; sourceTree = "<group>"; };
 		1DDD19502250E24700C6196C /* NCSelectedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NCSelectedUser.swift; sourceTree = "<group>"; };
+		1DDD19532250F04600C6196C /* NCForecastingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NCForecastingModel.swift; sourceTree = "<group>"; };
+		1DDD19552250F06200C6196C /* NCForecastingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NCForecastingViewController.swift; sourceTree = "<group>"; };
+		1DDD19562250F06200C6196C /* NCForecastingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NCForecastingViewController.xib; sourceTree = "<group>"; };
+		1DDD19592251406200C6196C /* LookingAround.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LookingAround.json; sourceTree = "<group>"; };
 		1DF3D727223E7A19000ECDBB /* NCRepeatedVisitorsChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NCRepeatedVisitorsChartViewController.swift; sourceTree = "<group>"; };
 		1DF3D728223E7A19000ECDBB /* NCRepeatedVisitorsChartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NCRepeatedVisitorsChartViewController.xib; sourceTree = "<group>"; };
 		1DF3D72B223E7A32000ECDBB /* NCRepeatedVisitorsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NCRepeatedVisitorsModel.swift; sourceTree = "<group>"; };
@@ -261,6 +269,7 @@
 				1DB552FF22466C9900FDF3CB /* NCPasserbyViewController.xib */,
 				1D99BEE8224685A600E7DCDD /* NCConnectedUsersViewController.xib */,
 				1D99BEEF22468D0F00E7DCDD /* NCVisitorsViewController.xib */,
+				1DDD19562250F06200C6196C /* NCForecastingViewController.xib */,
 				1D64372122356BD700617C47 /* NCLoadingViewController.xib */,
 			);
 			path = Screens;
@@ -369,6 +378,7 @@
 				1DC5D7CD2222AFE00015530F /* Assets.xcassets */,
 				1DC5D7CF2222AFE00015530F /* LaunchScreen.storyboard */,
 				1DC5D7D22222AFE00015530F /* Info.plist */,
+				1DDD19592251406200C6196C /* LookingAround.json */,
 				1D6437272235790100617C47 /* loadingAnimation.json */,
 			);
 			path = "Supporting Files";
@@ -387,6 +397,7 @@
 				1D1217C1222AF49E00855EB4 /* NCKpiStatisticEntity.swift */,
 				1D99BEF22246B11B00E7DCDD /* NCClientEntity.swift */,
 				1D4E1879224FCA1B00E72B23 /* Floors.swift */,
+				1DDD19502250E24700C6196C /* NCSelectedUser.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -395,15 +406,24 @@
 			isa = PBXGroup;
 			children = (
 				1DC5D7E22222CE620015530F /* NCUserDefaultsService.swift */,
-				1DDD19502250E24700C6196C /* NCSelectedUser.swift */,
 				1DC5D7D82222BB9D0015530F /* Network */,
 			);
 			path = Services;
 			sourceTree = "<group>";
 		};
+		1DDD19522250F02D00C6196C /* Forecasting */ = {
+			isa = PBXGroup;
+			children = (
+				1DDD19552250F06200C6196C /* NCForecastingViewController.swift */,
+				1DDD19532250F04600C6196C /* NCForecastingModel.swift */,
+			);
+			path = Forecasting;
+			sourceTree = "<group>";
+		};
 		1DF3D724223E784B000ECDBB /* Chart */ = {
 			isa = PBXGroup;
 			children = (
+				1DDD19522250F02D00C6196C /* Forecasting */,
 				1D99BEEB22468CE900E7DCDD /* Visitors */,
 				1D99BEE42246855100E7DCDD /* ConnectedUsers */,
 				1DB552FB22466C5700FDF3CB /* Passerby */,
@@ -527,6 +547,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DDD195A2251406200C6196C /* LookingAround.json in Resources */,
 				1D99BEF122468D0F00E7DCDD /* NCVisitorsViewController.xib in Resources */,
 				1DF3D73D223EBC21000ECDBB /* NCDwellTimeViewController.xib in Resources */,
 				1D64373722357E5600617C47 /* OFL.txt in Resources */,
@@ -540,6 +561,7 @@
 				1DF3D731223E7E30000ECDBB /* NCBarChartTableViewCell.xib in Resources */,
 				1D811F2B2235394A0082CF9B /* StatisticViewController.xib in Resources */,
 				1D64372322356BD700617C47 /* NCLoadingViewController.xib in Resources */,
+				1DDD19582250F06200C6196C /* NCForecastingViewController.xib in Resources */,
 				1D811F2F2235396B0082CF9B /* FloorViewController.xib in Resources */,
 				1DB5530122466C9900FDF3CB /* NCPasserbyViewController.xib in Resources */,
 				1D64373622357E5600617C47 /* FiraSans-Regular.ttf in Resources */,
@@ -611,6 +633,7 @@
 				1D6437142235681900617C47 /* NCHomeCoordinator.swift in Sources */,
 				1D64373022357DFE00617C47 /* UIColor+Extension.swift in Sources */,
 				1D64372222356BD700617C47 /* NCLoadingViewController.swift in Sources */,
+				1DDD19572250F06200C6196C /* NCForecastingViewController.swift in Sources */,
 				1D6437422235905700617C47 /* NCFloorCoordinator.swift in Sources */,
 				1D99BEF022468D0F00E7DCDD /* NCVisitorsViewController.swift in Sources */,
 				1D64373D22358B1700617C47 /* StatisticModel.swift in Sources */,
@@ -646,6 +669,7 @@
 				1D811F2A2235394A0082CF9B /* StatisticViewController.swift in Sources */,
 				1DC5D7E52222D0AA0015530F /* NCApi.swift in Sources */,
 				1D613612222319A70057068A /* NCCampusEntity.swift in Sources */,
+				1DDD19542250F04600C6196C /* NCForecastingModel.swift in Sources */,
 				1D64371D22356A6F00617C47 /* NCTabBarViewController.swift in Sources */,
 				1DF3D72C223E7A32000ECDBB /* NCRepeatedVisitorsModel.swift in Sources */,
 			);
