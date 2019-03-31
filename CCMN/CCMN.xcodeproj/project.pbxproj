@@ -60,6 +60,7 @@
 		1DC5D7E32222CE620015530F /* NCUserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5D7E22222CE620015530F /* NCUserDefaultsService.swift */; };
 		1DC5D7E52222D0AA0015530F /* NCApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5D7E42222D0AA0015530F /* NCApi.swift */; };
 		1DD7F7BD223D43B000121E4D /* FloorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7F7BC223D43B000121E4D /* FloorModel.swift */; };
+		1DDD19512250E24700C6196C /* NCSelectedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDD19502250E24700C6196C /* NCSelectedUser.swift */; };
 		1DF3D729223E7A19000ECDBB /* NCRepeatedVisitorsChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF3D727223E7A19000ECDBB /* NCRepeatedVisitorsChartViewController.swift */; };
 		1DF3D72A223E7A19000ECDBB /* NCRepeatedVisitorsChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DF3D728223E7A19000ECDBB /* NCRepeatedVisitorsChartViewController.xib */; };
 		1DF3D72C223E7A32000ECDBB /* NCRepeatedVisitorsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF3D72B223E7A32000ECDBB /* NCRepeatedVisitorsModel.swift */; };
@@ -129,6 +130,7 @@
 		1DC5D7E22222CE620015530F /* NCUserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NCUserDefaultsService.swift; sourceTree = "<group>"; };
 		1DC5D7E42222D0AA0015530F /* NCApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NCApi.swift; sourceTree = "<group>"; };
 		1DD7F7BC223D43B000121E4D /* FloorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorModel.swift; sourceTree = "<group>"; };
+		1DDD19502250E24700C6196C /* NCSelectedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NCSelectedUser.swift; sourceTree = "<group>"; };
 		1DF3D727223E7A19000ECDBB /* NCRepeatedVisitorsChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NCRepeatedVisitorsChartViewController.swift; sourceTree = "<group>"; };
 		1DF3D728223E7A19000ECDBB /* NCRepeatedVisitorsChartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NCRepeatedVisitorsChartViewController.xib; sourceTree = "<group>"; };
 		1DF3D72B223E7A32000ECDBB /* NCRepeatedVisitorsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NCRepeatedVisitorsModel.swift; sourceTree = "<group>"; };
@@ -393,6 +395,7 @@
 			isa = PBXGroup;
 			children = (
 				1DC5D7E22222CE620015530F /* NCUserDefaultsService.swift */,
+				1DDD19502250E24700C6196C /* NCSelectedUser.swift */,
 				1DC5D7D82222BB9D0015530F /* Network */,
 			);
 			path = Services;
@@ -618,6 +621,7 @@
 				1DB552FD22466C7C00FDF3CB /* NCPasserbyModel.swift in Sources */,
 				1D4E187C224FD22400E72B23 /* UIImage+Extension.swift in Sources */,
 				1D99BEE9224685A600E7DCDD /* NCConnectedUsersViewController.swift in Sources */,
+				1DDD19512250E24700C6196C /* NCSelectedUser.swift in Sources */,
 				1DF3D73C223EBC21000ECDBB /* NCDwellTimeViewController.swift in Sources */,
 				1DD7F7BD223D43B000121E4D /* FloorModel.swift in Sources */,
 				1D1217BA222AB32A00855EB4 /* NCRepeatedVisitorsStatisticEntity.swift in Sources */,

@@ -146,6 +146,7 @@ final class HomeModel {
     }
     
     func redirectWithUser(_ user: NCClientEntity, withIndex index: Int) {
+        NCSelectedUser.shared.macAddress = user.macAddress
         coordinator.selectTabIndex(index)
     }
     
